@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['choosereadme'] = 'Readme when selecting the theme.';
 $string['intername'] = 'Name:';
-$string['intersettings'] = 'Sttings';
+$string['intersettings'] = 'Settings';
 $string['inter:name'] = 'Name';
 $string['inter:edit'] = 'Edit test';
 $string['inter:enrol'] = 'Enrol users';

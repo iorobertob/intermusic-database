@@ -83,8 +83,8 @@ class mod_inter_mod_form extends moodleform_mod {
 
         // Adding the rest of mod_inter settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'intersettings', get_string('intersettings', 'inter'));
-        $mform->addElement('header', 'interfieldset', get_string('interfieldset', 'inter'));
+        $mform->addElement('header', 'label1', 'intersettings', get_string('intersettings', 'inter'));
+        //$mform->addElement('header', 'interfieldset', get_string('interfieldset', 'inter'));
 
         // Add standard elements.
         $this->standard_coursemodule_elements();

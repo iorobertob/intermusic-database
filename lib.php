@@ -54,10 +54,21 @@ function inter_supports($feature) {
  */
 function inter_add_instance($moduleinstance, $mform = null) {
     global $DB;
+    require_once("$CFG->libdir/resourcelib.php");
+    require_once("$CFG->dirroot/mod/inter/locallib.php");
 
     $moduleinstance->timecreated = time();
 
     $id = $DB->insert_record('inter', $moduleinstance);
+
+    //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
+        // we need to use context now, so we need to make sure all needed info is already in db
+    $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
+    resource_set_mainfile($moduleinstance);
+
+    $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
+    \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
+    //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
 }
