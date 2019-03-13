@@ -65,9 +65,11 @@ function inter_add_instance($moduleinstance, $mform = null) {
         // we need to use context now, so we need to make sure all needed info is already in db
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
     resource_set_mainfile($moduleinstance);
-
+    echo("<script>console.log('1');</script>");
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
+    echo("<script>console.log('2');</script>");
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
+    echo("<script>console.log('3');</script>");
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
