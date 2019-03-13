@@ -54,7 +54,9 @@ function inter_supports($feature) {
  */
 function inter_add_instance($moduleinstance, $mform = null) {
     global $DB;
+    echo("<script>console.log('AAAAAAAAAAAAA');</script>");
     require_once("$CFG->libdir/resourcelib.php");
+    echo("<script>console.log('BBBBBBBBBBBBBB');</script>");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
