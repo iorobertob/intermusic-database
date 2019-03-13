@@ -62,14 +62,14 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $id = $DB->insert_record('inter', $moduleinstance);
 
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
-        // we need to use context now, so we need to make sure all needed info is already in db
-    // $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
-    // resource_set_mainfile($moduleinstance);
-    // echo("<script>console.log('111111111111');</script>");
-    // $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
-    // echo("<script>console.log('222222222222');</script>");
-    // \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
-    // echo("<script>console.log('333333333333');</script>");
+    // we need to use context now, so we need to make sure all needed info is already in db
+    $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
+    resource_set_mainfile($moduleinstance);
+    echo("<script>console.log('111111111111');</script>");
+    $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
+    echo("<script>console.log('222222222222');</script>");
+    \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
+    echo("<script>console.log('333333333333');</script>");
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
