@@ -56,14 +56,16 @@ function inter_add_instance($moduleinstance, $mform = null) {
     global $DB;
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
-
+    $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
     $id = $DB->insert_record('inter', $moduleinstance);
 
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
     // we need to use context now, so we need to make sure all needed info is already in db
+    echo("<script>console.log('000000000000');</script>");
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
+    echo("<script>console.log('############');</script>");
     resource_set_mainfile($moduleinstance);
     echo("<script>console.log('111111111111');</script>");
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
