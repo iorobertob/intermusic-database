@@ -53,7 +53,7 @@ function inter_supports($feature) {
  * @return int The id of the newly inserted record.
  */
 function inter_add_instance($moduleinstance, $mform = null) {
-    global $DB;
+    global $CFG, $DB;
     echo("<script>console.log('AAAAAAAAAAAAA');</script>");
     require_once("$CFG->libdir/resourcelib.php");
     echo("<script>console.log('BBBBBBBBBBBBBB');</script>");
