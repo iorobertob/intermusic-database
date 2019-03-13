@@ -47,7 +47,7 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
         // Adding the standard "name" field.
-        $mform->addElement('text', 'name', get_string('intername', 'mod_inter'), array('size' => '64'));
+        $mform->addElement('text', 'name', get_string('intername', 'inter'), array('size' => '64'));
 
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
@@ -66,10 +66,25 @@ class mod_inter_mod_form extends moodleform_mod {
             $this->add_intro_editor();
         }
 
+
+        //========================   FILE PIKCER ==========================================
+        $element = $mform->getElement('introeditor');
+        $attributes = $element->getAttributes();
+        $attributes['rows'] = 5;
+        $element->setAttributes($attributes);
+        $filemanager_options = array();
+        $filemanager_options['accepted_types'] = '*';
+        $filemanager_options['maxbytes'] = 0;
+        $filemanager_options['maxfiles'] = -1;
+        $filemanager_options['mainfile'] = true;
+
+        $mform->addElement('filemanager', 'files', get_string('selectfiles'), null, $filemanager_options);
+        //========================   FILE PIKCER ==========================================
+
         // Adding the rest of mod_inter settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'intersettings', get_string('intersettings', 'mod_inter'));
-        $mform->addElement('header', 'interfieldset', get_string('interfieldset', 'mod_inter'));
+        $mform->addElement('static', 'label1', 'intersettings', get_string('intersettings', 'inter'));
+        $mform->addElement('header', 'interfieldset', get_string('interfieldset', 'inter'));
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
