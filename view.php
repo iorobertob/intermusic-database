@@ -58,8 +58,53 @@ $event->trigger();
 $PAGE->set_url('/mod/inter/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
+
+//=============================  GET FILE    ===================================
+$fs = get_file_storage();
+$files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
+if (count($files) < 1) {
+    resource_print_filenotfound($moduleinstance, $cm, $course);
+    die;
+} else {
+    $file = reset($files);
+    unset($files);
+}
+//=============================  GET FILE   =====================================
+
+
+
 $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
 
 echo $OUTPUT->footer();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
