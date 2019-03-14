@@ -53,11 +53,11 @@ function inter_supports($feature) {
  * @return int The id of the newly inserted record.
  */
 function inter_add_instance($moduleinstance, $mform = null) {
-    global $DB;
-    // global $CFG, $DB;
+    // global $DB;
+    global $CFG, $DB;
 
-    //require_once("$CFG->libdir/resourcelib.php");
-    //require_once("$CFG->dirroot/mod/inter/locallib.php");
+    require_once("$CFG->libdir/resourcelib.php");
+    require_once("$CFG->dirroot/mod/inter/locallib.php");
     
     //$cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
