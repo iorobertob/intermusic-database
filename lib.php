@@ -54,10 +54,10 @@ function inter_supports($feature) {
  */
 function inter_add_instance($moduleinstance, $mform = null) {
     global $CFG, $DB;
-    echo("<script>console.log('AAAAAAAAAAAAA');</script>");
+    
     require_once("$CFG->libdir/resourcelib.php");
-    echo("<script>console.log('BBBBBBBBBBBBBB');</script>");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
+    
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
@@ -65,15 +65,15 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
     // we need to use context now, so we need to make sure all needed info is already in db
-    echo("<script>console.log('000000000000');</script>");
+    
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
-    echo("<script>console.log('############');</script>");
+    
     resource_set_mainfile($moduleinstance);
-    echo("<script>console.log('111111111111');</script>");
+    
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
-    echo("<script>console.log('222222222222');</script>");
+    
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
-    echo("<script>console.log('333333333333');</script>");
+    
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
