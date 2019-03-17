@@ -74,7 +74,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
-    // echo("<script>console.log('333333333333');</script>");
+    echo("<script>console.log('333333333333');</script>");
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
