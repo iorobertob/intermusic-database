@@ -67,13 +67,13 @@ function inter_add_instance($moduleinstance, $mform = null) {
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
     // we need to use context now, so we need to make sure all needed info is already in db
     
-    // $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
+    $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
     
-    // resource_set_mainfile($moduleinstance);
+    resource_set_mainfile($moduleinstance);
     
-    // $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
+    $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
-    // \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
+    \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
     // echo("<script>console.log('333333333333');</script>");
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
