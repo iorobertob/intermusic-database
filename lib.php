@@ -59,7 +59,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
     
-    //$cmid = $moduleinstance->coursemodule;
+    $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
     $id = $DB->insert_record('inter', $moduleinstance);
@@ -74,7 +74,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
-    echo("<script>console.log('333333333333');</script>");
+    //echo("<script>console.log('333333333333');</script>");
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
