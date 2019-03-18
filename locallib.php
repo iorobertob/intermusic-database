@@ -49,7 +49,7 @@ function inter_set_mainfile($data) {
         if ($data->display == RESOURCELIB_DISPLAY_EMBED) {
             $options['embed'] = true;
         }
-        file_save_draft_area_files($draftitemid, $context->id, 'mod_resource', 'content', 0, $options);
+        file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);
     }
     $files = $fs->get_area_files($context->id, 'mod_inter', 'content', 0, 'sortorder', false);
     if (count($files) == 1) {
