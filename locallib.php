@@ -56,5 +56,6 @@ function inter_set_mainfile($data) {
         // only one file attached, set it as main file automatically
         $file = reset($files);
         file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
+        echo("<script>console.log('333333333333 ".$file->get_filepath()."');</script>");
 	}
 }
