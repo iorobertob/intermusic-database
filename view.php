@@ -67,8 +67,13 @@ if (count($files) < 1) {
     die;
 } else {
     $file = reset($files);
+    echo("<script>console.log('333333333333 ".$file->get_filepath()."');</script>");
+        die;
     unset($files);
+
 }
+
+inter_display_embed($resource, $cm, $course, $file);
 //=============================  GET FILE   =====================================
 
 
