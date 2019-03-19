@@ -67,8 +67,10 @@ if (count($files) < 1) {
     die;
 } else {
     $file = reset($files);
+    $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
     echo("<script>console.log('333333333333 ".$file->get_filepath()."');</script>");
     echo("<script>console.log('444444444444 ".$file->get_filename()."');</script>");
+    echo("<script>console.log('555555555555 ".$url."');</script>");
         die;
     unset($files);
 
