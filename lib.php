@@ -69,7 +69,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
     
-    inter_set_mainfile($moduleinstance->data);
+    inter_set_mainfile($moduleinstance);
     
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
