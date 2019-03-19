@@ -68,6 +68,7 @@ if (count($files) < 1) {
 } else {
     $file = reset($files);
     echo("<script>console.log('333333333333 ".$file->get_filepath()."');</script>");
+    echo("<script>console.log('444444444444 ".$file->get_filename()."');</script>");
         die;
     unset($files);
 
