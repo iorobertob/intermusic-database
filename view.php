@@ -79,7 +79,7 @@ if (count($files) < 1) {
 
 }
 
-inter_display_embed($resource, $cm, $course, $file);
+//inter_display_embed($resource, $cm, $course, $file);
 //=============================  GET FILE   =====================================
 
 
