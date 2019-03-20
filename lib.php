@@ -61,6 +61,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
+    // This line in the end helped saving the file
     resource_set_display_options($moduleinstance);
 
     $id = $DB->insert_record('inter', $moduleinstance);
@@ -75,7 +76,6 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
-    //echo("<script>console.log('333333333333');</script>");
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
@@ -92,12 +92,25 @@ function inter_add_instance($moduleinstance, $mform = null) {
  * @return bool True if successful, false otherwise.
  */
 function inter_update_instance($moduleinstance, $mform = null) {
-    global $DB;
+    global $CFG, $DB;
+
+    require_once("$CFG->libdir/resourcelib.php");
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
+    $moduleinstance->revision++;
 
-    return $DB->update_record('inter', $moduleinstance);
+    resource_set_display_options($moduleinstance);
+
+    $DB->update_record('inter', $moduleinstance);
+
+    inter_set_mainfile($moduleinstance);
+
+    $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
+    \core_completion\api::update_completion_date_event($moduleinstance->coursemodule, 'inter', $moduleinstance->id, $completiontimeexpected);
+
+    // return $DB->update_record('inter', $moduleinstance);
+    return true;
 }
 
 /**

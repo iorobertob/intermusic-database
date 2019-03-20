@@ -54,3 +54,4 @@ $string['pluginnameadding'] = 'Rendered when adding this question type.';
 $string['pluginnameediting'] = 'Rendered when editing this question type.';
 $string['pluginnamesummary'] = 'Rendered when choosing the question type to be added.';
 $string['view'] = 'View';
+$string['resourcecontent'] = 'Files and subfolders';
