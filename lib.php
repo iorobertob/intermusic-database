@@ -53,7 +53,6 @@ function inter_supports($feature) {
  * @return int The id of the newly inserted record.
  */
 function inter_add_instance($moduleinstance, $mform = null) {
-    // global $DB;
     global $CFG, $DB;
 
     require_once("$CFG->libdir/resourcelib.php");
@@ -61,6 +60,8 @@ function inter_add_instance($moduleinstance, $mform = null) {
     
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
+
+    resource_set_display_options($moduleinstance);
 
     $id = $DB->insert_record('inter', $moduleinstance);
 
@@ -186,48 +187,65 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
 
 
 
-    // Check the contextlevel is as expected - if your plugin is a block, this becomes CONTEXT_BLOCK, etc.
+    require_once("$CFG->libdir/resourcelib.php");
+
     if ($context->contextlevel != CONTEXT_MODULE) {
-        return false; 
+        return false;
     }
- 
-    // // Make sure the filearea is one of those used by the plugin.
-    // if ($filearea !== 'expectedfilearea' && $filearea !== 'anotherexpectedfilearea') {
-    //     return false;
-    // }
- 
-    // Make sure the user is logged in and has access to the module (plugins that are not course modules should leave out the 'cm' part).
-    require_login($course, true, $cm);
- 
-    // Check the relevant capabilities - these may vary depending on the filearea being accessed.
+
+    require_course_login($course, true, $cm);
     if (!has_capability('mod/inter:view', $context)) {
         return false;
     }
- 
-    // Leave this line out if you set the itemid to null in make_pluginfile_url (set $itemid to 0 instead).
-    $itemid = array_shift($args); // The first item in the $args array.
- 
-    // Use the itemid to retrieve any relevant data records and perform any security checks to see if the
-    // user really does have access to the file in question.
- 
-    // Extract the filename / filepath from the $args array.
-    $filename = array_pop($args); // The last item in the $args array.
-    if (!$args) {
-        $filepath = '/'; // $args is empty => the path is '/'
-    } else {
-        $filepath = '/'.implode('/', $args).'/'; // $args contains elements of the filepath
+
+    if ($filearea !== 'content') {
+        // intro is handled automatically in pluginfile.php
+        return false;
     }
- 
-    // Retrieve the file from the Files API.
+
+    array_shift($args); // ignore revision - designed to prevent caching problems only
+
     $fs = get_file_storage();
-    $file = $fs->get_file($context->id, 'mod_inter', $filearea, $itemid, $filepath, $filename);
-    if (!$file) {
-        return false; // The file does not exist.
+    $relativepath = implode('/', $args);
+    $fullpath = rtrim("/$context->id/mod_inter/$filearea/0/$relativepath", '/');
+    do {
+        if (!$file = $fs->get_file_by_hash(sha1($fullpath))) {
+            if ($fs->get_file_by_hash(sha1("$fullpath/."))) {
+                if ($file = $fs->get_file_by_hash(sha1("$fullpath/index.htm"))) {
+                    break;
+                }
+                if ($file = $fs->get_file_by_hash(sha1("$fullpath/index.html"))) {
+                    break;
+                }
+                if ($file = $fs->get_file_by_hash(sha1("$fullpath/Default.htm"))) {
+                    break;
+                }
+            }
+            $instance = $DB->get_record('inter', array('id'=>$cm->instance), 'id, legacyfiles', MUST_EXIST);
+            if ($instance->legacyfiles != RESOURCELIB_LEGACYFILES_ACTIVE) {
+                return false;
+            }
+            if (!$file = resourcelib_try_file_migration('/'.$relativepath, $cm->id, $cm->course, 'mod_inter', 'content', 0)) {
+                return false;
+            }
+            // file migrate - update flag
+            $instance->legacyfileslast = time();
+            $DB->update_record('inter', $instance);
+        }
+    } while (false);
+
+    // should we apply filters?
+    $mimetype = $file->get_mimetype();
+    if ($mimetype === 'text/html' or $mimetype === 'text/plain' or $mimetype === 'application/xhtml+xml') {
+        $filter = $DB->get_field('inter', 'filterfiles', array('id'=>$cm->instance));
+        $CFG->embeddedsoforcelinktarget = true;
+    } else {
+        $filter = 0;
     }
- 
-    echo("<script>console.log('LALALALALALA');</script>");
-    // We can now send the file back to the browser - in this case with a cache lifetime of 1 day and no filtering. 
-    send_stored_file($file, 86400, 0, $forcedownload, $options);
+
+    // finally send the file
+    send_stored_file($file, null, $filter, $forcedownload, $options);
+    
 
 
 }
