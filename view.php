@@ -25,6 +25,9 @@
 require(__DIR__.'/../../config.php');
 require_once(__DIR__.'/lib.php');
 
+
+require_once("$CFG->dirroot/mod/inter/locallib.php");
+
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
 
