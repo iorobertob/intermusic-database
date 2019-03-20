@@ -225,6 +225,7 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
         return false; // The file does not exist.
     }
  
+    echo("<script>console.log('LALALALALALA');</script>");
     // We can now send the file back to the browser - in this case with a cache lifetime of 1 day and no filtering. 
     send_stored_file($file, 86400, 0, $forcedownload, $options);
 
