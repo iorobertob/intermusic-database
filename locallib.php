@@ -110,12 +110,12 @@ function inter_display_embed($moduleinstance, $cm, $course, $file) {
         $code = resourcelib_embed_general($moodleurl, $title, $clicktoopen, $mimetype);
     }
 
-    resource_print_header($moduleinstance, $cm, $course);
-    resource_print_heading($moduleinstance, $cm, $course);
+    // resource_print_header($moduleinstance, $cm, $course);
+    // resource_print_heading($moduleinstance, $cm, $course);
 
     echo $code;
 
-    resource_print_intro($moduleinstance, $cm, $course);
+    // resource_print_intro($moduleinstance, $cm, $course);
 
     echo $OUTPUT->footer();
     die;
