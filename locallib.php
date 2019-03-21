@@ -162,6 +162,8 @@ class inter_content_file_info extends file_info_stored {
  */
 function inter_mysql_query()
 {
+	global $CFG;
+	
 	$servername = $CFG->dbhost;
 	$username   = $CFG->dbuser;
 	$password   = $CFG->dbpass;
