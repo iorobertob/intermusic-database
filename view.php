@@ -28,6 +28,10 @@ require_once(__DIR__.'/lib.php');
 
 require_once("$CFG->dirroot/mod/inter/locallib.php");
 
+
+global $DB;
+
+
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
 
@@ -71,14 +75,15 @@ if (count($files) < 1) {
 } else {
     $file = reset($files);
     $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
-    echo("<script>console.log('333333333333 ".$file->get_filepath()."');</script>");
-    echo("<script>console.log('444444444444 ".$file->get_filename()."');</script>");
-    echo("<script>console.log('555555555555 ".$url."');</script>");
+    echo("<script>console.log('URL:  ".$url."');</script>");
     // die;
     unset($files);
 
 }
 
+$sql = "CREATE TABLE test_table (id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, transactions INT NOT NULL, account_creation DATE NOT NULL, PRIMARY KEY (id));";
+$records = $DB->get_records_sql($sql);
+echo("<script>console.log('RECORDS:  ".$records."');</script>");
 //inter_display_embed($resource, $cm, $course, $file);
 //=============================  GET FILE   =====================================
 
