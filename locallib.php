@@ -190,6 +190,7 @@ function inter_mysql_query()
 	    echo "Error creating table: " . $conn->error;
 	    $conn->close();
 	    return "Error creating table: " . $conn->error;
+	    die;
 	}
 
 	
