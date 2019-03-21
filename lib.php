@@ -95,6 +95,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     global $CFG, $DB;
 
     require_once("$CFG->libdir/resourcelib.php");
+    require_once("$CFG->dirroot/mod/inter/locallib.php");
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
@@ -147,7 +148,10 @@ function inter_delete_instance($id) {
  * @return string[].
  */
 function inter_get_file_areas($course, $cm, $context) {
-    return array();
+    // return array();
+    $areas = array();
+    $areas['content'] = get_string('resourcecontent', 'inter');
+    return $areas;
 }
 
 /**
@@ -168,6 +172,34 @@ function inter_get_file_areas($course, $cm, $context) {
  * @return file_info Instance or null if not found.
  */
 function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
+     global $CFG;
+
+    if (!has_capability('moodle/course:managefiles', $context)) {
+        // students can not peak here!
+        return null;
+    }
+
+    $fs = get_file_storage();
+
+    if ($filearea === 'content') {
+        $filepath = is_null($filepath) ? '/' : $filepath;
+        $filename = is_null($filename) ? '.' : $filename;
+
+        $urlbase = $CFG->wwwroot.'/pluginfile.php';
+        if (!$storedfile = $fs->get_file($context->id, 'mod_inter', 'content', 0, $filepath, $filename)) {
+            if ($filepath === '/' and $filename === '.') {
+                $storedfile = new virtual_root_file($context->id, 'mod_inter', 'content', 0);
+            } else {
+                // not found
+                return null;
+            }
+        }
+        require_once("$CFG->dirroot/mod/inter/locallib.php");
+        return new inter_content_file_info($browser, $context, $storedfile, $urlbase, $areas[$filearea], true, true, true, false);
+    }
+
+    // note: resource_intro handled in file_browser automatically
+
     return null;
 }
 
