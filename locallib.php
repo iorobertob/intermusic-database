@@ -154,3 +154,46 @@ class inter_content_file_info extends file_info_stored {
         return parent::get_visible_name();
     }
 }
+
+
+
+/**
+ * Custom LMTA function - execute an arbitrary mysql query 
+ */
+function inter_mysql_query()
+{
+	$servername = $CFG->dbhost;
+	$username   = $CFG->dbuser;
+	$password   = $CFG->dbpass;
+	$dbname     = $CFG->dbname;
+
+	// checking connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	}
+
+	// sql code to create table
+	$sql = "CREATE TABLE test_intermusic(
+	        id INT(2)  PRIMARY KEY, 
+	        firstname VARCHAR(30) NOT NULL,
+	        lastname VARCHAR(30) NOT NULL,
+	        email VARCHAR(50)
+	        )";
+
+	if ($conn->query($sql) === TRUE) {
+	    echo "Table employees created successfully";
+	    $conn->close();
+	    return "Table employees created successfully";
+	} else {
+	    echo "Error creating table: " . $conn->error;
+	    $conn->close();
+	    return "Error creating table: " . $conn->error;
+	}
+
+	
+   
+	// return null ;
+
+}

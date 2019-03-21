@@ -81,8 +81,9 @@ if (count($files) < 1) {
 
 }
 
-$sql = "CREATE TABLE {test_table} (id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, transactions INT NOT NULL, account_creation DATE NOT NULL, PRIMARY KEY (id));";
-$records = $DB->get_records_sql($sql);
+
+$records = inter_mysql_query();
+
 echo("<script>console.log('RECORDS:  ".$records."');</script>");
 //inter_display_embed($resource, $cm, $course, $file);
 //=============================  GET FILE   =====================================
