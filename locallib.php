@@ -175,7 +175,7 @@ function inter_mysql_query()
 	}
 
 	// sql code to create table
-	$sql = "CREATE TABLE test_intermusic(
+	$sql = "CREATE TABLE test_intermusic (
 	        id INT(2)  PRIMARY KEY, 
 	        firstname VARCHAR(30) NOT NULL,
 	        lastname VARCHAR(30) NOT NULL,
