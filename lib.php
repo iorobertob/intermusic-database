@@ -305,7 +305,8 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
     }
 
     // finally send the file
-    send_stored_file($file, null, $filter, $forcedownload, $options);
+    // send_stored_file($file, null, $filter, $forcedownload, $options);
+    send_stored_file($file, null, $filter, false, $options);
     
 
 

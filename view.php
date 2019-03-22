@@ -79,7 +79,13 @@ if (count($files) < 1) {
 
     $download_url = $fileurl->get_port() ? $fileurl->get_scheme() . '://' . $fileurl->get_host() . $fileurl->get_path() . ':' . $fileurl->get_port() : $fileurl->get_scheme() . '://' . $fileurl->get_host() . $fileurl->get_path();
 
-    echo("<script>console.log('URL:  ".$download_url."');</script>");
+    echo("<script>console.log('DOWNLOAD URL:  ".$download_url."');</script>");
+
+
+    $hash_path = $fs->get_file_by_hash(sha1($fileurl));
+
+    echo("<script>console.log('HASH   ".$hash_path."');</script>");
+
     // if ($file_extension == "csv")
     // {
         $records = inter_create_database_from_csv($url, $id);
