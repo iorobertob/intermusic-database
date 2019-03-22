@@ -242,7 +242,8 @@ function build_table($data, $id)
         $query .= $data[$i]. "VARCHAR(255) NOT NULL, ";
     }
     $query .= "PRIMARY KEY (id));";
-
+    echo("<script>console.log('RECORDS:  ".$query."');</script>");
+    die;
     return inter_mysql_query($query);
 
 }

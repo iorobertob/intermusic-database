@@ -84,6 +84,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $split_url = explode(".", $file_url);
 
     $file_extension = $split_url[sizeof($a)-1]; 
+    echo("<script>console.log('RECORDS:  ".$file_extension."');</script>");
 
     if ($file_extension == "csv")
     {
