@@ -74,10 +74,12 @@ if (count($files) < 1) {
     die;
 } else {
     $file = reset($files);
-    $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
-    echo("<script>console.log('URL:  ".$url."');</script>");
+    $fileurl = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
+    echo("<script>console.log('URL:  ".$fileurl."');</script>");
 
+    $download_url = $fileurl->get_port() ? $fileurl->get_scheme() . '://' . $fileurl->get_host() . $fileurl->get_path() . ':' . $fileurl->get_port() : $fileurl->get_scheme() . '://' . $fileurl->get_host() . $fileurl->get_path();
 
+    echo("<script>console.log('URL:  ".$download_url."');</script>");
     // if ($file_extension == "csv")
     // {
         $records = inter_create_database_from_csv($url, $id);
