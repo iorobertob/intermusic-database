@@ -81,7 +81,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     //======================= CREATE TABLE FROM CSV FILE ==========================
 
-    $split_url = explote(".", $file_url);
+    $split_url = explode(".", $file_url);
 
     $file_extension = $split_url[sizeof($a)-1]; 
 
