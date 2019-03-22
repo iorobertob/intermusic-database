@@ -71,12 +71,26 @@ function inter_add_instance($moduleinstance, $mform = null) {
     
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
     
-    inter_set_mainfile($moduleinstance);
+    $file_url = inter_set_mainfile($moduleinstance);
     
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
+
+
+    //======================= CREATE TABLE FROM CSV FILE ==========================
+
+    $split_url = explote(".", $file_url);
+
+    $file_extension = $split_url[sizeof($a)-1]; 
+
+    if ($file_extension == "csv")
+    {
+        $records = inter_create_database_from_csv($file_url, $id);
+        echo("<script>console.log('RECORDS:  ".$records."');</script>");
+    }
+
 
     return $id;
 }

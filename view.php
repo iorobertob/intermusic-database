@@ -82,9 +82,9 @@ if (count($files) < 1) {
 }
 
 
-$records = inter_mysql_query();
+//$records = inter_mysql_query();
 
-echo("<script>console.log('RECORDS:  ".$records."');</script>");
+//echo("<script>console.log('RECORDS:  ".$records."');</script>");
 //inter_display_embed($resource, $cm, $course, $file);
 //=============================  GET FILE   =====================================
 

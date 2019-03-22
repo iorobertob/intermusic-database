@@ -56,9 +56,11 @@ function inter_set_mainfile($data) {
         // only one file attached, set it as main file automatically
         $file = reset($files);
         file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
-        // echo("<script>console.log('333333333333 ".$file->get_filepath()."');</script>");
-        // die;
+
 	}
+
+    $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
+    return $url;
 }
 
 
@@ -160,7 +162,7 @@ class inter_content_file_info extends file_info_stored {
 /**
  * Custom LMTA function - execute an arbitrary mysql query 
  */
-function inter_mysql_query()
+function inter_mysql_query($sql)
 {
 	global $CFG;
 	
@@ -176,18 +178,18 @@ function inter_mysql_query()
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-	// sql code to create table
-	$sql = "CREATE TABLE test_intermusic (
-	        id INT(2)  PRIMARY KEY, 
-	        firstname VARCHAR(30) NOT NULL,
-	        lastname VARCHAR(30) NOT NULL,
-	        email VARCHAR(50)
-	        )";
+	// // sql code to create table
+	// $sql = "CREATE TABLE test_intermusic (
+	//         id INT(2)  PRIMARY KEY, 
+	//         firstname VARCHAR(30) NOT NULL,
+	//         lastname VARCHAR(30) NOT NULL,
+	//         email VARCHAR(50)
+	//         )";
 
 	if ($conn->query($sql) === TRUE) {
-	    echo "Table employees created successfully";
+	    echo "Table  created successfully";
 	    $conn->close();
-	    return "Table employees created successfully";
+	    return "Table  created successfully";
 	} else {
 	    echo "Error creating table: " . $conn->error;
 	    $conn->close();
@@ -195,8 +197,86 @@ function inter_mysql_query()
 	    die;
 	}
 
-	
-   
-	// return null ;
+}
+
+/**
+ * Custom LMTA function - Create a databse from a csv file using the module's instance's id. 
+ */
+function inter_create_database_from_csv($file_url, $id)
+{
+
+    $file_url = 'cars.csv';
+
+    // The nested array to hold all the arrays
+    $the_big_array = []; 
+
+    // Open the file for reading
+    if (($h = fopen("{$file_url}", "r")) !== FALSE) 
+    {
+        // The first line in the file is converted into an individual array that we call $data
+        // The items of the array are comma separated
+        $data = fgetcsv($h, 10000, ",");
+
+      // Close the file
+      fclose($h);
+    }
+
+    return build_table($data);
 
 }
+
+
+function build_table($data, $id)
+{
+    // $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, transactions INT NOT NULL, account_creation DATE NOT NULL, PRIMARY KEY (id));";
+
+    $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, ";
+
+    // first_name VARCHAR(255) NOT NULL, 
+    // last_name VARCHAR(255) NOT NULL, 
+    // email VARCHAR(255) NOT NULL, 
+    // transactions INT NOT NULL, 
+    // account_creation DATE NOT NULL, PRIMARY KEY (id));";
+
+    for( $i = 1; $i<sizeof($data); $i++ ) {
+        $query .= $data[$i]. "VARCHAR(255) NOT NULL, ";
+    }
+    $query .= "PRIMARY KEY (id));";
+
+    return inter_mysql_query($query);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
