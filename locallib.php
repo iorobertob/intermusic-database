@@ -205,7 +205,7 @@ function inter_mysql_query($sql)
 function inter_create_database_from_csv($file_url, $id)
 {
 
-    $file_url = 'cars.csv';
+    // $file_url = 'cars.csv';
 
     // The nested array to hold all the arrays
     $the_big_array = []; 
