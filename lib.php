@@ -82,14 +82,14 @@ function inter_add_instance($moduleinstance, $mform = null) {
     //======================= CREATE TABLE FROM CSV FILE ==========================
     //echo("<script>console.log('RECORDS:  ".$file_url."');</script>");
     // die;
-    $split_url = explode(".", $file_url);
-    //echo("<script>console.log('RECORDS:  ".$split_url."');</script>");
-    $file_extension = $split_url[sizeof($a)-1]; 
-    //echo("<script>console.log('RECORDS:  ".$file_extension."');</script>");
+    // $split_url = explode(".", $file_url);
+    // //echo("<script>console.log('RECORDS:  ".$split_url."');</script>");
+    // $file_extension = $split_url[sizeof($a)-1]; 
+    // //echo("<script>console.log('RECORDS:  ".$file_extension."');</script>");
 
-    // if ($file_extension == "csv")
-    // {
-        $records = inter_create_database_from_csv($file_url, $id);
+    // // if ($file_extension == "csv")
+    // // {
+    //     $records = inter_create_database_from_csv($file_url, $id);
         //echo("<script>console.log('RECORDS:  ".$records."');</script>");
     // }
 
