@@ -87,11 +87,11 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $file_extension = $split_url[sizeof($a)-1]; 
     //echo("<script>console.log('RECORDS:  ".$file_extension."');</script>");
 
-    if ($file_extension == "csv")
-    {
+    // if ($file_extension == "csv")
+    // {
         $records = inter_create_database_from_csv($file_url, $id);
         //echo("<script>console.log('RECORDS:  ".$records."');</script>");
-    }
+    // }
 
 
     return $id;
