@@ -88,7 +88,9 @@ if (count($files) < 1) {
 
     // if ($file_extension == "csv")
     // {
-        $records = inter_create_database_from_csv("/var/www/intermusicdata2019/filedir/64/99/64999ffcfc60de7b6a59217e92f6f2bfd9dabf71", $id);
+        // $records = inter_create_database_from_csv("/var/www/intermusicdata2019/filedir/64/99/64999ffcfc60de7b6a59217e92f6f2bfd9dabf71", $id);
+
+    $records = inter_create_database_from_csv($fileurl, $id);
     // die;
     unset($files);
 
