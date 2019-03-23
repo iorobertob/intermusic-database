@@ -29,7 +29,7 @@ require_once(__DIR__.'/lib.php');
 require_once("$CFG->dirroot/mod/inter/locallib.php");
 
 
-global $DB;
+global $DB, $CFG;
 
 
 // Course_module ID, or
@@ -77,19 +77,11 @@ if (count($files) < 1) {
     $fileurl = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
     echo("<script>console.log('URL:  ".$fileurl."');</script>");
 
-    $download_url = $fileurl->get_port() ? $fileurl->get_scheme() . '://' . $fileurl->get_host() . $fileurl->get_path() . ':' . $fileurl->get_port() : $fileurl->get_scheme() . '://' . $fileurl->get_host() . $fileurl->get_path();
 
-    echo("<script>console.log('DOWNLOAD URL:  ".$download_url."');</script>");
+    $fileid  =  $file->get_id();   
+    $fileurl = $CFG->dataroot."/".substr($fileid, 0,2)."/".substr($fileid, 2,2)."/".$fileid;
 
-
-    $hash_path = $fs->get_file_by_hash(sha1($fileurl));
-
-    echo("<script>console.log('HASH   ".$hash_path."');</script>");
-
-    echo("<script>console.log('HASH   ".$file->get_itemid()."');</script>");
-    echo("<script>console.log('HASH   ".$file->get_id()."');</script>");
-
-    echo("<script>console.log('HASH   ".$file->id."');</script>");
+    echo("<script>console.log('HASH   ".$fileurl."');</script>");
 
     // if ($file_extension == "csv")
     // {

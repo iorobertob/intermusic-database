@@ -239,7 +239,7 @@ function build_table($data, $id)
     // account_creation DATE NOT NULL, PRIMARY KEY (id));";
 
     for( $i = 1; $i<sizeof($data); $i++ ) {
-        $query .= $data[$i]. "VARCHAR(255) NOT NULL, ";
+        $query .= "[".$data[$i]."] VARCHAR(255) NOT NULL, ";
     }
     $query .= "PRIMARY KEY (id));";
     echo("<script>console.log('RECORDS:  ".$query."');</script>");
