@@ -204,6 +204,8 @@ function inter_mysql_query($sql)
  */
 function inter_create_database_from_csv($file_url, $id)
 {
+    // Detect line breaks, otherwise fgetcsv will return all rows
+    ini_set('auto_detect_line_endings', true);
 
     // $file_url = 'cars.csv';
 
@@ -239,7 +241,7 @@ function build_table($data, $id)
     // account_creation DATE NOT NULL, PRIMARY KEY (id));";
 
     for( $i = 1; $i<sizeof($data); $i++ ) {
-        $query .= "[".$data[$i]."] VARCHAR(255) NOT NULL, ";
+        $query .= "`".$data[$i]."` VARCHAR(255) NOT NULL, ";
     }
     $query .= "PRIMARY KEY (id));";
     echo("<script>console.log('RECORDS:  ".$query."');</script>");
