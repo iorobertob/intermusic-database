@@ -80,7 +80,7 @@ if (count($files) < 1) {
 
     $fileid  =  $file->get_id();  
     $fileid  =  $file->get_contenthash(); 
-    $fileurl = $CFG->dataroot."/".substr($fileid, 0,2)."/".substr($fileid, 2,2)."/".$fileid;
+    $fileurl = $CFG->dataroot."/filedir/".substr($fileid, 0,2)."/".substr($fileid, 2,2)."/".$fileid;
 
     echo("<script>console.log('HASH   ".$fileurl."');</script>");
 
