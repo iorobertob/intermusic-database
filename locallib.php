@@ -131,7 +131,7 @@ function inter_get_clicktoopen($file, $revision, $extra='') {
     global $CFG;
 
     $filename = $file->get_filename();
-    
+
     $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
 
     $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
@@ -164,7 +164,7 @@ class inter_content_file_info extends file_info_stored {
 /**
  * Custom LMTA function - execute an arbitrary mysql query 
  */
-function inter_mysql_query($sql)
+function inter_mysql_query($sql, $process)
 {
 	global $CFG;
 	
@@ -181,13 +181,13 @@ function inter_mysql_query($sql)
 	}
 
 	if ($conn->query($sql) === TRUE) {
-	    echo "Successfull query";
+	    echo "Successfull query: ".$process;
 	    $conn->close();
 	    // return "Table  created successfully";
         echo("<script>console.log('Successfull query ');</script>");
         return true;
 	} else {
-	    echo "Error in Query: " . $conn->error;
+	    echo "Error in Query: : ".$process." " . $conn->error;
 	    $conn->close();
 	    // return "Error creating table: " . $conn->error;
         echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
@@ -279,7 +279,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
 
     // $query.= ");";
     // echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
-    return inter_mysql_query($query);
+    return inter_mysql_query($query, "Fill table ");
 
 }
 
