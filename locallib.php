@@ -131,7 +131,9 @@ function inter_get_clicktoopen($file, $revision, $extra='') {
     global $CFG;
 
     $filename = $file->get_filename();
+    
     $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
+
     $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
 
     $string = get_string('clicktoopen2', 'inter', "<a href=\"$fullurl\" $extra>$filename</a>");
@@ -274,8 +276,9 @@ function fill_data_from_csv($file_url, $tablename, $data)
     //     $query .= "`".$data[$i]."`, ";
     // }
 
+
     // $query.= ");";
-    echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
+    // echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
     return inter_mysql_query($query);
 
 }
