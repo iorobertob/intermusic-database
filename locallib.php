@@ -236,9 +236,9 @@ function build_table($data, $id, $file_url)
         $query .= "`".$data[$i]."` VARCHAR(255) NOT NULL, ";
     }
     $query .= "PRIMARY KEY (id));";
-    echo("<script>console.log('RECORDS:  ".$query."');</script>");
+    echo("<script>console.log('CREATE TABLE:  ".$query."');</script>");
 
-    if (inter_mysql_query($query))
+    if (inter_mysql_query($query, "Create table"))
     {
         // Fill table
         $result = fill_data_from_csv($file_url, $tablename, $data);
@@ -268,13 +268,14 @@ function fill_data_from_csv($file_url, $tablename, $data)
     // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, first_name, last_name, email, transactions, @account_creation)SET account_creation  = STR_TO_DATE(@account_creation, '%m/%d/%y');";
 
     $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, ";
+    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n' IGNORE 1 ROWS;";
 
-    for( $i = 1; $i<sizeof($data); $i++ ) {
-        $query .= "`".$data[$i]."`, ";
-    }
+    // for( $i = 1; $i<sizeof($data); $i++ ) {
+    //     $query .= "`".$data[$i]."`, ";
+    // }
 
-    $query.= ");";
-
+    // $query.= ");";
+    echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
     return inter_mysql_query($query);
 
 }
