@@ -273,7 +273,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
         $query .= "`".$data[$i]."`, ";
     }
 
-    $query.= ");"
+    $query.= ");";
 
     return inter_mysql_query($query);
 
