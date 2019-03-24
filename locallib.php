@@ -284,7 +284,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
 }
 
 
-function inter_build_html_table($file_url, $id)
+function inter_build_html_table($file_url)
 {
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
@@ -321,7 +321,7 @@ function inter_build_html_table($file_url, $id)
     {
         $build .= $the_big_array[0][i].'</th><th>';  
     }
-    $build .= '</th></thead><tbody>';
+    $build .= '</th><th>'.$the_big_array[0][sizeof($the_big_array[0]].'</th></thead><tbody>';
     // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
     
     foreach($the_big_array as $row)
