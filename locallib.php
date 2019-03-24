@@ -270,7 +270,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
     // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, first_name, last_name, email, transactions, @account_creation)SET account_creation  = STR_TO_DATE(@account_creation, '%m/%d/%y');";
 
     $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, ";
-    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n' IGNORE 1 ROWS;";
+    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r' IGNORE 1 ROWS;";
 
     // for( $i = 1; $i<sizeof($data); $i++ ) {
     //     $query .= "`".$data[$i]."`, ";
@@ -283,6 +283,68 @@ function fill_data_from_csv($file_url, $tablename, $data)
 
 }
 
+
+function inter_build_html_table($file_url, $id)
+{
+    // Detect line breaks, otherwise fgetcsv will return all rows
+    ini_set('auto_detect_line_endings', true);
+
+
+    // The nested array to hold all the arrays
+    $the_big_array = []; 
+
+    // Open the file for reading
+    if (($h = fopen("{$file_url}", "r")) !== FALSE) 
+    {
+        // Each line in the file is converted into an individual array that we call $data
+        // The items of the array are comma separated
+        while (($data = fgetcsv($h, 1000, ",")) !== FALSE) 
+        {
+            // Each individual array is being pushed into the nested array
+            $the_big_array[] = $data;       
+        }
+
+      // Close the file
+      fclose($h);
+    }
+    
+    $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
+    $build = "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
+    $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
+    $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
+    // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
+    // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
+
+    $build .= "<table id=\"intermusic\"><thead><th>";
+
+    for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
+    {
+        $build .= $the_big_array[0][i].'</th><th>'   
+    }
+    $build .= '</th></thead><tbody>';
+    // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
+    
+    foreach($the_big_array as $row)
+    {
+        $build .= '<tr>';
+        foreach($row as $item)
+        {
+            $build .= "<td>{$item}</td>";
+        }
+        $build .= '</tr>';
+    }
+    
+    $build .= '</tbody></table>';
+
+    $build .= "<script>
+                $(document).ready(function() 
+                {
+                $('#intermusic').DataTable();
+                } );
+                </script>";
+
+    return $build;
+}
 
 
 

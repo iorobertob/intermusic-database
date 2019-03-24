@@ -103,6 +103,8 @@ if (count($files) < 1) {
 }
 
 
+$table = inter_build_html_table($id);
+
 //$records = inter_mysql_query();
 
 //echo("<script>console.log('RECORDS:  ".$records."');</script>");
@@ -114,6 +116,9 @@ if (count($files) < 1) {
 $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
+
+
+echo $table;
 
 echo $OUTPUT->footer();
 
