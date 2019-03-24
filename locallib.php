@@ -308,7 +308,7 @@ function inter_build_html_table($file_url, $id)
       fclose($h);
     }
     
-    $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
+    $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
@@ -319,7 +319,7 @@ function inter_build_html_table($file_url, $id)
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
-        $build .= $the_big_array[0][i].'</th><th>'   
+        $build .= $the_big_array[0][i].'</th><th>';  
     }
     $build .= '</th></thead><tbody>';
     // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
