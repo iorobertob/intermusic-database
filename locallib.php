@@ -178,23 +178,19 @@ function inter_mysql_query($sql)
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-	// // sql code to create table
-	// $sql = "CREATE TABLE test_intermusic (
-	//         id INT(2)  PRIMARY KEY, 
-	//         firstname VARCHAR(30) NOT NULL,
-	//         lastname VARCHAR(30) NOT NULL,
-	//         email VARCHAR(50)
-	//         )";
-
 	if ($conn->query($sql) === TRUE) {
-	    echo "Table  created successfully";
+	    echo "Successfull query";
 	    $conn->close();
-	    return "Table  created successfully";
+	    // return "Table  created successfully";
+        echo("<script>console.log('Successfull query ');</script>");
+        return true;
 	} else {
-	    echo "Error creating table: " . $conn->error;
+	    echo "Error in Query: " . $conn->error;
 	    $conn->close();
-	    return "Error creating table: " . $conn->error;
-	    die;
+	    // return "Error creating table: " . $conn->error;
+        echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
+        return false;
+	    // die;
 	}
 
 }
@@ -207,7 +203,6 @@ function inter_create_database_from_csv($file_url, $id)
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
 
-    // $file_url = 'cars.csv';
 
     // The nested array to hold all the arrays
     $the_big_array = []; 
@@ -223,32 +218,67 @@ function inter_create_database_from_csv($file_url, $id)
       fclose($h);
     }
 
-    return build_table($data);
+    return build_table($data, $id, $file_url);
 
 }
 
-
-function build_table($data, $id)
+/**
+ * Custom LMTA function - Create a table with column titles contained in $data and $id to be integrated in its name
+ */
+function build_table($data, $id, $file_url)
 {
-    // $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, transactions INT NOT NULL, account_creation DATE NOT NULL, PRIMARY KEY (id));";
 
+    $tablename = "inter_database_".$id;
     $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, ";
-
-    // first_name VARCHAR(255) NOT NULL, 
-    // last_name VARCHAR(255) NOT NULL, 
-    // email VARCHAR(255) NOT NULL, 
-    // transactions INT NOT NULL, 
-    // account_creation DATE NOT NULL, PRIMARY KEY (id));";
+    $query = "CREATE TABLE ".$tablename." (id INT NOT NULL AUTO_INCREMENT, ";
 
     for( $i = 1; $i<sizeof($data); $i++ ) {
         $query .= "`".$data[$i]."` VARCHAR(255) NOT NULL, ";
     }
     $query .= "PRIMARY KEY (id));";
     echo("<script>console.log('RECORDS:  ".$query."');</script>");
-    die;
+
+    if (inter_mysql_query($query))
+    {
+        // Fill table
+        $result = fill_data_from_csv($file_url, $tablename, $data);
+    }
+
+    if ($result)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+
+}
+
+
+/**
+ * Custom LMTA function - Fill table with csv cata
+ * param $file_url  -  the path to the file to get data from 
+ * param $tablename - previously built table name with the unique id number of this module's intance
+ * param $data      - array containig the list of the headers of this file
+ */
+function fill_data_from_csv($file_url, $tablename, $data)
+{
+    // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, first_name, last_name, email, transactions, @account_creation)SET account_creation  = STR_TO_DATE(@account_creation, '%m/%d/%y');";
+
+    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, ";
+
+    for( $i = 1; $i<sizeof($data); $i++ ) {
+        $query .= "`".$data[$i]."`, ";
+    }
+
+    $query.= ");"
+
     return inter_mysql_query($query);
 
 }
+
 
 
 

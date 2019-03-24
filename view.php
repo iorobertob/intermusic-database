@@ -77,7 +77,6 @@ if (count($files) < 1) {
     $fileurl = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
     echo("<script>console.log('URL:  ".$fileurl."');</script>");
 
-
     $fileid  =  $file->get_id();  
     $fileid  =  $file->get_contenthash(); 
     $fileurl = $CFG->dataroot."/filedir/".substr($fileid, 0,2)."/".substr($fileid, 2,2)."/".$fileid;
@@ -88,8 +87,17 @@ if (count($files) < 1) {
     // {
         // $records = inter_create_database_from_csv("/var/www/intermusicdata2019/filedir/64/99/64999ffcfc60de7b6a59217e92f6f2bfd9dabf71", $id);
 
-    $records = inter_create_database_from_csv($fileurl, $id);
-    // die;
+    $success = inter_create_database_from_csv($fileurl, $id);
+
+    if($success)
+    {
+        echo("<script>console.log('SUCCESS');</script>");
+    }
+    else
+    {
+        echo("<script>console.log('MISSERABLE FAILURE');</script>");
+    }
+    // die
     unset($files);
 
 }
