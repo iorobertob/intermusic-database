@@ -319,7 +319,7 @@ function inter_build_html_table($file_url)
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
-        $build .= $the_big_array[0][i].'</th><th>';  
+        $build .= $the_big_array[1][i].'</th><th>';  
     }
     $build .= '</th><th>'.$the_big_array[0][sizeof($the_big_array[0])].'</th></thead><tbody>';
     // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
