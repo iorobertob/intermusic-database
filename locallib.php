@@ -278,7 +278,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
 
 
     // $query.= ");";
-    echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
+    //echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
     return inter_mysql_query($query, "Fill table ");
 
 }
