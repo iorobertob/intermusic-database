@@ -288,6 +288,7 @@ function inter_build_html_table($file_url)
 {
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
+    header('Content-Type: text/html; charset=utf-8');
 
 
     // The nested array to hold all the arrays
