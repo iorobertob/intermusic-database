@@ -409,6 +409,7 @@ function inter_build_html_table($file_url)
 
                                 //curCol.style.width = (curColWidth + diffX)+'px';
                                 curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
+                                curCol.style.width = '200px';
                                }
                               });
 
