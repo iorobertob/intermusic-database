@@ -403,12 +403,12 @@ function inter_build_html_table($file_url)
                              
                                 if (nxtCol){
                                  //nxtCol.style.width = (nxtColWidth - (diffX))+'px';
-                                nxtCol.setAttribute('style','width:'+(nxtColWidth - (diffX))'px');
+                                nxtCol.setAttribute('style','width:'+(nxtColWidth - (diffX))+'px');
                                  console.log('moved' + diffX);
                                 }
 
                                 //curCol.style.width = (curColWidth + diffX)+'px';
-                                curCol.setAttribute('style','width:'+(nxtColWidth + (diffX))'px');
+                                curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
                                }
                               });
 
