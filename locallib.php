@@ -345,7 +345,7 @@ function inter_build_html_table($file_url)
                 $(document).ready(function() 
                 {
 
-                $('#intermusic').DataTable();
+                //$('#intermusic').DataTable();
 
                 });
                 </script>";
