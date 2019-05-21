@@ -337,14 +337,14 @@ function inter_build_html_table($file_url)
     
     $build .= '</tbody></table>';
 
-    $build .= "<script>
-                $(document).ready(function() 
-                {
-                $('#intermusic').DataTable({
-                    'autoWidth': false
-                    });
-                } );
-                </script>";
+    // $build .= "<script>
+    //             $(document).ready(function() 
+    //             {
+    //             $('#intermusic').DataTable({
+    //                 'autoWidth': false
+    //                 });
+    //             } );
+    //             </script>";
 
 
     $build .=  "<script>  
