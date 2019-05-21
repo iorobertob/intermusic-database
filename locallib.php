@@ -314,6 +314,8 @@ function inter_build_html_table($file_url)
     $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
+    
+    $build .= "<script src=\"colResizable-1.6.js\"></script>";
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
 
@@ -338,14 +340,18 @@ function inter_build_html_table($file_url)
     
     $build .= '</tbody></table>';
 
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-    //             $('#intermusic').DataTable({
-    //                 'autoWidth': false
-    //                 });
-    //             } );
-    //             </script>";
+    $build .= "<script>
+                $(document).ready(function() 
+                {
+
+                $('#intermusic').DataTable({
+                    'autoWidth': false
+                    });
+
+                $('#intermusic').colResizable();
+
+                });
+                </script>";
 
 
     $build .=  "<script>  
@@ -409,7 +415,7 @@ function inter_build_html_table($file_url)
 
                                 //curCol.style.width = (curColWidth + diffX)+'px';
                                 curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
-                                curCol.style.width = '200px';
+                                //curCol.style.width = '200px';
                                }
                               });
 
