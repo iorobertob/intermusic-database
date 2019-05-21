@@ -310,7 +310,8 @@ function inter_build_html_table($file_url)
     }
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
-    $build = "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
+    $build = "<!DOCTYPE html>";
+    $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
