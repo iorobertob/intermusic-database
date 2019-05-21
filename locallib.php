@@ -366,7 +366,7 @@ function inter_build_html_table($file_url)
                          for (var i=0;i<cols.length;i++){
                           var div = createDiv(tableHeight);
                           cols[i].appendChild(div);
-                          cols[i].style.position = 'absolute';
+                          cols[i].style.position = 'relative';
                           setListeners(div);
                          }
 
