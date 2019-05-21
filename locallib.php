@@ -391,15 +391,18 @@ function inter_build_html_table($file_url)
                           })
 
                           document.addEventListener('mousemove', function (e) {
-                           if (curCol) {
-                            var diffX = e.pageX - pageX;
-                         
-                            if (nxtCol)
-                             nxtCol.style.width = (nxtColWidth - (diffX))+'px';
+                               if (curCol) {
+                                var diffX = e.pageX - pageX;
+                                console.log('moving');
+                             
+                                if (nxtCol){
+                                 nxtCol.style.width = (nxtColWidth - (diffX))+'px';
+                                 console.log('moved');
+                                }
 
-                            curCol.style.width = (curColWidth + diffX)+'px';
-                           }
-                          });
+                                curCol.style.width = (curColWidth + diffX)+'px';
+                               }
+                              });
 
                           document.addEventListener('mouseup', function (e) { 
                            curCol = undefined;
