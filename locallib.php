@@ -394,7 +394,7 @@ function inter_build_html_table($file_url)
                           document.addEventListener('mousemove', function (e) {
                                if (curCol) {
                                 var diffX = e.pageX - pageX;
-                                console.log(cuCol);
+                                console.log(curCol);
                                 console.log('moving');
                              
                                 if (nxtCol){
