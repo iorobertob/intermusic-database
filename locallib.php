@@ -348,10 +348,21 @@ function inter_build_html_table($file_url)
                     'autoWidth': false
                     });
 
-                $('#intermusic').colResizable();
-
                 });
                 </script>";
+
+    // $build .= "<script>
+    //             $(document).ready(function() 
+    //             {
+
+    //             $('#intermusic').DataTable({
+    //                 'autoWidth': false
+    //                 });
+
+    //             $('#intermusic').colResizable();
+
+    //             });
+    //             </script>";
 
 
     $build .=  "<script>  
