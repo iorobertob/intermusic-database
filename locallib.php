@@ -340,7 +340,9 @@ function inter_build_html_table($file_url)
     $build .= "<script>
                 $(document).ready(function() 
                 {
-                $('#intermusic').DataTable();
+                $('#intermusic').DataTable({
+                    'autoWidth': false
+                    });
                 } );
                 </script>";
 
