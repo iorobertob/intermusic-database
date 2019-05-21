@@ -397,6 +397,7 @@ function inter_build_html_table($file_url)
                                if (curCol) {
                                 var diffX = e.pageX - pageX;
                                 console.log(curCol);
+                                console.log(nxtCol);
                                 console.log('moving');
                              
                                 if (nxtCol){
