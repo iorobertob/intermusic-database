@@ -348,8 +348,10 @@ function inter_build_html_table($file_url)
 
 
     $build .=  "<script>  
-                    var table = document.getElementById('intermusic');
-                    resizableGrid(table);
+                    var tables = document.getElementsByTagName('table');
+                    for (var i=0; i<tables.length;i++){
+                     resizableGrid(tables[i]);
+                    }
 
                     function resizableGrid(table) {
                          var row = table.getElementsByTagName('tr')[0],
