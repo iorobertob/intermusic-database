@@ -348,7 +348,7 @@ function inter_build_html_table($file_url)
 
 
     $build .=  "<script>  
-                    var table = document.getElementById('#intermusic');
+                    var table = document.getElementById('intermusic');
                     resizableGrid(table);
 
                     function resizableGrid(table) {
@@ -373,6 +373,7 @@ function inter_build_html_table($file_url)
                           div.addEventListener('mousedown', function (e) {
                            curCol = e.target.parentElement;
                            nxtCol = curCol.nextElementSibling;
+
                            pageX = e.pageX; 
                          
                            var padding = paddingDiff(curCol);
@@ -393,6 +394,7 @@ function inter_build_html_table($file_url)
                           document.addEventListener('mousemove', function (e) {
                                if (curCol) {
                                 var diffX = e.pageX - pageX;
+                                console.log(cuCol);
                                 console.log('moving');
                              
                                 if (nxtCol){
