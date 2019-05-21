@@ -317,7 +317,7 @@ function inter_build_html_table($file_url)
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
 
-    $build .= "<table id=\"intermusic\"><thead><th>";
+    $build .= "<table id=\"intermusic\" style=\"table-layout:fixed\"><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
