@@ -364,14 +364,14 @@ function inter_build_html_table($file_url)
     //             });
     //             </script>";
 
-    $build .= "<script>
-                $(document).ready(function() 
-                {
+    // $build .= "<script>
+    //             $(document).ready(function() 
+    //             {
 
-                $('#intermusic').colResizable();
+    //             $('#intermusic').colResizable();
 
-                });
-                </script>";
+    //             });
+    //             </script>";
 
 
     $build .=  "<script>  
