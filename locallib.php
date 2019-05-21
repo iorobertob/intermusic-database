@@ -348,7 +348,7 @@ function inter_build_html_table($file_url)
 
 
     $build .=  "<script>  
-                    var table = document.getElementById('intermusic');
+                    var table = document.getElementById('#intermusic');
                     resizableGrid(table);
 
                     function resizableGrid(table) {
