@@ -364,6 +364,15 @@ function inter_build_html_table($file_url)
     //             });
     //             </script>";
 
+    $build .= "<script>
+                $(document).ready(function() 
+                {
+
+                $('#intermusic').colResizable();
+
+                });
+                </script>";
+
 
     $build .=  "<script>  
                     var tables = document.getElementsByTagName('table');
