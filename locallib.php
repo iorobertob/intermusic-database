@@ -340,16 +340,16 @@ function inter_build_html_table($file_url)
     
     $build .= '</tbody></table>';
 
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
+    $build .= "<script>
+                $(document).ready(function() 
+                {
 
-    //             $('#intermusic').DataTable({
-    //                 'autoWidth': false
-    //                 });
+                $('#intermusic').DataTable({
+                    'autoWidth': false
+                    });
 
-    //             });
-    //             </script>";
+                });
+                </script>";
 
     // $build .= "<script>
     //             $(document).ready(function() 
