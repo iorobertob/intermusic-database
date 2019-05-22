@@ -380,7 +380,9 @@ function inter_build_html_table($file_url)
                 $(document).ready(function() 
                 {
 
-                $('#intermusic').colResizable();
+                    var table_intermusic = document.getElementById('intermusic');
+                    //$('#intermusic').colResizable();
+                    table_intermusic.colResizable();
 
                 });
                 </script>";
