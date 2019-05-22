@@ -388,109 +388,111 @@ function inter_build_html_table($file_url)
                 </script>";
 
 
-    $build .=  "<script>  
-                    var tables = document.getElementsByTagName('table');
-                    for (var i=0; i<tables.length;i++){
-                     resizableGrid(tables[i]);
-                    }
+    //$build .= "<script src=\"resize.js\"></script>";
 
-                    function resizableGrid(table) {
-                         var row = table.getElementsByTagName('tr')[0],
-                         cols = row ? row.children : undefined;
-                         if (!cols) return;
+    // $build .=  "<script>  
+    //                 var tables = document.getElementsByTagName('table');
+    //                 for (var i=0; i<tables.length;i++){
+    //                  resizableGrid(tables[i]);
+    //                 }
+
+    //                 function resizableGrid(table) {
+    //                      var row = table.getElementsByTagName('tr')[0],
+    //                      cols = row ? row.children : undefined;
+    //                      if (!cols) return;
                          
-                         table.style.overflow = 'hidden';
+    //                      table.style.overflow = 'hidden';
                          
-                         var tableHeight = table.offsetHeight;
+    //                      var tableHeight = table.offsetHeight;
                          
-                         for (var i=0;i<cols.length;i++){
-                          var div = createDiv(tableHeight);
-                          cols[i].appendChild(div);
-                          cols[i].style.position = 'relative';
-                          setListeners(div);
-                         }
+    //                      for (var i=0;i<cols.length;i++){
+    //                       var div = createDiv(tableHeight);
+    //                       cols[i].appendChild(div);
+    //                       cols[i].style.position = 'relative';
+    //                       setListeners(div);
+    //                      }
 
-                         function setListeners(div){
-                          var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
+    //                      function setListeners(div){
+    //                       var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
 
-                          div.addEventListener('mousedown', function (e) {
-                           curCol = e.target.parentElement;
-                           nxtCol = curCol.nextElementSibling;
+    //                       div.addEventListener('mousedown', function (e) {
+    //                        curCol = e.target.parentElement;
+    //                        nxtCol = curCol.nextElementSibling;
 
-                           pageX = e.pageX; 
+    //                        pageX = e.pageX; 
                          
-                           var padding = paddingDiff(curCol);
+    //                        var padding = paddingDiff(curCol);
                          
-                           curColWidth = curCol.offsetWidth - padding;
-                           if (nxtCol)
-                            nxtColWidth = nxtCol.offsetWidth - padding;
-                          });
+    //                        curColWidth = curCol.offsetWidth - padding;
+    //                        if (nxtCol)
+    //                         nxtColWidth = nxtCol.offsetWidth - padding;
+    //                       });
 
-                          div.addEventListener('mouseover', function (e) {
-                           e.target.style.borderRight = '2px solid #101010';
-                          })
+    //                       div.addEventListener('mouseover', function (e) {
+    //                        e.target.style.borderRight = '2px solid #101010';
+    //                       })
 
-                          div.addEventListener('mouseout', function (e) {
-                           e.target.style.borderRight = '';
-                          })
+    //                       div.addEventListener('mouseout', function (e) {
+    //                        e.target.style.borderRight = '';
+    //                       })
 
-                          document.addEventListener('mousemove', function (e) {
-                               if (curCol) {
-                                var diffX = e.pageX - pageX;
-                                console.log(curCol);
-                                console.log(nxtCol);
-                                console.log('moving');
+    //                       document.addEventListener('mousemove', function (e) {
+    //                            if (curCol) {
+    //                             var diffX = e.pageX - pageX;
+    //                             console.log(curCol);
+    //                             console.log(nxtCol);
+    //                             console.log('moving');
                              
-                                if (nxtCol){
-                                nxtCol.style.width = (nxtColWidth - (diffX))+'px';
-                                //nxtCol.setAttribute('style','width:'+(nxtColWidth - (diffX))+'px');
-                                 console.log('moved' + diffX);
-                                }
+    //                             if (nxtCol){
+    //                             nxtCol.style.width = (nxtColWidth - (diffX))+'px';
+    //                             //nxtCol.setAttribute('style','width:'+(nxtColWidth - (diffX))+'px');
+    //                              console.log('moved' + diffX);
+    //                             }
 
-                                curCol.style.width = (curColWidth + diffX)+'px';
-                                //curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
-                                //curCol.style.width = '200px';
-                               }
-                              });
+    //                             curCol.style.width = (curColWidth + diffX)+'px';
+    //                             //curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
+    //                             //curCol.style.width = '200px';
+    //                            }
+    //                           });
 
-                          document.addEventListener('mouseup', function (e) { 
-                           curCol = undefined;
-                           nxtCol = undefined;
-                           pageX = undefined;
-                           nxtColWidth = undefined;
-                           curColWidth = undefined
-                          });
-                         }
+    //                       document.addEventListener('mouseup', function (e) { 
+    //                        curCol = undefined;
+    //                        nxtCol = undefined;
+    //                        pageX = undefined;
+    //                        nxtColWidth = undefined;
+    //                        curColWidth = undefined
+    //                       });
+    //                      }
                          
-                         function createDiv(height){
-                          var div = document.createElement('div');
-                          div.style.top = 0;
-                          div.style.right = 0;
-                          div.style.width = '5px';
-                          div.style.position = 'absolute';
-                          div.style.cursor = 'col-resize';
-                          div.style.userSelect = 'none';
-                          div.style.height = height + 'px';
-                          return div;
-                         }
+    //                      function createDiv(height){
+    //                       var div = document.createElement('div');
+    //                       div.style.top = 0;
+    //                       div.style.right = 0;
+    //                       div.style.width = '5px';
+    //                       div.style.position = 'absolute';
+    //                       div.style.cursor = 'col-resize';
+    //                       div.style.userSelect = 'none';
+    //                       div.style.height = height + 'px';
+    //                       return div;
+    //                      }
                          
-                         function paddingDiff(col){
+    //                      function paddingDiff(col){
                          
-                          if (getStyleVal(col,'box-sizing') == 'border-box'){
-                           return 0;
-                          }
+    //                       if (getStyleVal(col,'box-sizing') == 'border-box'){
+    //                        return 0;
+    //                       }
                          
-                          var padLeft = getStyleVal(col,'padding-left');
-                          var padRight = getStyleVal(col,'padding-right');
-                          return (parseInt(padLeft) + parseInt(padRight));
+    //                       var padLeft = getStyleVal(col,'padding-left');
+    //                       var padRight = getStyleVal(col,'padding-right');
+    //                       return (parseInt(padLeft) + parseInt(padRight));
 
-                         }
+    //                      }
 
-                         function getStyleVal(elm,css){
-                          return (window.getComputedStyle(elm, null).getPropertyValue(css))
-                         }
-                        };
-                </script>";
+    //                      function getStyleVal(elm,css){
+    //                       return (window.getComputedStyle(elm, null).getPropertyValue(css))
+    //                      }
+    //                     };
+    //             </script>";
 
     return $build;
 }
