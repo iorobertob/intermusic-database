@@ -382,7 +382,7 @@ function inter_build_html_table($file_url)
 
                     var table_intermusic = document.getElementById('intermusic');
                     //$('#intermusic').colResizable();
-                    table_intermusic.colResizable();
+                    //table_intermusic.colResizable();
 
                 });
                 </script>";
