@@ -346,9 +346,9 @@ function inter_build_html_table($file_url)
         $col2 = $row[2];
         $build .= "<td>{$col0}</td><td>$col1</td><td><a href=\"{$col2}\">Go...</a></td>";
 
-        for ( $i = 3; $i < sizeof($row); $i++)
+        for ( $j = 3; $j < sizeof($row); $j++)
         {
-            $item = $row[$i];
+            $item = $row[$j];
             $build .= "<td>{$item}</td>";
         }
 
