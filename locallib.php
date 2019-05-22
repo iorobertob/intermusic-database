@@ -345,6 +345,7 @@ function inter_build_html_table($file_url)
                 $(document).ready(function() 
                 {
 
+                $('#intermusic').colResizable();
                 $('#intermusic').DataTable();
 
                 });
@@ -381,7 +382,7 @@ function inter_build_html_table($file_url)
                 {
 
                     var table_intermusic = document.getElementById('intermusic');
-                    $('#intermusic').colResizable();
+                    //$('#intermusic').colResizable();
                     //table_intermusic.colResizable();
 
                 });
