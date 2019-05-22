@@ -325,7 +325,7 @@ function inter_build_html_table($file_url)
     {
         $build .= $the_big_array[0][$i].'</th><th>';  
     }
-    $build .= $the_big_array[0][sizeof($the_big_array[0])-1].'</th></thead><tbody>';
+    //$build .= $the_big_array[0][sizeof($the_big_array[0])-1].'</th></thead><tbody>';
     // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
     
     foreach($the_big_array as $row)
@@ -343,7 +343,7 @@ function inter_build_html_table($file_url)
         $col2 = $row[2];
         $build .= "<td>{$col0}</td><td>$col1</td><td><a href=\"{$col2}\">Go...</a></td>";
 
-        for ( $i = 2; $i < sizeof($row); $i++)
+        for ( $i = 3; $i < sizeof($row); $i++)
         {
             $item = $row[$i];
             $build .= "<td>{$item}</td>";
