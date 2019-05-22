@@ -382,13 +382,13 @@ function inter_build_html_table($file_url)
 
                     var table_intermusic = document.getElementById('intermusic');
                     //$('#intermusic').colResizable();
-                    table_intermusic.colResizable();
+                    //table_intermusic.colResizable();
 
                 });
                 </script>";
 
 
-    //$build .= "<script src=\"resize.js\"></script>";
+    $build .= "<script src=\"resize.js\"></script>";
 
     // $build .=  "<script>  
     //                 var tables = document.getElementsByTagName('table');
