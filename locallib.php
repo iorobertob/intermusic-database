@@ -316,6 +316,8 @@ function inter_build_html_table($file_url)
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
     
     $build .= "<script src=\"colResizable-1.6.js\"></script>";
+
+    $build .= "<script src=\"js_utilities.js\"></script>";
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
 
@@ -341,16 +343,44 @@ function inter_build_html_table($file_url)
         // {
         //     $build .= "<td>{$item}</td>";
         // }
-        $col0 = $row[0];
-        $col1 = $row[1];
-        $col2 = $row[2];
-        $build .= "<td>{$col0}</td><td>$col1</td><td><a href=\"{$col2}\">Go...</a></td>";
+        // $col0 = $row[0];
+        // $col1 = $row[1];
+        // $col2 = $row[2];
+        // $build .= "<td>{$col0}</td><td>$col1</td><td><a href=\"{$col2}\">Go...</a></td>";
 
-        for ( $j = 3; $j < sizeof($row); $j++)
+        // for ( $j = 3; $j < sizeof($row); $j++)
+        // {
+        //     $item = $row[$j];
+        //     $build .= "<td>{$item}</td>";
+        // }
+
+
+
+        for ( $j = 0; $j < sizeof($row); $j++)
         {
-            $item = $row[$j];
-            $build .= "<td>{$item}</td>";
+            // If there is an URL in the data
+            if (filter_var($item, FILTER_VALIDATE_URL)) { 
+                // make a button
+                $item = $row[$j];
+                $build .= "<td><a href=\"{$item}\"><button>Go...</button></a></td>";
+            }
+            // Any data, not an URL
+            else{
+                $item = $row[$j];
+                $build .= "<td>{$item}</td>";
+            }
+            
         }
+
+        
+
+
+
+
+
+
+
+
 
         ///////////////////
         $build .= '</tr>';
