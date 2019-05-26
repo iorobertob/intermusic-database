@@ -358,15 +358,16 @@ function inter_build_html_table($file_url)
 
         for ( $j = 0; $j < sizeof($row); $j++)
         {
+            $item = $row[$j];
             // If there is an URL in the data
             if (filter_var($item, FILTER_VALIDATE_URL)) { 
                 // make a button
-                $item = $row[$j];
+                //$item = $row[$j];
                 $build .= "<td><a href=\"{$item}\"><button>Go...</button></a></td>";
             }
             // Any data, not an URL
             else{
-                $item = $row[$j];
+                //$item = $row[$j];
                 $build .= "<td>{$item}</td>";
             }
             
