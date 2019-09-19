@@ -575,7 +575,7 @@ function inter_build_html_table($file_url)
                         var value = document.getElementById(id).value;
                         
 
-                        var query = "user='.$api_user.'&function=search_get_previews&param1="+value+"param5=-1&param8=thm";
+                        var query = "user='.$api_user.'&function=get_resource_data&param1="+value+"param5=-1&param8=thm";
 
                         var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
                         sha256.update("'.$api_key.'" + query);
