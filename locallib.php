@@ -551,7 +551,7 @@ function inter_build_html_table($file_url)
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"js_utilities.js\"></script>";
 
-    $build .= "<br><br><br>"
+    $build .= "<br><br><br>";
     $build .= '<div class="topnav">
                     <input type="text" placeholder="Search..">
                 </div>';
