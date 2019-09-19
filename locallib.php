@@ -553,7 +553,7 @@ function inter_build_html_table($file_url)
 
     $build .= "<br><br><br>";
     $build .= '<div class="topnav">
-                    <input type="text" placeholder="Search.." name="search">
+                    <input id="search" type="text" placeholder="Search.." name="search">
                     <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
                 </div>';
 
