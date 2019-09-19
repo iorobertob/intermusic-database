@@ -575,10 +575,10 @@ function inter_build_html_table($file_url)
                         var value = document.getElementById(id).value;
                         
 
-                        var query = "user='.$api_user.'&function=do_search";
+                        var query = "user='.$api_user.'&function=search_get_previews";
 
                         var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
-                        sha256.update("'.$api_key.'"+ query);
+                        sha256.update("'.$api_key.'" + query);
                         var hash = sha256.getHash("HEX");
 
                         var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
