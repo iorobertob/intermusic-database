@@ -554,7 +554,7 @@ function inter_build_html_table($file_url)
     $build .= "<br><br><br>"
     $build .= '<div class="topnav">
                     <input type="text" placeholder="Search..">
-                </div>'
+                </div>';
 
     $build .= '</tbody></table>';
 
