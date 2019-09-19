@@ -564,7 +564,7 @@ function inter_build_html_table($file_url)
                         var value = document.getElementById(id).value;
                         alert(value);
                     }
-                </script>'
+                </script>';
 
     return $build;
 }
