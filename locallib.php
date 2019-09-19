@@ -287,12 +287,12 @@ function fill_data_from_csv($file_url, $tablename, $data)
 function inter_build_html_table($file_url)
 {
     //////////////////////////. NEW QUERY //////////////////////
-    $this->config = get_config('resourcespace');
-    $this->resourcespace_api_url = get_config('resourcespace', 'resourcespace_api_url');
-    $this->api_key = get_config('resourcespace', 'api_key');
-    $this->api_user = get_config('resourcespace', 'api_user');
-    $this->enable_help = get_config('resourcespace', 'enable_help');
-    $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
+    // $this->config = get_config('resourcespace');
+    $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
+    $api_key = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';
+    $api_user = 'admin';
+    // $this->enable_help = get_config('resourcespace', 'enable_help');
+    // $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
     //////////////////////////. NEW QUERY //////////////////////    
 
 
@@ -575,13 +575,13 @@ function inter_build_html_table($file_url)
                         var value = document.getElementById(id).value;
                         
 
-                        var query = "user='.$this->api_user.'&function=do_search";
+                        var query = "user='.$api_user.'&function=do_search";
 
                         var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
-                        sha256.update("'.$this->api_key.'"+ query);
+                        sha256.update("'.$api_key.'"+ query);
                         var hash = sha256.getHash("HEX");
 
-                        var request_url = "'.$this->resourcespace_api_url.'" + query + "&sign=" + hash;
+                        var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
 
                         alert(request_url);
                     }
