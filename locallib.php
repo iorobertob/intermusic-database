@@ -582,7 +582,7 @@ function inter_build_html_table($file_url)
                         var hash = sha256.getHash("HEX");
 
                         var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
-
+                        console.log(request_url);
                         alert(request_url);
                     }
 
