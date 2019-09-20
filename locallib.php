@@ -298,7 +298,8 @@ function inter_build_html_table($file_url, $course)
     }   
 
 
-    $data = $DB->get_record('poster', ['course' => '23']);
+    // $data = $DB->get_record('poster', ['course' => '23']);
+    $data = $DB->get_records('poster', array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
     if($data != null)
     {
         echo "<script> console.log('DATA');</script>";
