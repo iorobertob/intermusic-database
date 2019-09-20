@@ -284,9 +284,14 @@ function fill_data_from_csv($file_url, $tablename, $data)
 }
 
 
-function inter_build_html_table($file_url)
+function inter_build_html_table($file_url, $course)
 {
+
     //////////////////////////. NEW QUERY //////////////////////
+    $modinfo = get_fast_modinfo($course);
+    echo "<script> console.log(".$modinfo.");</script>";
+
+
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
     $api_key = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';

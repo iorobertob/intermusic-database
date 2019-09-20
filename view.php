@@ -103,7 +103,7 @@ if (count($files) < 1) {
 }
 
 
-$table = inter_build_html_table($fileurl);
+$table = inter_build_html_table($fileurl, $course);
 
 //$records = inter_mysql_query();
 
