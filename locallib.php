@@ -343,7 +343,7 @@ function inter_build_html_table($file_url, $course)
     } 
 
     // course 49 is Mastering Vocal Literature  and module 32 is posters
-    $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' )";
+    $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
     $result_courses = inter_mysql_query($query , "select");
     
    
