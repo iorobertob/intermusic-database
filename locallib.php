@@ -289,7 +289,8 @@ function inter_build_html_table($file_url, $course)
     global $PAGE;
     //////////////////////////. NEW QUERY //////////////////////
     $courseid = $PAGE->course->id;
-    // $modinfo = get_fast_modinfo($courseid);
+    echo "<script> console.log('ID'+".$courseid.");</script>";
+    $modinfo = get_fast_modinfo($courseid);
     // echo "<script> console.log(".$modinfo.");</script>";
     // echo $modinfo;
 
