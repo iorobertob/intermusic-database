@@ -365,6 +365,7 @@ function inter_build_html_table($file_url, $course)
         $key = array_search($row[1], $posters_id); 
 
         $data_array[i] = array($posters_array[$key] , $row[0]);
+        echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[i]."');</script>";
 
     }
 
