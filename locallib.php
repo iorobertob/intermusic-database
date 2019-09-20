@@ -368,7 +368,7 @@ function inter_build_html_table($file_url, $course)
 
     }
 
-    echo "<script> console.log('RESULT: ' + '".$data_array."');</script>";
+    echo "<script> console.log('DATA ARRAY : ' + '".$data_array."');</script>";
     
 
 
