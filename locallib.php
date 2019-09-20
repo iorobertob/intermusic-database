@@ -338,7 +338,7 @@ function inter_build_html_table($file_url, $course)
         // row[0] = id , row[1] = name 
         echo "<script> console.log('RESULT: ' + '".$row[1]."');</script>";
         $posters_array[$i] = $row[1];
-        $posters_id.  [$i] = $row[0];
+        $posters_id   [$i] = $row[0];
         $i = $i + 1;
     } 
 
