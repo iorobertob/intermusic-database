@@ -286,9 +286,10 @@ function fill_data_from_csv($file_url, $tablename, $data)
 
 function inter_build_html_table($file_url, $course)
 {
-
+    global $PAGE;
     //////////////////////////. NEW QUERY //////////////////////
-    // $modinfo = get_fast_modinfo($course);
+    $courseid = $PAGE->course->id
+    // $modinfo = get_fast_modinfo($courseid);
     // echo "<script> console.log(".$modinfo.");</script>";
     // echo $modinfo;
 
