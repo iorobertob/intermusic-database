@@ -333,7 +333,7 @@ function inter_build_html_table($file_url, $course)
     // $result = $mysqli->query("SELECT * FROM City", MYSQLI_USE_RESULT)
     $query = "SELECT * FROM mdl_poster;";
     $result = inter_mysql_query($query , "select");
-    echo "<script> console.log('RESULT: ' + ".$result.");</script>";
+    // echo "<script> console.log('RESULT: ' + ".$result.");</script>";
 
 
     // $this->config = get_config('resourcespace');
