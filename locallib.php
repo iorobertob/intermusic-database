@@ -335,7 +335,7 @@ function inter_build_html_table($file_url, $course)
     $result = inter_mysql_query($query , "select");
     while($row = mysqli_fetch_array($result))
      {
-        echo "<script> console.log('RESULT: ' + ".$row[0].");</script>";
+        echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
         print_r($row);
 
      } 
