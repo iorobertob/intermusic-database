@@ -379,7 +379,6 @@ function inter_build_html_table($file_url, $course)
     echo "<script> console.log('LENGTH: ' + '".$lenght."');</script>";
     for($i = 0; $i < $length; $i++)
     {
-        echo "<script> console.log('DATA [i] : ' + '".$i."');</script>";
          echo "<script> console.log('DATA ARRAY : ' + '".$data_array[$i][0]."' + ' + ' + '".$data_array[$i][1]."');</script>";
     }
 
@@ -420,18 +419,33 @@ function inter_build_html_table($file_url, $course)
       // Close the file
       fclose($h);
     }
+
+    // This line is to replace the csv data with the poster module data
+    $the_big_array = $data_array;
+
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<!DOCTYPE html>";
     $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
+    $build .= "<script src=\"sha256.js\"></script>";
     
     $build .= "<script src=\"colResizable-1.6.js\"></script>";
 
     $build .= "<script src=\"js_utilities.js\"></script>";
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
+
+
+
+    ////////////////// SEARCH BUTTON /////////////////////////////////
+    $build .= '<div class="topnav">
+                    <input id="search" type="text" placeholder="Search.." name="search">
+                    <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
+                </div><br><br><br>';
+    ///////////////// SEARCH BUTTON /////////////////////////////////
+
 
     $build .= "<table id=\"intermusic\" style=\"table-layout:fixed\"><thead><th>";
 
@@ -484,15 +498,6 @@ function inter_build_html_table($file_url, $course)
             }
             
         }
-
-        
-
-
-
-
-
-
-
 
 
         ///////////////////
@@ -658,19 +663,19 @@ function inter_build_html_table($file_url, $course)
 
 
     /////////////////////// NEW PLUGIN //////////////////////
-    $build = "<!DOCTYPE html>";
-    $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
-    $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
-    $build .= "<script src=\"js_utilities.js\"></script>";
-    $build .= "<script src=\"sha256.js\"></script>";
+    // $build = "<!DOCTYPE html>";
+    // $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
+    // $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
+    // $build .= "<script src=\"js_utilities.js\"></script>";
+    // $build .= "<script src=\"sha256.js\"></script>";
 
-    $build .= "<br><br><br>";
-    $build .= '<div class="topnav">
-                    <input id="search" type="text" placeholder="Search.." name="search">
-                    <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-                </div>';
+    // $build .= "<br><br><br>";
+    // $build .= '<div class="topnav">
+    //                 <input id="search" type="text" placeholder="Search.." name="search">
+    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
+    //             </div>';
 
-    $build .= '</tbody></table>';
+    // $build .= '</tbody></table>';
 
     $build .= '<script>
                     function submitMe(id) {
