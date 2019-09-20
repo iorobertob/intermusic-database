@@ -308,6 +308,8 @@ function fill_data_from_csv($file_url, $tablename, $data)
 function inter_build_html_table($file_url, $course)
 {
     global $PAGE, $DB;
+
+
     //////////////////////////. NEW QUERY //////////////////////
     $courseid = $PAGE->course->id;
     echo "<script> console.log(".$courseid.");</script>";
@@ -329,7 +331,7 @@ function inter_build_html_table($file_url, $course)
     }
     
     // $result = $mysqli->query("SELECT * FROM City", MYSQLI_USE_RESULT)
-    $query = "SELECT * FROM mdl_poster;"
+    $query = "SELECT * FROM mdl_poster;";
     $result = inter_mysql_query($query , "select");
     echo "<script> console.log('RESULT: ' + ".$result.");</script>";
 
@@ -341,6 +343,10 @@ function inter_build_html_table($file_url, $course)
     // $this->enable_help = get_config('resourcespace', 'enable_help');
     // $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
     //////////////////////////. NEW QUERY //////////////////////    
+
+
+
+
 
 
     // Detect line breaks, otherwise fgetcsv will return all rows
