@@ -294,9 +294,13 @@ function inter_build_html_table($file_url, $course)
     // echo "<script> console.log(".$modinfo.");</script>";
     foreach ($modinfo as $cm) {
         // echo $cm->modname;
-        echo "<script> console.log(".$cm->modname.");</script>";
+        // echo "<script> console.log(".$cm->modname.");</script>";
     }   
 
+
+    $data = $DB->get_record('poster', ['course' => $courseid]);
+    echo "<script> console.log('DATA');</script>";
+    echo "<script> console.log(".$data.");</script>";
 
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
