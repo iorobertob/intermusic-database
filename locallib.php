@@ -353,7 +353,7 @@ function inter_build_html_table($file_url, $course)
         // echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
         // print_r($row);
         $key = array_search($row[1], $posters_id); 
-        $data_array[$i] = array($posters_array[$key] , $row[0]);
+        $data_array[$i] = array($posters_array[$key] , '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[$i][0]."' + ' = ' + '".$data_array[$i][1]."');</script>";
         $i = $i + 1;
     } 
