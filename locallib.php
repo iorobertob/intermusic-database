@@ -292,7 +292,9 @@ function inter_build_html_table($file_url, $course)
     echo "<script> console.log(".$courseid.");</script>";
     $modinfo = get_fast_modinfo($courseid);
     // echo "<script> console.log(".$modinfo.");</script>";
-    echo $modinfo;
+    foreach ($modinfo as $cm) {
+        echo $cm->modname;
+    }   
 
 
     // $this->config = get_config('resourcespace');
