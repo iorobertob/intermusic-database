@@ -304,7 +304,7 @@ function inter_build_html_table($file_url, $course)
     {
         echo "<script> console.log('DATA');</script>";
         echo "<script> console.log('DATA: ' + ".$data->context.");</script>";
-        echo "<script> console.log('DATA: ' + ".json_decode($data, true).");</script>"; 
+        echo "<script> console.log('DATA JSON: ' + ".json_decode($data, true).");</script>"; 
     }
     
     
