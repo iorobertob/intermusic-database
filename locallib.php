@@ -298,12 +298,11 @@ function inter_build_html_table($file_url, $course)
     }   
 
 
-    $data = $DB->get_record('poster', ['course' => $courseid]);
+    $data = $DB->get_record('poster', ['course' => '23']);
     if($data != null)
     {
         echo "<script> console.log('DATA');</script>";
         echo "<script> console.log('DATA: ' + ".$data->context.");</script>";
-
     }
     
     
