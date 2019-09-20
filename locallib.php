@@ -286,7 +286,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
 
 function inter_build_html_table($file_url, $course)
 {
-    global $PAGE;
+    global $PAGE, $DB;
     //////////////////////////. NEW QUERY //////////////////////
     $courseid = $PAGE->course->id;
     echo "<script> console.log(".$courseid.");</script>";
