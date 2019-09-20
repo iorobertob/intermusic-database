@@ -293,7 +293,8 @@ function inter_build_html_table($file_url, $course)
     $modinfo = get_fast_modinfo($courseid);
     // echo "<script> console.log(".$modinfo.");</script>";
     foreach ($modinfo as $cm) {
-        echo $cm->modname;
+        // echo $cm->modname;
+        echo "<script> console.log(".$cm->modname.");</script>";
     }   
 
 
