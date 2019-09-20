@@ -299,11 +299,12 @@ function inter_build_html_table($file_url, $course)
 
 
     // $data = $DB->get_record('poster', ['course' => '23']);
-    $data = $DB->get_records('poster', array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+    $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
     if($data != null)
     {
         echo "<script> console.log('DATA');</script>";
         echo "<script> console.log('DATA: ' + ".$data->context.");</script>";
+        echo "<script> console.log('DATA: ' + ".json_decode($data, true).");</script>"; 
     }
     
     
