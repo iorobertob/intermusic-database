@@ -302,10 +302,11 @@ function inter_build_html_table($file_url, $course)
     if($data != null)
     {
         echo "<script> console.log('DATA');</script>";
+        echo "<script> console.log(".$data[0].");</script>";
+
     }
     
-    // echo "<script> console.log(".$data.");</script>";
-
+    
 
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
