@@ -288,9 +288,9 @@ function inter_build_html_table($file_url, $course)
 {
 
     //////////////////////////. NEW QUERY //////////////////////
-    $modinfo = get_fast_modinfo($course);
+    // $modinfo = get_fast_modinfo($course);
     // echo "<script> console.log(".$modinfo.");</script>";
-    echo $modinfo;
+    // echo $modinfo;
 
 
     // $this->config = get_config('resourcespace');
