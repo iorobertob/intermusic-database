@@ -347,27 +347,31 @@ function inter_build_html_table($file_url, $course)
     $result_courses = inter_mysql_query($query , "select");
     
    
-    // while($row = mysqli_fetch_array($result_courses))
-    // {
-    //     echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
-    //     // print_r($row);
-        
-    // } 
-
-    $length = count($result_courses);
-    for($i = 0; $i < $length; $i++)
-    {   
-        $row = mysqli_fetch_array($result_courses);
-        //[0]->[name] [instance]
-        //[1]->[name] [instance]...
-        // $data_array[i] = array( $result_poster[$result_courses[i][1]][1], $result_courses[i][0]);
-
+    $i = 0;
+    while($row = mysqli_fetch_array($result_courses))
+    {
+        // echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
+        // print_r($row);
         $key = array_search($row[1], $posters_id); 
-
         $data_array[i] = array($posters_array[$key] , $row[0]);
         echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[i][0]."');</script>";
+        $i = $i + 1;
+    } 
 
-    }
+    // $length = count($result_courses);
+    // for($i = 0; $i < $length; $i++)
+    // {   
+    //     $row = mysqli_fetch_array($result_courses);
+    //     //[0]->[name] [instance]
+    //     //[1]->[name] [instance]...
+    //     // $data_array[i] = array( $result_poster[$result_courses[i][1]][1], $result_courses[i][0]);
+
+    //     $key = array_search($row[1], $posters_id); 
+
+    //     $data_array[i] = array($posters_array[$key] , $row[0]);
+    //     echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[i][0]."');</script>";
+
+    // }
 
     // echo "<script> console.log('DATA ARRAY : ' + '".$data_array."');</script>";
     
