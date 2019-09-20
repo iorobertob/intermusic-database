@@ -180,20 +180,44 @@ function inter_mysql_query($sql, $process)
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-	if ($conn->query($sql) === TRUE) {
-	    echo "Successfull query: ".$process;
-	    $conn->close();
-	    // return "Table  created successfully";
-        echo("<script>console.log('Successfull query ');</script>");
-        return true;
-	} else {
-	    echo "Error in Query: : ".$process." " . $conn->error;
-	    $conn->close();
-	    // return "Error creating table: " . $conn->error;
-        echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
-        return false;
-	    // die;
-	}
+    $result = null;
+
+    if ($process != 'select')
+    {
+        if ($conn->query($sql) === TRUE) {
+            echo "Successfull query: ".$process;
+            $conn->close();
+            // return "Table  created successfully";
+            echo("<script>console.log('Successfull query ');</script>");
+            return true;
+        } else {
+            echo "Error in Query: : ".$process." " . $conn->error;
+            $conn->close();
+            // return "Error creating table: " . $conn->error;
+            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
+            return false;
+            // die;
+        }
+    }
+    else
+    {
+        if ($result = $conn->query($sql) ) {
+            echo "Successfull query: ".$process;
+            $conn->close();
+            // return "Table  created successfully";
+            echo("<script>console.log('Successfull query ');</script>");
+            return $result;
+        } else {
+            echo "Error in Query: : ".$process." " . $conn->error;
+            $conn->close();
+            // return "Error creating table: " . $conn->error;
+            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
+            return false;
+            // die;
+        }
+    }
+
+	
 
 }
 
@@ -229,7 +253,6 @@ function inter_create_database_from_csv($file_url, $id)
  */
 function build_table($data, $id, $file_url)
 {
-
     $tablename = "inter_database_".$id;
     $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, ";
     $query = "CREATE TABLE ".$tablename." (id INT NOT NULL AUTO_INCREMENT, ";
@@ -254,8 +277,6 @@ function build_table($data, $id, $file_url)
     {
         return false;
     }
-
-
 }
 
 
@@ -307,7 +328,11 @@ function inter_build_html_table($file_url, $course)
         echo "<script> console.log('DATA JSON: ' + ".json_decode($data, true).");</script>"; 
     }
     
-    
+    // $result = $mysqli->query("SELECT * FROM City", MYSQLI_USE_RESULT)
+    $query = "SELECT * FROM mdl_poster;"
+    $result = inter_mysql_query($query , "select");
+    echo "<script> console.log('RESULT: ' + ".$result.");</script>";
+
 
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
