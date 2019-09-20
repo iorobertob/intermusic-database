@@ -325,21 +325,41 @@ function inter_build_html_table($file_url, $course)
     $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
     if($data != null)
     {
-        echo "<script> console.log('DATA');</script>";
-        echo "<script> console.log('DATA: ' + ".$data->context.");</script>";
         echo "<script> console.log('DATA JSON: ' + ".json_decode($data, true).");</script>"; 
     }
     
-    // $result = $mysqli->query("SELECT * FROM City", MYSQLI_USE_RESULT)
-    $query = "SELECT name FROM mdl_poster WHERE course = '49'";
-    $result = inter_mysql_query($query , "select");
-    while($row = mysqli_fetch_array($result))
-     {
-        echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
-        print_r($row);
+    $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
+    $result_poster = inter_mysql_query($query , "select");
 
-     } 
-    // echo "<script> console.log('RESULT: ' + ".$result.");</script>";
+    while($row = mysqli_fetch_array($result_poster))
+    {
+        // row[0] = id , row[1] = name 
+        echo "<script> console.log('RESULT: ' + '".$row[1]."');</script>";
+    } 
+
+    // course 49 is Mastering Vocal Literature  and module 32 is posters
+    $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' )";
+    $result_courses = inter_mysql_query($query , "select");
+
+    // while($row = mysqli_fetch_array($result_courses))
+    // {
+    //     echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
+    //     // print_r($row);
+    //     $data_array[]
+    // } 
+
+    $length = count($result_courses);
+    for($i = 0; $i < $length; $i++)
+    {   
+        //[0]->[name] [instance]
+        //[1]->[name] [instance]...
+        $data_array[i] = array( $result_poster[$result_courses[i][1]][1], $result_courses[i][0]);
+    }
+
+    echo "<script> console.log('RESULT: ' + '".$data_array."');</script>";
+    
+
+
 
 
     // $this->config = get_config('resourcespace');
