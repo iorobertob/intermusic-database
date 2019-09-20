@@ -331,7 +331,7 @@ function inter_build_html_table($file_url, $course)
     }
     
     // $result = $mysqli->query("SELECT * FROM City", MYSQLI_USE_RESULT)
-    $query = "SELECT * FROM mdl_poster;";
+    $query = "SELECT * FROM mdl_poster WHERE course = '49'";
     $result = inter_mysql_query($query , "select");
     while($row = mysqli_fetch_array($result))
      {
