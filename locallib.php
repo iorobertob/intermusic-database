@@ -310,7 +310,7 @@ function inter_build_html_table($file_url, $course)
 
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
-    $api_key = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';
+    $api_key  = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';
     $api_user = 'admin';
     // $this->enable_help = get_config('resourcespace', 'enable_help');
     // $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
