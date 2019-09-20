@@ -375,10 +375,11 @@ function inter_build_html_table($file_url, $course)
 
     // echo "<script> console.log('DATA ARRAY : ' + '".$data_array."');</script>";
     
-    $length = count($result_courses);
+    $length = count($data_array);
     for($i = 0; $i < $length; $i++)
     {
          echo "<script> console.log('DATA ARRAY : ' + '".$data_array[$i][0]."' + ' + ' + '".$data_array[$i][1]."');</script>";
+         $i += 1;
     }
 
 
