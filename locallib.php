@@ -447,7 +447,7 @@ function inter_build_html_table($file_url, $course)
     ///////////////// SEARCH BUTTON /////////////////////////////////
 
 
-    $build .= "<table id=\"intermusic\" style=\"table-layout:fixed\"><thead><th>";
+    $build .= "<table id=\"intermusic\" style=\"table-layout:fixed\"  width=\"90%\"><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
