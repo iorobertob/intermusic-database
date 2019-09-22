@@ -348,7 +348,7 @@ function inter_build_html_table($file_url, $course)
     
    
     $i = 1;
-    $data_array = []
+    $data_array = [];
     $data_array[0] = array ("PIECE", "CONTENT");
     while($row = mysqli_fetch_array($result_courses))
     {
