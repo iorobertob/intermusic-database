@@ -684,7 +684,7 @@ function inter_build_html_table($file_url, $course)
                         var value = document.getElementById(id).value;
                         
 
-                        var query = "user='.$api_user.'&function=do_search&param1="+value+"&param5=-1";
+                        var query = "user='.$api_user.'&function=search_public_collections&param1="+value
 
                         var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
                         sha256.update("'.$api_key.'" + query);
