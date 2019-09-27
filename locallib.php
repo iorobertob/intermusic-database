@@ -314,19 +314,10 @@ function inter_build_html_table($file_url, $course)
     $courseid = $PAGE->course->id;
     echo "<script> console.log(".$courseid.");</script>";
     $modinfo = get_fast_modinfo($courseid);
-    // echo "<script> console.log(".$modinfo.");</script>";
-    foreach ($modinfo as $cm) {
-        // echo $cm->modname;
-        // echo "<script> console.log(".$cm->modname.");</script>";
-    }   
-
 
     // $data = $DB->get_record('poster', ['course' => '23']);
     $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-    if($data != null)
-    {
-        echo "<script> console.log('DATA JSON: ' + ".json_decode($data, true).");</script>"; 
-    }
+
     
     $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
     $result_poster = inter_mysql_query($query , "select");
@@ -336,7 +327,6 @@ function inter_build_html_table($file_url, $course)
     while($row = mysqli_fetch_array($result_poster))
     {
         // row[0] = id , row[1] = name 
-        echo "<script> console.log('RESULT: ' + '".$row[1]."');</script>";
         $posters_array[$i] = $row[1];
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
@@ -356,7 +346,6 @@ function inter_build_html_table($file_url, $course)
         // print_r($row);
         $key = array_search($row[1], $posters_id); 
         $data_array[$i] = array($posters_array[$key] , '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
-        echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[$i][0]."' + ' = ' + '".$data_array[$i][1]."');</script>";
         $i = $i + 1;
     } 
 
@@ -378,13 +367,6 @@ function inter_build_html_table($file_url, $course)
     // echo "<script> console.log('DATA ARRAY : ' + '".$data_array."');</script>";
     
     $length = sizeof($posters_array);
-    echo "<script> console.log('LENGTH: ' + '".$lenght."');</script>";
-    for($i = 0; $i < $length; $i++)
-    {
-         echo "<script> console.log('DATA ARRAY : ' + '".$data_array[$i][0]."' + ' + ' + '".$data_array[$i][1]."');</script>";
-    }
-
-
 
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
@@ -394,15 +376,9 @@ function inter_build_html_table($file_url, $course)
     // $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
     //////////////////////////. NEW QUERY //////////////////////    
 
-
-
-
-
-
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
     header('Content-Type: text/html; charset=utf-8');
-
 
     // The nested array to hold all the arrays
     $the_big_array = []; 

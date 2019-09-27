@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['choosereadme'] = 'Readme when selecting the theme.';
 $string['intername'] = 'Name:';
 $string['intersettings'] = 'Settings';
+$string['interplatformwide'] = 'Include all posters in the platform';
 $string['inter:name'] = 'Name';
 $string['inter:edit'] = 'Edit test';
 $string['inter:enrol'] = 'Enrol users';
