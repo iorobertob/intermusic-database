@@ -117,9 +117,11 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $moduleinstance->id = $moduleinstance->instance;
     $moduleinstance->revision++;
 
-
     echo "<script>console.log('instance name');</script>";
     echo "<script>console.log('".$moduleinstance->name."');</script>";
+
+
+    echo "<script>console.log('".$moduleinstance->name."');</script>"
 
     resource_set_display_options($moduleinstance);
 
