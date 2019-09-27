@@ -119,7 +119,9 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     echo "<script>console.log('instance name');</script>";
     echo "<script>console.log('".$moduleinstance->name."');</script>";
-    die;
+    $moduleinstance->name = 'test change lalala';
+
+    // die;
     echo "<script>console.log('".$moduleinstance->name."');</script>";
 
     resource_set_display_options($moduleinstance);
