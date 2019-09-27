@@ -38,11 +38,16 @@ $id = optional_param('id', 0, PARAM_INT);
 // ... module instance id.
 $i  = optional_param('i', 0, PARAM_INT);
 
+
 if ($id) {
+    echo "<script>console.log('i');</script>"
+    echo "<script>console.log('".$i."');</script>"
     $cm             = get_coursemodule_from_id('inter', $id, 0, false, MUST_EXIST);
     $course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
     $moduleinstance = $DB->get_record('inter', array('id' => $cm->instance), '*', MUST_EXIST);
 } else if ($i) {
+    echo "<script>console.log('id');</script>"
+    echo "<script>console.log('".$id."');</script>"
     $moduleinstance = $DB->get_record('inter', array('id' => $n), '*', MUST_EXIST);
     $course         = $DB->get_record('course', array('id' => $moduleinstance->course), '*', MUST_EXIST);
     $cm             = get_coursemodule_from_instance('inter', $moduleinstance->id, $course->id, false, MUST_EXIST);
