@@ -45,5 +45,20 @@ function xmldb_inter_upgrade($oldversion) {
     // Documentation for the XMLDB Editor can be found at:
     // https://docs.moodle.org/dev/XMLDB_editor
 
+    if ($oldversion < 2019030501)
+    {
+    	// Define field author to be added to poster.
+        $table = new xmldb_table('inter');
+        $field = new xmldb_field('platformwide', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'intro');
+    }
+
+    // Conditionally launch add field author.
+    if (!$dbman->field_exists($table, $field)) {
+        $dbman->add_field($table, $field);
+    }
+
+    // Poster savepoint reached.
+    upgrade_mod_savepoint(true, 2019030501, 'inter');
+
     return true;
 }
