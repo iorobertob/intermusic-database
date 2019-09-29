@@ -137,7 +137,7 @@ function inter_mysql_query($sql, $process)
 
 
 // Create an HTML table from the data contained in the Poster of Intermusic
-function inter_build_html_table($course)
+function inter_build_html_table($course, $moduleinstance)
 {
     global $PAGE, $DB;
 
@@ -168,7 +168,17 @@ function inter_build_html_table($course)
    
     $i = 1;
     $data_array = [];
-    $data_array[0] = array ("PIECE", "CONTENT");
+
+    if ($moduleinstance->platformwide === "0")
+    {
+        $data_array[0] = array ("PIECE", "CONTENT");
+    }
+    if ($moduleinstance->platformwide === "1")
+    {
+        $data_array[0] = array ("ES UNO", "ES UNO ");
+    }
+
+    // $data_array[0] = array ("PIECE", "CONTENT");
     while($row = mysqli_fetch_array($result_courses))
     {
         // print_r($row);

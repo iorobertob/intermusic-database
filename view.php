@@ -69,7 +69,7 @@ $PAGE->set_heading(format_string($course->fullname));
 
 
 
-$table = inter_build_html_table($course);
+$table = inter_build_html_table($course, $moduleinstance);
 
 $PAGE->set_context($modulecontext);
 
