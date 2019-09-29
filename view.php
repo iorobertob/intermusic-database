@@ -70,10 +70,7 @@ $PAGE->set_heading(format_string($course->fullname));
 //=============================  GET FILE    ===================================
 $fs = get_file_storage();
 $files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
-if (count($files) < 1) {
-    resource_print_filenotfound($moduleinstance, $cm, $course);
-    die;
-} else {
+if (count($files) >= 1) {
     $file = reset($files);
     $fileurl = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
     echo("<script>console.log('URL:  ".$fileurl."');</script>");
