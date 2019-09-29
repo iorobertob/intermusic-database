@@ -65,7 +65,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     echo "<script>console.log('BEFORE');</script>";
     // This line in the end helped saving the file
-    resource_set_display_options($moduleinstance);
+    inter_set_display_options($moduleinstance);
     echo "<script>console.log('AFTER');</script>";
 
     $id = $DB->insert_record('inter', $moduleinstance);
@@ -128,7 +128,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     // die;
     echo "<script>console.log('".$moduleinstance->name."');</script>";
 
-    resource_set_display_options($moduleinstance);
+    inter_set_display_options($moduleinstance);
 
     $DB->update_record('inter', $moduleinstance);
 
@@ -319,6 +319,32 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
     send_stored_file($file, null, $filter, $forcedownload, $options);
     // send_stored_file($file, null, $filter, false, $options);
     
+}
 
-
+/**
+ * Updates display options based on form input.
+ *
+ * Shared code used by resource_add_instance and resource_update_instance.
+ *
+ * @param object $data Data object
+ */
+function inter_set_display_options($data) {
+    $displayoptions = array();
+    if ($data->display == RESOURCELIB_DISPLAY_POPUP) {
+        $displayoptions['popupwidth']  = $data->popupwidth;
+        $displayoptions['popupheight'] = $data->popupheight;
+    }
+    if (in_array($data->display, array(RESOURCELIB_DISPLAY_AUTO, RESOURCELIB_DISPLAY_EMBED, RESOURCE$
+        $displayoptions['printintro']   = (int)!empty($data->printintro);
+    }
+    if (!empty($data->showsize)) {
+        $displayoptions['showsize'] = 1;
+    }
+    if (!empty($data->showtype)) {
+        $displayoptions['showtype'] = 1;
+    }
+    if (!empty($data->showdate)) {
+        $displayoptions['showdate'] = 1;
+    }
+    $data->displayoptions = serialize($displayoptions);
 }
