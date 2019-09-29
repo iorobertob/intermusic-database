@@ -142,7 +142,7 @@ function inter_mysql_query($sql, $process)
             echo "Error in Query: : ".$process." " . $conn->error;
             $conn->close();
             // return "Error creating table: " . $conn->error;
-            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
+            echo"<script>console.log('Error in Query: " . $conn->error."');</script>";
             return false;
             // die;
         }
