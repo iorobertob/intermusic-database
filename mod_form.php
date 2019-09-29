@@ -78,7 +78,7 @@ class mod_inter_mod_form extends moodleform_mod {
         $filemanager_options['maxfiles'] = -1;
         $filemanager_options['mainfile'] = true;
 
-        $mform->addElement('filemanager', 'files', get_string('selectfiles'), null, $filemanager_options);
+        // $mform->addElement('filemanager', 'files', get_string('selectfiles'), null, $filemanager_options);
         //========================   FILE PIKCER ==========================================
 
         $mform->addElement('checkbox', 'platformwide', get_string('interplatformwide', 'inter'));
@@ -97,11 +97,11 @@ class mod_inter_mod_form extends moodleform_mod {
 
 
     function data_preprocessing(&$default_values) {
-        if ($this->current->instance and !$this->current->tobemigrated) {
-            $draftitemid = file_get_submitted_draft_itemid('files');
-            file_prepare_draft_area($draftitemid, $this->context->id, 'mod_inter', 'content', 0, array('subdirs'=>true));
-            $default_values['files'] = $draftitemid;
-        }
+        // if ($this->current->instance and !$this->current->tobemigrated) {
+        //     $draftitemid = file_get_submitted_draft_itemid('files');
+        //     file_prepare_draft_area($draftitemid, $this->context->id, 'mod_inter', 'content', 0, array('subdirs'=>true));
+        //     $default_values['files'] = $draftitemid;
+        // }
         if (!empty($default_values['displayoptions'])) {
             $displayoptions = unserialize($default_values['displayoptions']);
             if (isset($displayoptions['printintro'])) {

@@ -37,74 +37,59 @@ function local_test_locallib_function($event) {
     return;
 }
 
-function inter_set_mainfile($data) {
-    global $DB;
-    $fs = get_file_storage();
-    $cmid = $data->coursemodule;
-    $draftitemid = $data->files;
 
-    $context = context_module::instance($cmid);
-    if ($draftitemid) 
-    {
-        $options = array('subdirs' => true, 'embed' => false);
-        if ($data->display == RESOURCELIB_DISPLAY_EMBED) 
-        {
-            $options['embed'] = true;
-        }
-        file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);
-    }
-    $files = $fs->get_area_files($context->id, 'mod_inter', 'content', 0, 'sortorder', false);
-    if (count($files) == 1) 
-    {
-        // only one file attached, set it as main file automatically
-        $file = reset($files);
-        file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
+// TODO: Safe Delete, not used in List 
+// function inter_set_mainfile($data) {
+//     global $DB;
+//     $fs = get_file_storage();
+//     $cmid = $data->coursemodule;
+//     $draftitemid = $data->files;
 
-        $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
-	}
-    else
-    {
-        $url = "no file";
-    }
+//     $context = context_module::instance($cmid);
+//     if ($draftitemid) 
+//     {
+//         $options = array('subdirs' => true, 'embed' => false);
+//         if ($data->display == RESOURCELIB_DISPLAY_EMBED) 
+//         {
+//             $options['embed'] = true;
+//         }
+//         file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);
+//     }
+//     $files = $fs->get_area_files($context->id, 'mod_inter', 'content', 0, 'sortorder', false);
+//     if (count($files) == 1) 
+//     {
+//         // only one file attached, set it as main file automatically
+//         $file = reset($files);
+//         file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
+
+//         $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
+// 	}
+//     else
+//     {
+//         $url = "no file";
+//     }
     
-    return $url;
-}
-
-
-/**
- * Internal function - create click to open text with link.
- */
-// function inter_get_clicktoopen($file, $revision, $extra='') {
-//     global $CFG;
-
-//     $filename = $file->get_filename();
-
-//     $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
-
-//     $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
-
-//     $string = get_string('clicktoopen2', 'inter', "<a href=\"$fullurl\" $extra>$filename</a>");
-
-//     return $string;
+//     return $url;
 // }
+
 
 /**
  * File browsing support class
  */
-class inter_content_file_info extends file_info_stored {
-    public function get_parent() {
-        if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
-            return $this->browser->get_file_info($this->context);
-        }
-        return parent::get_parent();
-    }
-    public function get_visible_name() {
-        if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
-            return $this->topvisiblename;
-        }
-        return parent::get_visible_name();
-    }
-}
+// class inter_content_file_info extends file_info_stored {
+//     public function get_parent() {
+//         if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
+//             return $this->browser->get_file_info($this->context);
+//         }
+//         return parent::get_parent();
+//     }
+//     public function get_visible_name() {
+//         if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
+//             return $this->topvisiblename;
+//         }
+//         return parent::get_visible_name();
+//     }
+// }
 
 
 /**
@@ -165,104 +150,19 @@ function inter_mysql_query($sql, $process)
 
 }
 
-/**
- * Custom LMTA function - Create a databse from a csv file using the module's instance's id. 
- */
-function inter_create_database_from_csv($file_url, $id)
-{
-    // Detect line breaks, otherwise fgetcsv will return all rows
-    ini_set('auto_detect_line_endings', true);
 
-
-    // The nested array to hold all the arrays
-    $the_big_array = []; 
-
-    // Open the file for reading
-    if (($h = fopen("{$file_url}", "r")) !== FALSE) 
-    {
-        // The first line in the file is converted into an individual array that we call $data
-        // The items of the array are comma separated
-        $data = fgetcsv($h, 10000, ",");
-
-      // Close the file
-      fclose($h);
-    }
-
-    return build_table($data, $id, $file_url);
-
-}
-
-/**
- * Custom LMTA function - Create a table with column titles contained in $data and $id to be integrated in its name
- */
-function build_table($data, $id, $file_url)
-{
-    $tablename = "inter_database_".$id;
-    $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, ";
-    $query = "CREATE TABLE ".$tablename." (id INT NOT NULL AUTO_INCREMENT, ";
-
-    for( $i = 1; $i<sizeof($data); $i++ ) {
-        $query .= "`".$data[$i]."` VARCHAR(255) NOT NULL, ";
-    }
-    $query .= "PRIMARY KEY (id));";
-    echo("<script>console.log('CREATE TABLE:  ".$query."');</script>");
-
-    if (inter_mysql_query($query, "Create table"))
-    {
-        // Fill table
-        $result = fill_data_from_csv($file_url, $tablename, $data);
-    }
-
-    if ($result)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-
-/**
- * Custom LMTA function - Fill table with csv cata
- * param $file_url  -  the path to the file to get data from 
- * param $tablename - previously built table name with the unique id number of this module's intance
- * param $data      - array containig the list of the headers of this file
- */
-function fill_data_from_csv($file_url, $tablename, $data)
-{
-    // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, first_name, last_name, email, transactions, @account_creation)SET account_creation  = STR_TO_DATE(@account_creation, '%m/%d/%y');";
-
-    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, ";
-    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r' IGNORE 1 ROWS;";
-
-    // for( $i = 1; $i<sizeof($data); $i++ ) {
-    //     $query .= "`".$data[$i]."`, ";
-    // }
-
-
-    // $query.= ");";
-    //echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
-    return inter_mysql_query($query, "Fill table ");
-
-}
-
-
-function inter_build_html_table($file_url, $course)
+// Create an HTML table from the data contained in the Poster of Intermusic
+function inter_build_html_table($course)
 {
     global $PAGE, $DB;
 
-
     //////////////////////////. NEW QUERY //////////////////////
     $courseid = $PAGE->course->id;
-    echo "<script> console.log(".$courseid.");</script>";
-    $modinfo = get_fast_modinfo($courseid);
 
     // $data = $DB->get_record('poster', ['course' => '23']);
+    // FIGURE OUT HOW TO GET THE COURSE ID 
     $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
-    
     $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
     $result_poster = inter_mysql_query($query , "select");
     $posters_array = [];
@@ -286,65 +186,19 @@ function inter_build_html_table($file_url, $course)
     $data_array[0] = array ("PIECE", "CONTENT");
     while($row = mysqli_fetch_array($result_courses))
     {
-        // echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
         // print_r($row);
         $key = array_search($row[1], $posters_id); 
         $data_array[$i] = array($posters_array[$key] , '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         $i = $i + 1;
     } 
-
-    // $length = count($result_courses);
-    // for($i = 0; $i < $length; $i++)
-    // {   
-    //     $row = mysqli_fetch_array($result_courses);
-    //     //[0]->[name] [instance]
-    //     //[1]->[name] [instance]...
-    //     // $data_array[i] = array( $result_poster[$result_courses[i][1]][1], $result_courses[i][0]);
-
-    //     $key = array_search($row[1], $posters_id); 
-
-    //     $data_array[i] = array($posters_array[$key] , $row[0]);
-    //     echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[i][0]."');</script>";
-
-    // }
-
-    // echo "<script> console.log('DATA ARRAY : ' + '".$data_array."');</script>";
     
     $length = sizeof($posters_array);
-
-    // $this->config = get_config('resourcespace');
-    $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
-    $api_key  = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';
-    $api_user = 'admin';
-    // $this->enable_help = get_config('resourcespace', 'enable_help');
-    // $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
-    //////////////////////////. NEW QUERY //////////////////////    
-
-    // Detect line breaks, otherwise fgetcsv will return all rows
-    ini_set('auto_detect_line_endings', true);
-    header('Content-Type: text/html; charset=utf-8');
 
     // The nested array to hold all the arrays
     $the_big_array = []; 
 
-    // Open the file for reading
-    if (($h = fopen("{$file_url}", "r")) !== FALSE) 
-    {
-        // Each line in the file is converted into an individual array that we call $data
-        // The items of the array are comma separated
-        while (($data = fgetcsv($h, 1000, ",")) !== FALSE) 
-        {
-            // Each individual array is being pushed into the nested array
-            $the_big_array[] = $data;       
-        }
-
-      // Close the file
-      fclose($h);
-    }
-
     // This line is to replace the csv data with the poster module data
     $the_big_array = $data_array;
-
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<!DOCTYPE html>";
@@ -359,8 +213,6 @@ function inter_build_html_table($file_url, $course)
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
 
-
-
     ////////////////// SEARCH BUTTON /////////////////////////////////
     $build .= '<div class="topnav">
                     <input id="search" type="text" placeholder="Search.." name="search">
@@ -369,6 +221,7 @@ function inter_build_html_table($file_url, $course)
     ///////////////// SEARCH BUTTON /////////////////////////////////
 
 
+    ///////////////  TABLE //////////////////////////////////////////
     $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
@@ -382,27 +235,7 @@ function inter_build_html_table($file_url, $course)
     // foreach($the_big_array as $row)
     {
         $row = $the_big_array[$i];
-
         $build .= '<tr>';
-
-
-        ///////////////////
-        // foreach($row as $item)
-        // {
-        //     $build .= "<td>{$item}</td>";
-        // }
-        // $col0 = $row[0];
-        // $col1 = $row[1];
-        // $col2 = $row[2];
-        // $build .= "<td>{$col0}</td><td>$col1</td><td><a href=\"{$col2}\">Go...</a></td>";
-
-        // for ( $j = 3; $j < sizeof($row); $j++)
-        // {
-        //     $item = $row[$j];
-        //     $build .= "<td>{$item}</td>";
-        // }
-
-
 
         for ( $j = 0; $j < sizeof($row); $j++)
         {
@@ -418,17 +251,14 @@ function inter_build_html_table($file_url, $course)
                 //$item = $row[$j];
                 $build .= "<td>{$item}</td>";
             }
-            
         }
-
-
-        ///////////////////
         $build .= '</tr>';
     }
-    
     $build .= '</tbody></table>';
+    ///////////////  TABLE //////////////////////////////////////////
 
 
+    ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
     $build .= "<script>
                 $(document).ready(function() 
                 {
@@ -438,31 +268,6 @@ function inter_build_html_table($file_url, $course)
 
                 });
                 </script>";
-
-
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-
-    //             $('#intermusic').DataTable({
-    //                 'autoWidth': true
-    //                 });
-
-    //             });
-    //             </script>";
-
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-
-    //             $('#intermusic').DataTable({
-    //                 'autoWidth': false
-    //                 });
-
-    //             $('#intermusic').colResizable();
-
-    //             });
-    //             </script>";
 
     // With JQuery 
     $build .= "<script>
@@ -478,126 +283,6 @@ function inter_build_html_table($file_url, $course)
 
 
     $build .= "<script src=\"resize.js\"></script>";
-
-    // $build .=  "<script>  
-    //                 var tables = document.getElementsByTagName('table');
-    //                 for (var i=0; i<tables.length;i++){
-    //                  resizableGrid(tables[i]);
-    //                 }
-
-    //                 function resizableGrid(table) {
-    //                      var row = table.getElementsByTagName('tr')[0],
-    //                      cols = row ? row.children : undefined;
-    //                      if (!cols) return;
-                         
-    //                      table.style.overflow = 'hidden';
-                         
-    //                      var tableHeight = table.offsetHeight;
-                         
-    //                      for (var i=0;i<cols.length;i++){
-    //                       var div = createDiv(tableHeight);
-    //                       cols[i].appendChild(div);
-    //                       cols[i].style.position = 'relative';
-    //                       setListeners(div);
-    //                      }
-
-    //                      function setListeners(div){
-    //                       var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
-
-    //                       div.addEventListener('mousedown', function (e) {
-    //                        curCol = e.target.parentElement;
-    //                        nxtCol = curCol.nextElementSibling;
-
-    //                        pageX = e.pageX; 
-                         
-    //                        var padding = paddingDiff(curCol);
-                         
-    //                        curColWidth = curCol.offsetWidth - padding;
-    //                        if (nxtCol)
-    //                         nxtColWidth = nxtCol.offsetWidth - padding;
-    //                       });
-
-    //                       div.addEventListener('mouseover', function (e) {
-    //                        e.target.style.borderRight = '2px solid #101010';
-    //                       })
-
-    //                       div.addEventListener('mouseout', function (e) {
-    //                        e.target.style.borderRight = '';
-    //                       })
-
-    //                       document.addEventListener('mousemove', function (e) {
-    //                            if (curCol) {
-    //                             var diffX = e.pageX - pageX;
-    //                             console.log(curCol);
-    //                             console.log(nxtCol);
-    //                             console.log('moving');
-                             
-    //                             if (nxtCol){
-    //                             nxtCol.style.width = (nxtColWidth - (diffX))+'px';
-    //                             //nxtCol.setAttribute('style','width:'+(nxtColWidth - (diffX))+'px');
-    //                              console.log('moved' + diffX);
-    //                             }
-
-    //                             curCol.style.width = (curColWidth + diffX)+'px';
-    //                             //curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
-    //                             //curCol.style.width = '200px';
-    //                            }
-    //                           });
-
-    //                       document.addEventListener('mouseup', function (e) { 
-    //                        curCol = undefined;
-    //                        nxtCol = undefined;
-    //                        pageX = undefined;
-    //                        nxtColWidth = undefined;
-    //                        curColWidth = undefined
-    //                       });
-    //                      }
-                         
-    //                      function createDiv(height){
-    //                       var div = document.createElement('div');
-    //                       div.style.top = 0;
-    //                       div.style.right = 0;
-    //                       div.style.width = '5px';
-    //                       div.style.position = 'absolute';
-    //                       div.style.cursor = 'col-resize';
-    //                       div.style.userSelect = 'none';
-    //                       div.style.height = height + 'px';
-    //                       return div;
-    //                      }
-                         
-    //                      function paddingDiff(col){
-                         
-    //                       if (getStyleVal(col,'box-sizing') == 'border-box'){
-    //                        return 0;
-    //                       }
-                         
-    //                       var padLeft = getStyleVal(col,'padding-left');
-    //                       var padRight = getStyleVal(col,'padding-right');
-    //                       return (parseInt(padLeft) + parseInt(padRight));
-
-    //                      }
-
-    //                      function getStyleVal(elm,css){
-    //                       return (window.getComputedStyle(elm, null).getPropertyValue(css))
-    //                      }
-    //                     };
-    //             </script>";
-
-
-    /////////////////////// NEW PLUGIN //////////////////////
-    // $build = "<!DOCTYPE html>";
-    // $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
-    // $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
-    // $build .= "<script src=\"js_utilities.js\"></script>";
-    // $build .= "<script src=\"sha256.js\"></script>";
-
-    // $build .= "<br><br><br>";
-    // $build .= '<div class="topnav">
-    //                 <input id="search" type="text" placeholder="Search.." name="search">
-    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-    //             </div>';
-
-    // $build .= '</tbody></table>';
 
     $build .= '<script>
                     function submitMe(id) {
@@ -629,6 +314,7 @@ function inter_build_html_table($file_url, $course)
                     }
 
                 </script>';
+    ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
 
     return $build;
 }

@@ -73,27 +73,12 @@ function inter_add_instance($moduleinstance, $mform = null) {
     
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
     
-    $file_url = inter_set_mainfile($moduleinstance);
+    // $file_url = inter_set_mainfile($moduleinstance);
     
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
-    //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
-
-
-    //======================= CREATE TABLE FROM CSV FILE ==========================
-    //echo("<script>console.log('RECORDS:  ".$file_url."');</script>");
-    // die;
-    // $split_url = explode(".", $file_url);
-    // //echo("<script>console.log('RECORDS:  ".$split_url."');</script>");
-    // $file_extension = $split_url[sizeof($a)-1]; 
-    // //echo("<script>console.log('RECORDS:  ".$file_extension."');</script>");
-
-    // // if ($file_extension == "csv")
-    // // {
-    //     $records = inter_create_database_from_csv($file_url, $id);
-        //echo("<script>console.log('RECORDS:  ".$records."');</script>");
-    // }
+    //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE ============
 
 
     return $id;
@@ -119,18 +104,13 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $moduleinstance->id = $moduleinstance->instance;
     $moduleinstance->revision++;
 
-    echo "<script>console.log('instance name');</script>";
-    echo "<script>console.log('".$moduleinstance->name."');</script>";
-    $moduleinstance->name = 'test change lalala';
-
-    // die;
-    echo "<script>console.log('".$moduleinstance->name."');</script>";
+    // $moduleinstance->name = 'test change lalala';
 
     inter_set_display_options($moduleinstance);
 
     $DB->update_record('inter', $moduleinstance);
 
-    inter_set_mainfile($moduleinstance);
+    // inter_set_mainfile($moduleinstance);
 
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     \core_completion\api::update_completion_date_event($moduleinstance->coursemodule, 'inter', $moduleinstance->id, $completiontimeexpected);
