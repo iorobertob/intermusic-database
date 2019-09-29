@@ -57,12 +57,16 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
+
+    require_once("$CFG->libdir/resourcelib.php");
     
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
+    echo "<script>console.log('BEFORE');</script>";
     // This line in the end helped saving the file
     resource_set_display_options($moduleinstance);
+    echo "<script>console.log('AFTER');</script>";
 
     $id = $DB->insert_record('inter', $moduleinstance);
 
