@@ -44,22 +44,29 @@ function inter_set_mainfile($data) {
     $draftitemid = $data->files;
 
     $context = context_module::instance($cmid);
-    if ($draftitemid) {
+    if ($draftitemid) 
+    {
         $options = array('subdirs' => true, 'embed' => false);
-        if ($data->display == RESOURCELIB_DISPLAY_EMBED) {
+        if ($data->display == RESOURCELIB_DISPLAY_EMBED) 
+        {
             $options['embed'] = true;
         }
         file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);
     }
     $files = $fs->get_area_files($context->id, 'mod_inter', 'content', 0, 'sortorder', false);
-    if (count($files) == 1) {
+    if (count($files) == 1) 
+    {
         // only one file attached, set it as main file automatically
         $file = reset($files);
         file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
 
+        $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
 	}
-
-    $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
+    else
+    {
+        $url = "no file";
+    }
+    
     return $url;
 }
 
@@ -216,8 +223,6 @@ function inter_mysql_query($sql, $process)
             // die;
         }
     }
-
-	
 
 }
 

@@ -63,10 +63,8 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
-    echo "<script>console.log('BEFORE');</script>";
     // This line in the end helped saving the file
     inter_set_display_options($moduleinstance);
-    echo "<script>console.log('AFTER');</script>";
 
     $id = $DB->insert_record('inter', $moduleinstance);
 
