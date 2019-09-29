@@ -71,25 +71,22 @@ function inter_set_mainfile($data) {
 }
 
 
-
-
-
 /**
  * Internal function - create click to open text with link.
  */
-function inter_get_clicktoopen($file, $revision, $extra='') {
-    global $CFG;
+// function inter_get_clicktoopen($file, $revision, $extra='') {
+//     global $CFG;
 
-    $filename = $file->get_filename();
+//     $filename = $file->get_filename();
 
-    $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
+//     $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
 
-    $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
+//     $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
 
-    $string = get_string('clicktoopen2', 'inter', "<a href=\"$fullurl\" $extra>$filename</a>");
+//     $string = get_string('clicktoopen2', 'inter', "<a href=\"$fullurl\" $extra>$filename</a>");
 
-    return $string;
-}
+//     return $string;
+// }
 
 /**
  * File browsing support class
@@ -108,7 +105,6 @@ class inter_content_file_info extends file_info_stored {
         return parent::get_visible_name();
     }
 }
-
 
 
 /**
