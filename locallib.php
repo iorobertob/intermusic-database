@@ -116,38 +116,23 @@ function inter_mysql_query($sql, $process)
     if ($process != 'select')
     {
         if ($conn->query($sql) === TRUE) {
-            echo "Successfull query: ".$process;
             $conn->close();
-            // return "Table  created successfully";
-            echo("<script>console.log('Successfull query ');</script>");
             return true;
         } else {
-            echo "Error in Query: : ".$process." " . $conn->error;
             $conn->close();
-            // return "Error creating table: " . $conn->error;
-            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
             return false;
-            // die;
         }
     }
     else
     {
         if ($result = $conn->query($sql) ) {
-            echo "Successfull query: ".$process;
             $conn->close();
-            // return "Table  created successfully";
-            echo("<script>console.log('Successfull query ');</script>");
             return $result;
         } else {
-            echo "Error in Query: : ".$process." " . $conn->error;
             $conn->close();
-            // return "Error creating table: " . $conn->error;
-            echo"<script>console.log('Error in Query: " . $conn->error."');</script>";
             return false;
-            // die;
         }
     }
-
 }
 
 
