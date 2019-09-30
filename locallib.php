@@ -147,7 +147,7 @@ function inter_build_html_table($course, $moduleinstance)
     if ($moduleinstance->platformwide === "0")
     {
         $courseid = $PAGE->course->id;
-        $data = $DB->get_records('poster', [['course'=>$courseid]], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        $data = $DB->get_records('poster', [['course'=>strval($courseid)]], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
     }
     if ($moduleinstance->platformwide === "1")
     {
