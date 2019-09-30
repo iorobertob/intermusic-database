@@ -199,7 +199,7 @@ function inter_build_html_table($course, $moduleinstance)
 
     
 
-    // $data_array[0] = array ("PIECE", "CONTENT");
+    $data_array[0] = array ("PIECE", "CONTENT");
     while($row = mysqli_fetch_array($result_courses))
     {
         // print_r($row);
