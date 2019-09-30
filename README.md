@@ -1,8 +1,12 @@
 # Intermusic Database #
 
+TODO The tables prefix in the locallib.php file is now hardcoded, fix to take the prefix from the local moodle environment.
+
 TODO Describe the plugin shortly here.
 
 TODO Provide more detailed description here.
+
+
 
 ## License ##
 
