@@ -185,6 +185,8 @@ function inter_build_html_table($course, $moduleinstance)
         $posters_array[$i] = $row[1];
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
+        echo "<script>console.log('".'RESULT POSTER'."');</script>";
+        echo "<script>console.log('".$row[1]."');</script>";
     } 
 
     // course 49 is Mastering Vocal Literature  and module 32 is posters
@@ -204,6 +206,8 @@ function inter_build_html_table($course, $moduleinstance)
         $key = array_search($row[1], $posters_id); 
         $data_array[$i] = array($posters_array[$key] , '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         $i = $i + 1;
+        echo "<script>console.log('".'RESULT COURSES'."');</script>";
+        echo "<script>console.log('".$row[1]."');</script>";
     } 
     
     $length = sizeof($posters_array);
