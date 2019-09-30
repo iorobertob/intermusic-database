@@ -193,7 +193,7 @@ function inter_build_html_table($course, $moduleinstance)
     $i = 1;
     $data_array = [];
 
-    $data_array[0] = array ("Title", "Surtitle", "Author", "Number", "Language", "Content");
+    $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Content");
     while($row = mysqli_fetch_array($result_courses))
     {
         // print_r($row);
