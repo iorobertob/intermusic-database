@@ -148,10 +148,16 @@ function inter_build_html_table($course, $moduleinstance)
     {
         $courseid = $PAGE->course->id;
         $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        // module 23 is poster
+        $query  = "SELECT id, name FROM mdl_poster WHERE course = '".$courseid."'";
+        $query_modules = "SELECT id, instance FROM mdl_course_modules WHERE (course = '".$courseid."' AND module ='23' AND deletioninprogress ='0' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        // module 23 is poster
+        $query  = "SELECT id, name FROM mdl_poster";
+        $query_modules = "SELECT id, instance FROM mdl_course_modules WHERE (module ='23' AND deletioninprogress ='0' )";
     }
 
     //////////////////////////. NEW QUERY //////////////////////
@@ -162,7 +168,7 @@ function inter_build_html_table($course, $moduleinstance)
     // $courseid = $PAGE->course->id;
     // $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
-    $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
+    // $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
     $result_poster = inter_mysql_query($query , "select");
     $posters_array = [];
     $posters_id = [];
@@ -176,8 +182,8 @@ function inter_build_html_table($course, $moduleinstance)
     } 
 
     // course 49 is Mastering Vocal Literature  and module 32 is posters
-    $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
-    $result_courses = inter_mysql_query($query , "select");
+    // $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
+    $result_courses = inter_mysql_query($query_modules , "select");
     
    
     $i = 1;
