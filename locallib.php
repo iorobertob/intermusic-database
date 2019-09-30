@@ -154,7 +154,7 @@ function inter_build_html_table($course, $moduleinstance)
         $query  = "SELECT id, name FROM mdlwj_poster WHERE course = '".$courseid."'";
         // echo "<script>console.log('".$query."');</script>";
         $query_modules = "SELECT id, instance FROM mdlwj_course_modules WHERE (course = '".$courseid."' AND module ='23' AND deletioninprogress ='0' )";
-        echo "<script>console.log('".$query_modules."');</script>";
+        // echo "<script>console.log('".$query_modules."');</script>";
     }
     if ($moduleinstance->platformwide === "1")
     {
