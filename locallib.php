@@ -156,14 +156,14 @@ function inter_build_html_table($course, $moduleinstance)
         $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
         $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
-        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='23' AND deletioninprogress ='0' )";
+        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='32' AND deletioninprogress ='0' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
         $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
-        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (module ='23' AND deletioninprogress ='0' )";
+        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (module ='32' AND deletioninprogress ='0' )";
     }
 
     //////////////////////////. NEW QUERY //////////////////////
