@@ -152,7 +152,7 @@ function inter_build_html_table($course, $moduleinstance)
         $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
         $query  = "SELECT id, name FROM mdlwj_poster WHERE course = '".$courseid."'";
-        echo "<script>console.log('".$query."');</script>";
+        // echo "<script>console.log('".$query."');</script>";
         $query_modules = "SELECT id, instance FROM mdlwj_course_modules WHERE (course = '".$courseid."' AND module ='23' AND deletioninprogress ='0' )";
         echo "<script>console.log('".$query_modules."');</script>";
     }
