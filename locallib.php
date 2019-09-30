@@ -151,19 +151,15 @@ function inter_build_html_table($course, $moduleinstance)
         $courseid = $PAGE->course->id;
         $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
-        $query  = "SELECT id, name FROM mdlwj_poster WHERE course = '".$courseid."'";
-        // echo "<script>console.log('".$query."');</script>";
+        $query  = "SELECT id, name, surtitle, author, numbering, language FROM mdlwj_poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM mdlwj_course_modules WHERE (course = '".$courseid."' AND module ='23' AND deletioninprogress ='0' )";
-        // echo "<script>console.log('".$query_modules."');</script>";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
-        $query  = "SELECT id, name FROM mdlwj_poster";
-        echo "<script>console.log('".$query."');</script>";
+        $query  = "SELECT id, name, surtitle, author, numbering, language FROM mdlwj_poster";
         $query_modules = "SELECT id, instance FROM mdlwj_course_modules WHERE (module ='23' AND deletioninprogress ='0' )";
-        echo "<script>console.log('".$query_modules."');</script>";
     }
 
     //////////////////////////. NEW QUERY //////////////////////
@@ -177,12 +173,12 @@ function inter_build_html_table($course, $moduleinstance)
     // $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
     $result_poster = inter_mysql_query($query , "select");
     $posters_array = [];
-    $posters_id = [];
+    $posters_id    = [];
     $i = 0;
     while($row = mysqli_fetch_array($result_poster))
     {
         // row[0] = id , row[1] = name 
-        $posters_array[$i] = $row[1];
+        $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
         echo "<script>console.log('".'RESULT POSTER'."');</script>";
@@ -197,14 +193,17 @@ function inter_build_html_table($course, $moduleinstance)
     $i = 1;
     $data_array = [];
 
-    
-
-    $data_array[0] = array ("PIECE", "CONTENT");
+    $data_array[0] = array ("Title", "Surtitle", "Author", "Number", "Language", "Content");
     while($row = mysqli_fetch_array($result_courses))
     {
         // print_r($row);
         $key = array_search($row[1], $posters_id); 
-        $data_array[$i] = array($posters_array[$key] , '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+        $data_array[$i] = array($posters_array[$key][0] , 
+                                $posters_array[$key][1] , 
+                                $posters_array[$key][2] , 
+                                $posters_array[$key][3] , 
+                                $posters_array[$key][4] ,
+                                '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         $i = $i + 1;
         echo "<script>console.log('".'RESULT COURSES'."');</script>";
         echo "<script>console.log('".$row[1]."');</script>";
@@ -232,10 +231,10 @@ function inter_build_html_table($course, $moduleinstance)
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
 
     ////////////////// SEARCH BUTTON /////////////////////////////////
-    $build .= '<div class="topnav">
-                    <input id="search" type="text" placeholder="Search.." name="search">
-                    <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-                </div><br><br><br>';
+    // $build .= '<div class="topnav">
+    //                 <input id="search" type="text" placeholder="Search.." name="search">
+    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
+    //             </div><br><br><br>';
     ///////////////// SEARCH BUTTON /////////////////////////////////
 
 
