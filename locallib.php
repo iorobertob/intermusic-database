@@ -147,11 +147,11 @@ function inter_build_html_table($course, $moduleinstance)
     if ($moduleinstance->platformwide === "0")
     {
         $courseid = $PAGE->course->id;
-        $data = $DB->get_records('poster', [['course'=>strval($courseid)]], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data = $DB->get_records('poster', null , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        $data = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
     }
 
     //////////////////////////. NEW QUERY //////////////////////
