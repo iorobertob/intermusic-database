@@ -141,12 +141,26 @@ function inter_build_html_table($course, $moduleinstance)
 {
     global $PAGE, $DB;
 
+    // If flag is on, create a list about all posters in the platform
+    // otherwise, only on the posters on the current course. If global, the course number
+    // is not specified
+    if ($moduleinstance->platformwide === "0")
+    {
+        $courseid = $PAGE->course->id;
+        $data = $DB->get_records('poster', [['course'=>$courseid]], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+    }
+    if ($moduleinstance->platformwide === "1")
+    {
+        $data = $DB->get_records('poster', null , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+    }
+
     //////////////////////////. NEW QUERY //////////////////////
-    $courseid = $PAGE->course->id;
+    
 
     // $data = $DB->get_record('poster', ['course' => '23']);
     // FIGURE OUT HOW TO GET THE COURSE ID 
-    $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+    // $courseid = $PAGE->course->id;
+    // $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
     $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
     $result_poster = inter_mysql_query($query , "select");
@@ -169,14 +183,7 @@ function inter_build_html_table($course, $moduleinstance)
     $i = 1;
     $data_array = [];
 
-    if ($moduleinstance->platformwide === "0")
-    {
-        $data_array[0] = array ("PIECE", "CONTENT");
-    }
-    if ($moduleinstance->platformwide === "1")
-    {
-        $data_array[0] = array ("ES UNO", "ES UNO ");
-    }
+    
 
     // $data_array[0] = array ("PIECE", "CONTENT");
     while($row = mysqli_fetch_array($result_courses))
