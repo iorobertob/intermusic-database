@@ -33,63 +33,10 @@ require_once("$CFG->dirroot/mod/inter/lib.php");
  *
  * @param object $event The event object.
  */
-function local_test_locallib_function($event) {
+function local_test_locallib_function($event) 
+{
     return;
 }
-
-
-// TODO: Safe Delete, not used in List 
-// function inter_set_mainfile($data) {
-//     global $DB;
-//     $fs = get_file_storage();
-//     $cmid = $data->coursemodule;
-//     $draftitemid = $data->files;
-
-//     $context = context_module::instance($cmid);
-//     if ($draftitemid) 
-//     {
-//         $options = array('subdirs' => true, 'embed' => false);
-//         if ($data->display == RESOURCELIB_DISPLAY_EMBED) 
-//         {
-//             $options['embed'] = true;
-//         }
-//         file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);
-//     }
-//     $files = $fs->get_area_files($context->id, 'mod_inter', 'content', 0, 'sortorder', false);
-//     if (count($files) == 1) 
-//     {
-//         // only one file attached, set it as main file automatically
-//         $file = reset($files);
-//         file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
-
-//         $url = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
-// 	}
-//     else
-//     {
-//         $url = "no file";
-//     }
-    
-//     return $url;
-// }
-
-
-/**
- * File browsing support class
- */
-// class inter_content_file_info extends file_info_stored {
-//     public function get_parent() {
-//         if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
-//             return $this->browser->get_file_info($this->context);
-//         }
-//         return parent::get_parent();
-//     }
-//     public function get_visible_name() {
-//         if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
-//             return $this->topvisiblename;
-//         }
-//         return parent::get_visible_name();
-//     }
-// }
 
 
 /**
@@ -103,8 +50,6 @@ function inter_mysql_query($sql, $process)
 	$username   = $CFG->dbuser;
 	$password   = $CFG->dbpass;
 	$dbname     = $CFG->dbname;
-
-
 
 	// checking connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -137,7 +82,6 @@ function inter_mysql_query($sql, $process)
     }
 }
 
-
 // Create an HTML table from the data contained in the Poster of Intermusic
 function inter_build_html_table($course, $moduleinstance)
 { 
@@ -156,7 +100,6 @@ function inter_build_html_table($course, $moduleinstance)
 
     if ($moduleinstance->platformwide === "0")
     {
-
         $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Content");
         $courseid = $PAGE->course->id;
         $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
@@ -165,7 +108,6 @@ function inter_build_html_table($course, $moduleinstance)
     }
     if ($moduleinstance->platformwide === "1")
     {
-
         $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Course", "Content");
         $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
@@ -173,13 +115,6 @@ function inter_build_html_table($course, $moduleinstance)
     }
 
     //////////////////////////. NEW QUERY //////////////////////
-
-    // $data = $DB->get_record('poster', ['course' => '23']);
-    // FIGURE OUT HOW TO GET THE COURSE ID 
-    // $courseid = $PAGE->course->id;
-    // $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-
-    // $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
     $result_poster = inter_mysql_query($query , "select");
     $posters_array = [];
     $posters_id    = [];
@@ -190,16 +125,12 @@ function inter_build_html_table($course, $moduleinstance)
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
-        // echo "<script>console.log('".'RESULT POSTER'."');</script>";
-        // echo "<script>console.log('".$row[1]."');</script>";
     } 
 
-    // course 49 is Mastering Vocal Literature  and module 32 is posters
-    // $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
+    // Query for the module instances of poster an see which course they are
     $result_courses = inter_mysql_query($query_modules , "select");
 
     $i = 1;
-
     while($row = mysqli_fetch_array($result_courses))
     {
         $key = array_search($row[1], $posters_id); 
@@ -226,10 +157,7 @@ function inter_build_html_table($course, $moduleinstance)
                                     $posters_array[$key][4] ,
                                     '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         }
-
         $i = $i + 1;
-        echo "<script>console.log('".'RESULT COURSES'."');</script>";
-        echo "<script>console.log('".$row[1]."');</script>";
     } 
     
     $length = sizeof($posters_array);
@@ -257,10 +185,8 @@ function inter_build_html_table($course, $moduleinstance)
         $build .= $the_big_array[0][$i].'</th><th>';  
     }
     $build .= $the_big_array[0][sizeof($the_big_array[0])-1].'</th></thead><tbody>';
-    // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
     
     for ( $i = 1; $i < sizeof($the_big_array); $i++)
-    // foreach($the_big_array as $row)
     {
         $row = $the_big_array[$i];
         $build .= '<tr>';
@@ -271,12 +197,10 @@ function inter_build_html_table($course, $moduleinstance)
             // If there is an URL in the data
             if (filter_var($item, FILTER_VALIDATE_URL)) { 
                 // make a button
-                //$item = $row[$j];
                 $build .= "<td><a href=\"{$item}\"><button>Go...</button></a></td>";
             }
             // Any data, not an URL
             else{
-                //$item = $row[$j];
                 $build .= "<td>{$item}</td>";
             }
         }
@@ -284,7 +208,6 @@ function inter_build_html_table($course, $moduleinstance)
     }
     $build .= '</tbody></table>';
     ///////////////  TABLE //////////////////////////////////////////
-
 
     ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
     $build .= "<script>

@@ -57,7 +57,6 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
-
     require_once("$CFG->libdir/resourcelib.php");
     
     $cmid = $moduleinstance->coursemodule;
@@ -204,7 +203,6 @@ function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea
     }
 
     // note: resource_intro handled in file_browser automatically
-
     return null;
 }
 
@@ -231,11 +229,6 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
 
     // require_login($course, true, $cm);
     // send_file_not_found();
-
-
-
-
-
 
     require_once("$CFG->libdir/resourcelib.php");
 

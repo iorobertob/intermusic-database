@@ -28,16 +28,13 @@ require_once(__DIR__.'/lib.php');
 
 require_once("$CFG->dirroot/mod/inter/locallib.php");
 
-
 global $DB, $CFG;
-
 
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
 
 // ... module instance id.
 $i  = optional_param('i', 0, PARAM_INT);
-
 
 if ($id) {
     $cm             = get_coursemodule_from_id('inter', $id, 0, false, MUST_EXIST);
@@ -66,8 +63,6 @@ $event->trigger();
 $PAGE->set_url('/mod/inter/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
-
-
 
 $table = inter_build_html_table($course, $moduleinstance);
 
