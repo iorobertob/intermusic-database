@@ -140,11 +140,8 @@ function inter_mysql_query($sql, $process)
 
 // Create an HTML table from the data contained in the Poster of Intermusic
 function inter_build_html_table($course, $moduleinstance)
-{
-
-    // TODO to arrange the tables prefix, now it is hardcoded. 
+{ 
     global $PAGE, $DB, $CFG;
-
     $prefix = $CFG->prefix;
 
     // If flag is on, create a list about all posters in the platform
@@ -157,24 +154,18 @@ function inter_build_html_table($course, $moduleinstance)
     if ($moduleinstance->platformwide === "0")
     {
         $courseid = $PAGE->course->id;
-        $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        // module 23 is poster
-        
-        $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
+        $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        // module 23 is poster
-        $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
-        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
-
-        echo "<script>console.log('".$query_modules."');</script>";
+        $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
+        $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
 
     //////////////////////////. NEW QUERY //////////////////////
-    
 
     // $data = $DB->get_record('poster', ['course' => '23']);
     // FIGURE OUT HOW TO GET THE COURSE ID 
@@ -200,6 +191,7 @@ function inter_build_html_table($course, $moduleinstance)
     // $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
     $result_courses = inter_mysql_query($query_modules , "select");
     
+    
    
     $i = 1;
     $data_array = [];
@@ -207,14 +199,31 @@ function inter_build_html_table($course, $moduleinstance)
     $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Content");
     while($row = mysqli_fetch_array($result_courses))
     {
-        // print_r($row);
         $key = array_search($row[1], $posters_id); 
-        $data_array[$i] = array($posters_array[$key][0] , 
-                                $posters_array[$key][1] , 
-                                $posters_array[$key][2] , 
-                                $posters_array[$key][3] , 
-                                $posters_array[$key][4] ,
-                                '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+        if ($moduleinstance->platformwide === "1")
+        {
+            $query_shortname = "SELECT id, shortname language FROM ".$prefix."course WHERE id = '".$row[2]."'";
+            $result_shortname = inter_mysql_query($query_shortname , "select");
+            $shortname        = mysqli_fetch_array($result_shortname)[1];
+
+            $data_array[$i] = array($posters_array[$key][0] , 
+                                    $posters_array[$key][1] , 
+                                    $posters_array[$key][2] , 
+                                    $posters_array[$key][3] , 
+                                    $posters_array[$key][4] ,
+                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>Poster</a>',
+                                    '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+        }
+        else
+        {
+            $data_array[$i] = array($posters_array[$key][0] , 
+                                    $posters_array[$key][1] , 
+                                    $posters_array[$key][2] , 
+                                    $posters_array[$key][3] , 
+                                    $posters_array[$key][4] ,
+                                    '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+        }
+        
         $i = $i + 1;
         echo "<script>console.log('".'RESULT COURSES'."');</script>";
         echo "<script>console.log('".$row[1]."');</script>";
