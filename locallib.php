@@ -214,7 +214,7 @@ function inter_build_html_table($course, $moduleinstance)
                                     $posters_array[$key][2] , 
                                     $posters_array[$key][3] , 
                                     $posters_array[$key][4] ,
-                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>Poster</a>',
+                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'.$shortname.'</a>',
                                     '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         }
         else
