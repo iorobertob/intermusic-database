@@ -150,20 +150,25 @@ function inter_build_html_table($course, $moduleinstance)
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
     // is not specified
+    $query_poster_id  = "SELECT id, visible FROM ".$prefix."poster WHERE name = 'poster'";
+    $result_poster_id = inter_mysql_query($query_poster_id , "select");
+    $poster_id        = mysqli_fetch_array($result_poster_id)[0];
+
     if ($moduleinstance->platformwide === "0")
     {
         $courseid = $PAGE->course->id;
         $data = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
+        
         $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
-        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='32' AND deletioninprogress ='0' )";
+        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         // module 23 is poster
         $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
-        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (module ='32' AND deletioninprogress ='0' )";
+        $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
 
     //////////////////////////. NEW QUERY //////////////////////
@@ -207,7 +212,7 @@ function inter_build_html_table($course, $moduleinstance)
                                 $posters_array[$key][2] , 
                                 $posters_array[$key][3] , 
                                 $posters_array[$key][4] ,
-                                '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+                                '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         $i = $i + 1;
         echo "<script>console.log('".'RESULT COURSES'."');</script>";
         echo "<script>console.log('".$row[1]."');</script>";
@@ -227,21 +232,9 @@ function inter_build_html_table($course, $moduleinstance)
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
     $build .= "<script src=\"sha256.js\"></script>";
-    
     $build .= "<script src=\"colResizable-1.6.js\"></script>";
-
     $build .= "<script src=\"js_utilities.js\"></script>";
-    // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
-    // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
-
-    ////////////////// SEARCH BUTTON /////////////////////////////////
-    // $build .= '<div class="topnav">
-    //                 <input id="search" type="text" placeholder="Search.." name="search">
-    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-    //             </div><br><br><br>';
-    ///////////////// SEARCH BUTTON /////////////////////////////////
-
-
+  
     ///////////////  TABLE //////////////////////////////////////////
     $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
 
