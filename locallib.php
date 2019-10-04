@@ -150,7 +150,7 @@ function inter_build_html_table($course, $moduleinstance)
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
     // is not specified
-    $query_poster_id  = "SELECT id, visible FROM ".$prefix."poster WHERE name = 'poster'";
+    $query_poster_id  = "SELECT id, visible FROM ".$prefix."modules WHERE name = 'poster'";
     $result_poster_id = inter_mysql_query($query_poster_id , "select");
     $poster_id        = mysqli_fetch_array($result_poster_id)[0];
 
@@ -192,8 +192,8 @@ function inter_build_html_table($course, $moduleinstance)
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
-        echo "<script>console.log('".'RESULT POSTER'."');</script>";
-        echo "<script>console.log('".$row[1]."');</script>";
+        // echo "<script>console.log('".'RESULT POSTER'."');</script>";
+        // echo "<script>console.log('".$row[1]."');</script>";
     } 
 
     // course 49 is Mastering Vocal Literature  and module 32 is posters
