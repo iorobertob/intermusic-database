@@ -169,6 +169,8 @@ function inter_build_html_table($course, $moduleinstance)
         // module 23 is poster
         $query  = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
+
+        echo "<script>console.log('".query_modules."');</script>";
     }
 
     //////////////////////////. NEW QUERY //////////////////////
