@@ -144,6 +144,9 @@ function inter_build_html_table($course, $moduleinstance)
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
 
+    // This is where the whole data will be stored
+    $data_array = [];
+
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
     // is not specified
@@ -153,6 +156,8 @@ function inter_build_html_table($course, $moduleinstance)
 
     if ($moduleinstance->platformwide === "0")
     {
+
+        $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Content");
         $courseid = $PAGE->course->id;
         $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
@@ -160,6 +165,8 @@ function inter_build_html_table($course, $moduleinstance)
     }
     if ($moduleinstance->platformwide === "1")
     {
+
+        $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Course", "Content");
         $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
@@ -190,13 +197,9 @@ function inter_build_html_table($course, $moduleinstance)
     // course 49 is Mastering Vocal Literature  and module 32 is posters
     // $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
     $result_courses = inter_mysql_query($query_modules , "select");
-    
-    
-   
-    $i = 1;
-    $data_array = [];
 
-    $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Content");
+    $i = 1;
+
     while($row = mysqli_fetch_array($result_courses))
     {
         $key = array_search($row[1], $posters_id); 
@@ -223,7 +226,7 @@ function inter_build_html_table($course, $moduleinstance)
                                     $posters_array[$key][4] ,
                                     '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         }
-        
+
         $i = $i + 1;
         echo "<script>console.log('".'RESULT COURSES'."');</script>";
         echo "<script>console.log('".$row[1]."');</script>";
