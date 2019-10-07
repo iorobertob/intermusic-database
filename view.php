@@ -49,6 +49,7 @@ if ($id) {
 }
 
 require_login($course, true, $cm);
+require_capability('mod/inter:view', $PAGE->context);
 
 $modulecontext = context_module::instance($cm->id);
 
