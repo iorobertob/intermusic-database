@@ -31,6 +31,7 @@ $capabilities = [
         'captype' => 'view',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => [
+            'guest' => CAP_ALLOW,
             'student' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
         ],
