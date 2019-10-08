@@ -103,14 +103,14 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
     {
         $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Content");
         $courseid = $PAGE->course->id;
-        $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        // $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Course", "Content");
-        $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        // $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
