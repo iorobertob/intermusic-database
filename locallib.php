@@ -86,7 +86,7 @@ function inter_mysql_query($sql, $process)
  * @param array $data_array the empty array where all the data will be stored. The same array is returned. 
  * @param array $moduleinstance the instance of this plugin that contains metadata we use to decide how to build the db query.
  */
-function get_poster_list_array($data_array, $moduleinstance)
+function get_poster_list_array($data_array, $course, $moduleinstance)
 {
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
@@ -172,7 +172,7 @@ function inter_build_html_table($course, $moduleinstance)
     $the_big_array = []; 
 
     // This line is to replace the csv data with the poster module data
-    $the_big_array = get_poster_list_array($data_array, $moduleinstance);
+    $the_big_array = get_poster_list_array($data_array, $course, $moduleinstance);
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<!DOCTYPE html>";
