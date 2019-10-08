@@ -81,14 +81,15 @@ function inter_mysql_query($sql, $process)
     }
 }
 
-// Create an HTML table from the data contained in the Poster of Intermusic
-function inter_build_html_table($course, $moduleinstance)
-{ 
+/** 
+ * Get an array with the list of Poster Plugins instances whether in the current course or on the whole platform
+ * @param array $data_array the empty array where all the data will be stored. The same array is returned. 
+ */
+function get_poster_list_array($data_array)
+{
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
 
-    // This is where the whole data will be stored
-    $data_array = [];
 
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
@@ -158,14 +159,19 @@ function inter_build_html_table($course, $moduleinstance)
         }
         $i = $i + 1;
     } 
-    
-    $length = sizeof($posters_array);
 
-    // The nested array to hold all the arrays
+    return $$data_array;
+}
+// Create an HTML table from the data contained in the Poster of Intermusic
+function inter_build_html_table($course, $moduleinstance)
+{ 
+   
+    // The nested arrays to hold all the arrays
+    $data_array    = [];
     $the_big_array = []; 
 
     // This line is to replace the csv data with the poster module data
-    $the_big_array = $data_array;
+    $the_big_array = get_poster_list_array($data_array);
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<!DOCTYPE html>";
