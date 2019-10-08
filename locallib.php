@@ -161,7 +161,7 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
         $i = $i + 1;
     } 
 
-    return $$data_array;
+    return $data_array;
 }
 // Create an HTML table from the data contained in the Poster of Intermusic
 function inter_build_html_table($course, $moduleinstance)
