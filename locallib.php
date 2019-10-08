@@ -38,7 +38,6 @@ function local_test_locallib_function($event)
     return;
 }
 
-
 /**
  * Custom LMTA function - execute an arbitrary mysql query 
  */
@@ -100,7 +99,7 @@ function inter_build_html_table($course, $moduleinstance)
 
     if ($moduleinstance->platformwide === "0")
     {
-        $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Content");
+        $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Content");
         $courseid = $PAGE->course->id;
         $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
@@ -108,7 +107,7 @@ function inter_build_html_table($course, $moduleinstance)
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data_array[0] = array ("Title", "Surtitle", "Composer", "Number", "Language", "Course", "Content");
+        $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Course", "Content");
         $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
