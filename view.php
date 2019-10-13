@@ -65,7 +65,14 @@ $PAGE->set_url('/mod/inter/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 
-$table = inter_build_html_table($course, $moduleinstance);
+$data_array    = [];
+$the_big_array = []; 
+
+// Get an array with the data about posters
+$the_big_array = get_poster_list_array($data_array, $course, $moduleinstance);
+
+// This is the HTML table to render, built based on the big array data
+$table         = inter_build_html_table($course, $moduleinstance, $the_big_array);
 
 $PAGE->set_context($modulecontext);
 

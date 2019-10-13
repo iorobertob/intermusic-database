@@ -164,15 +164,15 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
     return $data_array;
 }
 // Create an HTML table from the data contained in the Poster of Intermusic
-function inter_build_html_table($course, $moduleinstance)
+function inter_build_html_table($course, $moduleinstance, $the_big_array)
 { 
    
     // The nested arrays to hold all the arrays
-    $data_array    = [];
-    $the_big_array = []; 
+    // $data_array    = [];
+    // $the_big_array = []; 
 
-    // This line is to replace the csv data with the poster module data
-    $the_big_array = get_poster_list_array($data_array, $course, $moduleinstance);
+    // // This line is to replace the csv data with the poster module data
+    // $the_big_array = get_poster_list_array($data_array, $course, $moduleinstance);
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<!DOCTYPE html>";
