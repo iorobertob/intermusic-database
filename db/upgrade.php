@@ -64,7 +64,7 @@ function xmldb_inter_upgrade($oldversion) {
     if ($oldversion < 2019030504)
     {
         // Define field author to be added to poster.
-        $table = new xmldb_table('poster');
+        $table = new xmldb_table('inter');
         $field = new xmldb_field('meta1', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'name');
 
         // Conditionally launch add field author.
@@ -101,7 +101,7 @@ function xmldb_inter_upgrade($oldversion) {
         }
 
         // Poster savepoint reached.
-        upgrade_mod_savepoint(true, 2019030504, 'poster');
+        upgrade_mod_savepoint(true, 2019030504, 'inter');
     }
 
     return true;
