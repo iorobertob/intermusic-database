@@ -141,7 +141,7 @@ function get_metadata_from_api($resourcespace_id)
 
     file_print('METADATA:',TRUE);
     file_print(implode(",", $result[1][0]));
-    file_print($result[1][0][0]);
+    file_print($result[1][0][2]);
     file_print($result[1][0]["ref"]);
     file_print($result[1][0]["name"]);
     file_print($result[0]);
@@ -201,7 +201,7 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
         $posters_id   [$i] = $row[0];
 
         // $row[6] is the RS ID
-        $metadata_array = get_metadata_from_api($row[6]);
+        // $metadata_array = get_metadata_from_api($row[6]);
 
         $i = $i + 1;
 
