@@ -90,15 +90,12 @@ function inter_mysql_query($sql, $process)
  */
 function do_api_search($string, $function)
 {
-    $this->init_resourcespace();
-    // Set the private API key for the user (from the user account page) and the user we're accessing the system as.
-    $private_key="9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045";
-    $private_key = $this->api_key;
+    $config      = get_config('resourcespace');
+    $url         = get_config('resourcespace', 'resourcespace_api_url');
+    $private_key = get_config('resourcespace', 'api_key');
+    $user        = get_config('resourcespace', 'api_user');
+    // Set the private API key for the user (from the user account page) and the user we're accessing 
 
-    $user="admin";
-    $user = $this->api_user;
-
-    $url = $this->resourcespace_api_url ;
     // Formulate the query
     $query="user=" . $user . "&function=".$function."&param1=".$string."&param2=&param3=&param4=&param5=&param6=";
 
@@ -123,26 +120,21 @@ function do_api_search($string, $function)
 /**
  * Initialise Resourcespace API variables
  */
-function init_resourcespace()
-{
-    $this->config = get_config('resourcespace');
-    $this->resourcespace_api_url = get_config('resourcespace', 'resourcespace_api_url');
-    echo "<script>console.log('API URL: " . $this->resourcespace_api_url . "' );</script>";
-    $this->api_key = get_config('resourcespace', 'api_key');
-    echo "<script>console.log('API KEY: " . $this->api_key . "' );</script>";
-    $this->api_user = get_config('resourcespace', 'api_user');
-    echo "<script>console.log('API USER: " . $this->api_user . "' );</script>";
-    $this->enable_help = get_config('resourcespace', 'enable_help');
-    $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
-}
+// function init_resourcespace()
+// {
+//     $this->config          = get_config('resourcespace');
+//     $this->resourcespace_api_url = get_config('resourcespace', 'resourcespace_api_url');
+//     $this->api_key         = get_config('resourcespace', 'api_key');
+//     $this->api_user        = get_config('resourcespace', 'api_user');
+//     $this->enable_help     = get_config('resourcespace', 'enable_help');
+//     $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
+// }
 
 
 function get_metadata_from_api($resourcespace_id)
 {
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
-
-    init_resourcespace();
 
     $result = do_api_search($resourcespace_id, 'get_resource_field_data');
 
