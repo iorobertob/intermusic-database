@@ -104,8 +104,8 @@ function do_api_search($string, $function)
 
     // Make the request and output the JSON results.
     // $results=json_decode(file_get_contents("https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign));
-    $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign));
-    $results=file_get_contents($url . $query . "&sign=" . $sign);
+    // $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign));
+    // $results=file_get_contents($url . $query . "&sign=" . $sign);
     $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign), TRUE);
     // print_r($results);
     
@@ -139,6 +139,7 @@ function get_metadata_from_api($resourcespace_id)
     $result = do_api_search($resourcespace_id, 'get_resource_field_data');
 
     file_print('METADATA:',TRUE);
+    file_print($result[0]);
     $i = 0;
     foreach($result[1] as $row)
     {
