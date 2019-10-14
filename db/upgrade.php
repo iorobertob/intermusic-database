@@ -60,5 +60,49 @@ function xmldb_inter_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2019030501, 'inter');
     } 
 
+
+    if ($oldversion < 2019030504)
+    {
+        // Define field author to be added to poster.
+        $table = new xmldb_table('poster');
+        $field = new xmldb_field('meta1', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'name');
+
+        // Conditionally launch add field author.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field('meta2', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'meta1');
+
+        // Conditionally launch add field author.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field('meta3', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'meta2');
+
+        // Conditionally launch add field author.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field('meta4', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'meta3');
+
+        // Conditionally launch add field author.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field('meta5', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'meta4');
+
+        // Conditionally launch add field author.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Poster savepoint reached.
+        upgrade_mod_savepoint(true, 2019030504, 'poster');
+    }
+
     return true;
 }

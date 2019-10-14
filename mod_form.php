@@ -59,6 +59,38 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('name', 'intername', 'mod_inter');
 
+
+        // Add the poster surtitle field.
+        $mform->addElement('text', 'meta1', get_string('meta1', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta1', PARAM_TEXT);
+        // $mform->addRule('surtitle', null, 'required', null, 'client');
+        $mform->addRule('meta1', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+        // Add the poster author field.
+        $mform->addElement('text', 'meta2', get_string('meta2', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta2', PARAM_TEXT);
+        // $mform->addRule('author', null, 'required', null, 'client');
+        $mform->addRule('meta2', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+        // Add the poster surtitle field.
+        $mform->addElement('text', 'meta3', get_string('meta3', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta3', PARAM_TEXT);
+        // $mform->addRule('numbering', null, 'required', null, 'client');
+        $mform->addRule('meta3', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+        // Add the poster surtitle field.
+        $mform->addElement('text', 'meta4', get_string('meta4', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta4', PARAM_TEXT);
+        // $mform->addRule('language', null, 'required', null, 'client');
+        $mform->addRule('meta4', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+        // Add the poster surtitle field.
+        $mform->addElement('text', 'meta5', get_string('meta5', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta5', PARAM_TEXT);
+        // $mform->addRule('language', null, 'required', null, 'client');
+        $mform->addRule('meta5', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+
         // Adding the standard "intro" and "introformat" fields.
         if ($CFG->branch >= 29) {
             $this->standard_intro_elements();

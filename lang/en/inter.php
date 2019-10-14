@@ -27,6 +27,11 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['choosereadme'] = 'Readme when selecting the theme.';
 $string['intername'] = 'Name:';
+$string['meta1'] = 'Metadata Field #1:';
+$string['meta2'] = 'Metadata Field #2:';
+$string['meta3'] = 'Metadata Field #3:';
+$string['meta4'] = 'Metadata Field #4:';
+$string['meta5'] = 'Metadata Field #5:';
 $string['intersettings'] = 'Settings';
 $string['interplatformwide'] = 'Include all posters in the platform';
 $string['inter:name'] = 'Name';
