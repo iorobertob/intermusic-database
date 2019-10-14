@@ -141,8 +141,8 @@ function get_metadata_from_api($resourcespace_id)
 
     file_print('METADATA:',TRUE);
     file_print(implode(",", $result[1][0]));
-    file_print(implode(",", $result[1][0][0]));
-    file_print(implode(",", $result[1][0]["ref"]));
+    file_print($result[1][0][0]);
+    file_print($result[1][0]["ref"]);
     file_print($result[0]);
     $i = 0;
     foreach($result[1] as $row)
