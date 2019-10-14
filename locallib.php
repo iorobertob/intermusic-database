@@ -28,6 +28,9 @@ require_once("$CFG->libdir/filelib.php");
 require_once("$CFG->libdir/resourcelib.php");
 require_once("$CFG->dirroot/mod/inter/lib.php");
 
+// For debugging purposes
+require_once("$CFG->dirroot/mod/inter/io_print.php");
+
 /**
  * Handle the \core\event\something_else_happened event.
  *
@@ -81,6 +84,73 @@ function inter_mysql_query($sql, $process)
     }
 }
 
+
+/**
+ * Do an API requeuest with 
+ */
+function do_api_search($string, $function)
+{
+    $this->init_resourcespace();
+    // Set the private API key for the user (from the user account page) and the user we're accessing the system as.
+    $private_key="9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045";
+    $private_key = $this->api_key;
+
+    $user="admin";
+    $user = $this->api_user;
+
+    $url = $this->resourcespace_api_url ;
+    // Formulate the query
+    $query="user=" . $user . "&function=".$function."&param1=".$string."&param2=&param3=&param4=&param5=&param6=";
+
+    // Sign the query using the private key
+    $sign=hash("sha256",$private_key . $query);
+
+    // Make the request and output the JSON results.
+    // $results=json_decode(file_get_contents("https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign));
+    $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign));
+    $results=file_get_contents($url . $query . "&sign=" . $sign);
+    $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign), TRUE);
+    // print_r($results);
+    
+    $result = [];
+    $result[0] = "https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign;
+    $result[1] = $results;
+
+    return $result;
+}
+
+
+/**
+ * Initialise Resourcespace API variables
+ */
+private function init_resourcespace()
+{
+    $this->config = get_config('resourcespace');
+    $this->resourcespace_api_url = get_config('resourcespace', 'resourcespace_api_url');
+    echo "<script>console.log('API URL: " . $this->resourcespace_api_url . "' );</script>";
+    $this->api_key = get_config('resourcespace', 'api_key');
+    echo "<script>console.log('API KEY: " . $this->api_key . "' );</script>";
+    $this->api_user = get_config('resourcespace', 'api_user');
+    echo "<script>console.log('API USER: " . $this->api_user . "' );</script>";
+    $this->enable_help = get_config('resourcespace', 'enable_help');
+    $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
+}
+
+
+function get_metadata_from_api($resourcespace_id)
+{
+    global $PAGE, $DB, $CFG;
+    $prefix = $CFG->prefix;
+
+    init_resourcespace();
+
+    $result = do_api_search($resourcespace_id, 'get_resource_field_data');
+
+    file_print($result, true);
+
+}
+
+
 /** 
  * Get an array with the list of Poster Plugins instances whether in the current course or on the whole platform
  * @param array $data_array the empty array where all the data will be stored. The same array is returned. 
@@ -104,14 +174,14 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
         $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Content");
         $courseid = $PAGE->course->id;
         // $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster WHERE course = '".$courseid."'";
+        $query         = "SELECT id, name, surtitle, author, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Course", "Content");
         // $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        $query         = "SELECT id, name, surtitle, author, numbering, language FROM ".$prefix."poster";
+        $query         = "SELECT id, name, surtitle, author, numbering, language, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' )";
     }
 
@@ -122,10 +192,18 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
     $i = 0;
     while($row = mysqli_fetch_array($result_poster))
     {
-        // row[0] = id , row[1] = name 
+        // TODO: HERE MAKE THE API CALL 
+        // row[0] = id , row[1] = name ...
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
         $posters_id   [$i] = $row[0];
+
+        // $row[6] is the RS ID
+        $metadata_array = get_metadata_from_api($row[6]);
+
         $i = $i + 1;
+
+
+
     } 
 
     // Query for the module instances of poster an see which course they are
@@ -141,6 +219,7 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
             $result_shortname = inter_mysql_query($query_shortname , "select");
             $shortname        = mysqli_fetch_array($result_shortname)[1];
 
+            // TODO: HERE TO ADD METADATA INSTEAD OF THE POSTER ARRAY COMING FORM DB IN MOODLE
             $data_array[$i] = array($posters_array[$key][0] , 
                                     $posters_array[$key][1] , 
                                     $posters_array[$key][2] , 
