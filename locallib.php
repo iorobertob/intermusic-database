@@ -123,7 +123,7 @@ function do_api_search($string, $function)
 /**
  * Initialise Resourcespace API variables
  */
-private function init_resourcespace()
+function init_resourcespace()
 {
     $this->config = get_config('resourcespace');
     $this->resourcespace_api_url = get_config('resourcespace', 'resourcespace_api_url');
