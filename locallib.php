@@ -140,7 +140,7 @@ function get_metadata_from_api($resourcespace_id)
 
     file_print('METADATA:',TRUE);
     $i = 0;
-    foreach($result[0] as $row)
+    foreach($result[1] as $row)
     {
         file_print('['.$i.'] = '.$row[0]['name']);
     }
