@@ -28,7 +28,7 @@ require_once(__DIR__.'/lib.php');
 
 require_once("$CFG->dirroot/mod/inter/locallib.php");
 
-global $DB, $CFG;
+global $DB, $CFG;//, $PAGE;
 
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
@@ -69,7 +69,8 @@ $data_array    = [];
 $the_big_array = []; 
 
 // Get an array with the data about posters
-$the_big_array = get_poster_list_array($data_array, $course, $moduleinstance);
+$courseid = $PAGE->course->id;
+$the_big_array = get_poster_list_array($data_array, $courseid, $moduleinstance);
 
 // This is the HTML table to render, built based on the big array data
 $table         = inter_build_html_table($course, $moduleinstance, $the_big_array);

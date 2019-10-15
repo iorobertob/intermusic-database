@@ -159,7 +159,7 @@ function get_metadata_from_api($resourcespace_id)
  * @param array $data_array the empty array where all the data will be stored. The same array is returned. 
  * @param array $moduleinstance the instance of this plugin that contains metadata we use to decide how to build the db query.
  */
-function get_poster_list_array($data_array, $course, $moduleinstance)
+function get_poster_list_array($data_array, $courseid, $moduleinstance)
 {
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
@@ -175,7 +175,7 @@ function get_poster_list_array($data_array, $course, $moduleinstance)
     if ($moduleinstance->platformwide === "0")
     {
         $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Content");
-        $courseid = $PAGE->course->id;
+        // $courseid = $PAGE->course->id;
         // $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, name, surtitle, author, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' )";

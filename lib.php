@@ -62,6 +62,8 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
 
+    $courseid = $moduleinstance->course;
+
     // This line in the end helped saving the file
     inter_set_display_options($moduleinstance);
 
@@ -84,8 +86,8 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $data_array = [];
     $big_array  = []; 
     file_print("CMID:", TRUE);
-    file_print($cmid);
-    // $big_array  = get_poster_list_array($data_array, $course, $moduleinstance)
+    file_print($courseid);
+    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance)
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
 
     return $id;
@@ -107,7 +109,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
 
-    $cmid = $moduleinstance->course;
+    $courseid = $moduleinstance->course;
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
@@ -130,8 +132,8 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $data_array = [];
     $big_array  = []; 
     file_print("CMID:", TRUE);
-    file_print($cmid);
-    // $big_array  = get_poster_list_array($data_array, $course, $moduleinstance)
+    file_print($courseid);
+    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance)
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     return true;
 }
