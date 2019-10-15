@@ -80,6 +80,14 @@ function inter_add_instance($moduleinstance, $mform = null) {
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE ============
 
 
+    //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
+    $data_array = [];
+    $big_array  = []; 
+    file_print("CMID:", TRUE);
+    file_print($cmid);
+    // $big_array  = get_poster_list_array($data_array, $course, $moduleinstance)
+    //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
+
     return $id;
 }
 
