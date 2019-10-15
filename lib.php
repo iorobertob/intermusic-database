@@ -107,7 +107,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
 
-    $cmid = $moduleinstance->coursemodule;
+    $cmid = $moduleinstance->course;
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
