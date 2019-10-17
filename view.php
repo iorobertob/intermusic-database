@@ -79,7 +79,6 @@ $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
 
-
 echo $table;
 
 echo $OUTPUT->footer();

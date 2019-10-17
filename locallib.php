@@ -131,7 +131,7 @@ function do_api_search($string, $function)
 // }
 
 
-function get_metadata_from_api($resourcespace_id)
+function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadata)
 {
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
@@ -145,12 +145,36 @@ function get_metadata_from_api($resourcespace_id)
     file_print($result[1][0]["name"]);
     file_print($result[0]);
 
+
     $i = 0;
     foreach($result[1] as $row)
     {
         file_print('['.$i.'] = '.$row["name"]);
         $i++;
     }
+
+    // $result[0]     =  URL of the http request
+    // $result[1]     =  Actual result of the http request
+    // $restult[1][n] =  n-th metadata field 
+    $new_list_metadata = [];
+    for($i = 0; $i <= sizeof($list_metadata); $i++)
+    {
+        // $i = 0;
+        foreach($result[1] as $row)
+        {
+            // file_print('['.$i.'] = '.$row["name"]);
+            if ($row["name"] === $list_metadata[$i])
+            {
+                $new_list_metadata[$i] = $row["value"];
+            }
+            
+            
+            // $i++;
+        }
+    } 
+
+    return $new_list_metadata;
+
 }
 
 
@@ -164,6 +188,11 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
 
+    $list_metadata = array( $moduleinstance->meta1,
+                            $moduleinstance->meta2,
+                            $moduleinstance->meta3,
+                            $moduleinstance->meta4,
+                            $moduleinstance->meta5);
 
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
@@ -196,16 +225,18 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     while($row = mysqli_fetch_array($result_poster))
     {
         // TODO: HERE MAKE THE API CALL 
+        // $row[6] is the RS ID
+        $metadata_array = get_metadata_from_api($row[6], $moduleinstance, $list_metadata);
+
         // row[0] = id , row[1] = name ...
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
+        $posters_array[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
+        
+
         $posters_id   [$i] = $row[0];
 
-        // $row[6] is the RS ID
-        $metadata_array = get_metadata_from_api($row[6]);
 
         $i = $i + 1;
-
-
 
     } 
 
@@ -216,6 +247,7 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     while($row = mysqli_fetch_array($result_courses))
     {
         $key = array_search($row[1], $posters_id); 
+
         if ($moduleinstance->platformwide === "1")
         {
             $query_shortname = "SELECT id, shortname language FROM ".$prefix."course WHERE id = '".$row[2]."'";
