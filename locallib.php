@@ -173,8 +173,6 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
                 file_print("[".$i."] = ".$new_list_metadata[$i]);
                 file_print("[".$i."] = ".$row["value"]);
             }
-            
-            
             // $i++;
         }
     } 
@@ -236,7 +234,7 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
 
         // row[0] = id , row[1] = name ...
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
-        // $posters_array[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
+        $posters_array[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         
 
