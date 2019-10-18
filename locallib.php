@@ -138,25 +138,26 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
 
     $result = do_api_search($resourcespace_id, 'get_resource_field_data');
 
-    file_print('METADATA:',TRUE);
-    file_print(implode(",", $result[1][0]));
-    file_print($result[1][0][2]);
-    file_print($result[1][0]["ref" ]);
-    file_print($result[1][0]["name"]);
-    file_print($result[0]);
+    // file_print('METADATA:',TRUE);
+    // file_print(implode(",", $result[1][0]));
+    // file_print($result[1][0][2]);
+    // file_print($result[1][0]["ref" ]);
+    // file_print($result[1][0]["name"]);
+    // file_print($result[0]);
 
 
-    $i = 0;
-    foreach($result[1] as $row)
-    {
-        file_print('['.$i.'] = '.$row["title"]);
-        $i++;
-    }
+    // $i = 0;
+    // foreach($result[1] as $row)
+    // {
+    //     file_print('['.$i.'] = '.$row["title"]);
+    //     $i++;
+    // }
 
     // $result[0]     =  URL of the http request
     // $result[1]     =  Actual result of the http request
     // $restult[1][n] =  n-th metadata field 
     $new_list_metadata = [];
+    file_print("NEW LIST METADATA:", TRUE);
     for($i = 0; $i <= sizeof($list_metadata); $i++)
     {
         // $i = 0;
@@ -166,6 +167,8 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
             if ($row["title"] === $list_metadata[$i])
             {
                 $new_list_metadata[$i] = $row["value"];
+                file_print("[".$i."] = ".$new_list_metadata[$i]);
+
             }
             
             
@@ -241,11 +244,12 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     } 
 
     /////////////////////////////
-    file_print("METADATA:", TRUE);
-    file_print($list_metadata[0]);
-    file_print($list_metadata[2]);
-    file_print($list_metadata[3]);
-    file_print($list_metadata[4]);
+    // file_print("METADATA:", TRUE);
+    // file_print($list_metadata[0]);
+    // file_print($list_metadata[1]);  
+    // file_print($list_metadata[2]);
+    // file_print($list_metadata[3]);
+    // file_print($list_metadata[4]);
 
     /////////////////////////////
 
