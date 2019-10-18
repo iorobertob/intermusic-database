@@ -240,6 +240,15 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
 
     } 
 
+    /////////////////////////////
+    file_print("METADATA:", TRUE);
+    file_print($list_metadata[0]);
+    file_print($list_metadata[2]);
+    file_print($list_metadata[3]);
+    file_print($list_metadata[4]);
+
+    /////////////////////////////
+
     // Query for the module instances of poster an see which course they are
     $result_courses = inter_mysql_query($query_modules , "select");
 
