@@ -158,6 +158,8 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
     // $restult[1][n] =  n-th metadata field 
     $new_list_metadata = [];
     file_print("NEW LIST METADATA:", TRUE);
+    file_print("URL:");
+    file_print($result[0]);
     for($i = 0; $i <= sizeof($list_metadata); $i++)
     {
         // $i = 0;
