@@ -33,9 +33,9 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class second_event extends \core\event\base {
+// class second_event extends \core\event\base {
 
-    // For more information about the Events API, please visit:
-    // https://docs.moodle.org/dev/Event_2
+//     // For more information about the Events API, please visit:
+//     // https://docs.moodle.org/dev/Event_2
 
-}
+// }
