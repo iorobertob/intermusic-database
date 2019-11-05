@@ -176,9 +176,7 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
             // $i++;
         }
     } 
-
     return $new_list_metadata;
-
 }
 
 
@@ -192,11 +190,18 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
 
-    $list_metadata = array( $moduleinstance->meta1,
-                            $moduleinstance->meta2,
-                            $moduleinstance->meta3,
-                            $moduleinstance->meta4,
-                            $moduleinstance->meta5);
+    // This is the metadata we want to pull from Resourcespace, the user inputs the correct metadata fields
+    // TODO: catch the case when metadatas are incorrect or there is no metadata whatsoever. 
+    // $list_metadata = array( $moduleinstance->meta1,
+    //                         $moduleinstance->meta2,
+    //                         $moduleinstance->meta3,
+    //                         $moduleinstance->meta4,
+    //                         $moduleinstance->meta5);
+    $list_metadata[0] = ($moduleinstance->meta1 != "" ? $moduleinstance->meta1 : "Composer");
+    $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
+    $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Surtitle");
+    $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta4 : "List");
+    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta5 : "Language");
 
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
@@ -207,17 +212,16 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
 
     if ($moduleinstance->platformwide === "0")
     {
-        $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Content");
-        // $courseid = $PAGE->course->id;
+        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
         // $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        $query         = "SELECT id, name, surtitle, author, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
+        $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Course", "Content");
         // $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        $query         = "SELECT id, name, surtitle, author, numbering, language, rs_id FROM ".$prefix."poster";
+        $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
 
@@ -228,34 +232,30 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     $i = 0;
     while($row = mysqli_fetch_array($result_poster))
     {
-        // TODO: HERE MAKE THE API CALL 
-        // $row[6] is the RS ID
+        // API CALL ,  $row[6] is the RS ID
         $metadata_array = get_metadata_from_api($row[6], $moduleinstance, $list_metadata);
 
         // row[0] = id , row[1] = name ...
-        $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
-
         // TODO: MAKE A CONDITION TO CHANGE WHERE TO GET METADATA FROM ACCORDING TO AN OPTION IN THE SETTINGS OF THE POSTER LIST
+        // TODO: set a ternay operator here to have whichever metadata is present. 
+        $metadata_array[0] = ($metadata_array[0] != "" ? $metadata_array[0] : $row[1]); // Start from 1 because row has data from query where 0 is ID. 
+        $metadata_array[1] = ($metadata_array[1] != "" ? $metadata_array[1] : $row[2]); 
+        $metadata_array[2] = ($metadata_array[2] != "" ? $metadata_array[2] : $row[3]); 
+        $metadata_array[3] = ($metadata_array[3] != "" ? $metadata_array[3] : $row[4]); 
+        $metadata_array[4] = ($metadata_array[4] != "" ? $metadata_array[4] : $row[5]); 
+
+        $posters_array = $metadata_array;
+        // $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
+
         // $posters_array[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         
-
+        // TODO: This should be in the same array as the posters_array, now its like this because of the array_search function
+        // otherwise that function has to look in an array column. Have to research on that.
         $posters_id   [$i] = $row[0];
 
-
         $i = $i + 1;
-
     } 
-
-    /////////////////////////////
-    // file_print("METADATA:", TRUE);
-    // file_print($list_metadata[0]);
-    // file_print($list_metadata[1]);  
-    // file_print($list_metadata[2]);
-    // file_print($list_metadata[3]);
-    // file_print($list_metadata[4]);
-
-    /////////////////////////////
 
     // Query for the module instances of poster an see which course they are
     $result_courses = inter_mysql_query($query_modules , "select");
