@@ -93,7 +93,10 @@ function inter_add_instance($moduleinstance, $mform = null) {
     file_print($courseid);
     $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
     $serialized_array = serialize($big_array);
+    file_print("CMID");
+    file_print($cmid);
     file_print($serialized_array);
+
     //Store in DB
     $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$cmid));
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
