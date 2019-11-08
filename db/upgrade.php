@@ -108,7 +108,7 @@ function xmldb_inter_upgrade($oldversion) {
     {
     	// Define field author to be added to poster.
         $table = new xmldb_table('inter');
-        $field = new xmldb_field('serial_data', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null, 'intro');
+        $field = new xmldb_field('serial_data', XMLDB_TYPE_TEXT, null, null, null, null, null, 'intro');
 
         // Conditionally launch add field author.
         if (!$dbman->field_exists($table, $field)) {
