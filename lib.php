@@ -93,7 +93,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     file_print($courseid);
     $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
     $serialized_array = serialize($big_array);
-    file_print("CMID");
+    file_print("CMID", true);
     file_print($cmid);
     file_print($serialized_array);
 
