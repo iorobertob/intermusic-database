@@ -234,7 +234,7 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
         // $posters_array = $metadata_array;
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
 
-        // $posters_array[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
+        $posters_array[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         
         // TODO: This should be in the same array as the posters_array, now its like this because of the array_search function
