@@ -199,16 +199,18 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     $result_poster_id = inter_mysql_query($query_poster_id , "select");
     $poster_id        = mysqli_fetch_array($result_poster_id)[0];
 
+    $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
     if ($moduleinstance->platformwide === "0")
     {
-        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
+        // $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
         // $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+        // TODO: here instead of if use a string with parameters construction and you can pass empty strings or where clauses. 
         $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Course", "Content");
+        // $data_array[0] = array ("Title", "Surtitle", "Composer", "List", "Language", "Course", "Content");
         // $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
