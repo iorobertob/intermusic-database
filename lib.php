@@ -61,8 +61,6 @@ function inter_add_instance($moduleinstance, $mform = null) {
     
     //TODO: print this cmid to see what is it?
     $cmid = $moduleinstance->coursemodule;
-    file_print("CMID:", true);
-    file_print($cmid);
 
     $moduleinstance->timecreated = time();
 
@@ -89,13 +87,8 @@ function inter_add_instance($moduleinstance, $mform = null) {
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     $data_array = [];
     $big_array  = []; 
-    file_print("courseid:", true);
-    file_print($courseid);
     $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
     $serialized_array = serialize($big_array);
-    file_print("CMID", true);
-    file_print($cmid);
-    file_print($serialized_array);
 
     //Store in DB
     $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
