@@ -152,18 +152,19 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
         // $i = 0;
         foreach($result[1] as $row)
         {
-            file_print(implode(",", $row));
+            // file_print(implode(",", $row));
             // file_print('['.$i.'] = '.$row["name"]);
             if ($row["title"] === $list_metadata[$i])
             {
                 $new_list_metadata[$i] = $row["value"];
-                file_print("[".$i."] = ".$new_list_metadata[$i]);
-                file_print("[".$i."] = ".$row["value"]);
+                // file_print("[".$i."] = ".$new_list_metadata[$i]);
+                // file_print("[".$i."] = ".$row["value"]);
             }
             // $i++;
         }
 
         $new_list_metadata[$i] = $row["value"];
+        file_print("[".$i."] = ".$row["value"]);
     } 
     return $new_list_metadata;
 }
