@@ -142,8 +142,8 @@ function inter_update_instance($moduleinstance, $mform = null) {
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     $data_array = [];
     $big_array  = []; 
-    file_print("CMID:", TRUE);
-    file_print($courseid);
+    // file_print("CMID:", TRUE);
+    // file_print($courseid);
     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance)
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     return true;
