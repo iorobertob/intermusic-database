@@ -98,7 +98,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     file_print($serialized_array);
 
     //Store in DB
-    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$cmid));
+    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
 
     return $id;
