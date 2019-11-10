@@ -147,6 +147,7 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
     // file_print("NEW LIST METADATA:", TRUE);
     // file_print("URL:");
     // file_print($result[0]);
+    file_print("tests",true);
     for($i = 0; $i <= sizeof($list_metadata); $i++)
     {
         // $i = 0;
