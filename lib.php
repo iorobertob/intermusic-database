@@ -158,7 +158,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     // $serialized_array = serialize($big_array);
     // //Store in DB
     // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-    save_serialized_metadata($courseid, $moduleinstance, $id);
+    save_serialized_metadata($courseid, $moduleinstance, $moduleinstance->id);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     return true;
 }
