@@ -85,16 +85,34 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
 
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
-    $data_array = [];
-    $big_array  = []; 
-    $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
-    $serialized_array = serialize($big_array);
-
-    //Store in DB
-    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
+    // $data_array = [];
+    // $big_array  = []; 
+    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
+    // $serialized_array = serialize($big_array);
+    // //Store in DB
+    // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
+    save_serialized_metadata($courseid, $moduleinstance);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
 
     return $id;
+}
+
+/**
+ * Get metadata either with an API call or from local moodle modules metadata, serialise it and commit it to DB
+ *
+ * @param array $data_array is the data array to fill ---- DELETE
+ * @param $courseid ID of the course where this list is, used to build mysql queries TODO: change that to native DB calls
+ * @param $moduleinstance An instance of the current Inter list that contains information to refer in the API and DB calls
+ * @return array $big_array The data coming back from either ResourceSpace or local moodle metadata. 
+ */
+function save_serialized_metadata($courseid, $moduleinstance)
+{
+    $big_array  = []; 
+    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
+    $big_array  = get_poster_list_array($courseid, $moduleinstance);
+    $serialized_array = serialize($big_array);
+    //Store in DB
+    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
 }
 
 /**
@@ -133,11 +151,13 @@ function inter_update_instance($moduleinstance, $mform = null) {
     // return $DB->update_record('inter', $moduleinstance);
 
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
-    $data_array = [];
-    $big_array  = []; 
-    // file_print("CMID:", TRUE);
-    // file_print($courseid);
-    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance)
+    // $data_array = [];
+    // $big_array  = []; 
+    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
+    // $serialized_array = serialize($big_array);
+    // //Store in DB
+    // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
+    save_serialized_metadata($courseid, $moduleinstance);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     return true;
 }

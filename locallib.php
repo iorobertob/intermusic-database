@@ -180,7 +180,7 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
  * @param array $data_array the empty array where all the data will be stored. The same array is returned. 
  * @param array $moduleinstance the instance of this plugin that contains metadata we use to decide how to build the db query.
  */
-function get_poster_list_array($data_array, $courseid, $moduleinstance)
+function get_poster_list_array($courseid, $moduleinstance)
 {
     global $PAGE, $DB, $CFG;
     $prefix = $CFG->prefix;
@@ -205,6 +205,7 @@ function get_poster_list_array($data_array, $courseid, $moduleinstance)
     $result_poster_id = inter_mysql_query($query_poster_id , "select");
     $poster_id        = mysqli_fetch_array($result_poster_id)[0];
 
+    $data_array = [];
     $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
     if ($moduleinstance->platformwide === "0")
     {
