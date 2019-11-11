@@ -103,11 +103,7 @@ function do_api_search($string, $function)
     $sign=hash("sha256",$private_key . $query);
 
     // Make the request and output the JSON results.
-    // $results=json_decode(file_get_contents("https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign));
-    // $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign));
-    // $results=file_get_contents($url . $query . "&sign=" . $sign);
     $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign), TRUE);
-    // print_r($results);
     
     $result = [];
     $result[0] = "https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign;
@@ -117,7 +113,9 @@ function do_api_search($string, $function)
 }
 
 
-
+/**
+ * Get the data vis API call and compare its metadata with the one indicated in the current Inter list instance
+ */
 function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadata)
 {
     global $PAGE, $DB, $CFG;
@@ -125,51 +123,16 @@ function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadat
 
     $result = do_api_search($resourcespace_id, 'get_resource_field_data');
 
-    // file_print('METADATA:',TRUE);
-    // file_print(implode(",", $result[1][0]));
-    // file_print($result[1][0][2]);
-    // file_print($result[1][0]["ref" ]);
-    // file_print($result[1][0]["name"]);
-    // file_print($result[0]);
-
-
-    // $i = 0;
-    // foreach($result[1] as $row)
-    // {
-    //     file_print('['.$i.'] = '.$row["title"]);
-    //     $i++;
-    // }
-
-    // $result[0]     =  URL of the http request
-    // $result[1]     =  Actual result of the http request
-    // $restult[1][n] =  n-th metadata field 
     $new_list_metadata = [];
-    // file_print("NEW LIST METADATA:", TRUE);
-    // file_print("URL:");
-    // file_print($result[0]);
-    file_print("tests",true);
-    file_print($result[0]);
-    // file_print($result[1]);
     for($i = 0; $i <= sizeof($list_metadata); $i++)
     {
-        // $i = 0;
-        file_print("list metadata: ".$list_metadata[$i]);
         foreach($result[1] as $row)
         {
-            // file_print(implode(",", $row));
-            // file_print('['.$i.'] = '.$row["name"]);
-            file_print(" ".$row["title"]." =? ".$list_metadata[$i]);
             if ($row["title"] === $list_metadata[$i])
             {
                 $new_list_metadata[$i] = $row["value"];
-                // file_print("[".$i."] = ".$new_list_metadata[$i]);
-                file_print("[".$i."] = ".$row["value"]);
             }
-            // $i++;
         }
-
-        // $new_list_metadata[$i] = $row["title"];
-        // file_print("[".$i."] = ".$row["title"]);
     } 
     return $new_list_metadata;
 }
@@ -187,11 +150,6 @@ function get_poster_list_array($courseid, $moduleinstance)
 
     // This is the metadata we want to pull from Resourcespace, the user inputs the correct metadata fields
     // TODO: catch the case when metadatas are incorrect or there is no metadata whatsoever. 
-    // $list_metadata = array( $moduleinstance->meta1,
-    //                         $moduleinstance->meta2,
-    //                         $moduleinstance->meta3,
-    //                         $moduleinstance->meta4,
-    //                         $moduleinstance->meta5);
     $list_metadata[0] = ($moduleinstance->meta1 != "" ? $moduleinstance->meta1 : "Composer");
     $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
     $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Surtitle");
@@ -209,15 +167,12 @@ function get_poster_list_array($courseid, $moduleinstance)
     if ($moduleinstance->platformwide === "0")
     {
         $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
-        // $data          = $DB->get_records('poster', ['course'=>strval($courseid)], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-        // TODO: here instead of if use a string with parameters construction and you can pass empty strings or where clauses. 
         $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Course", "Content");
-        // $data          = $DB->get_records('poster', ['course'=>'6'] , $sort='', $fields='*', $limitfrom=0, $limitnum=0);
         $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
@@ -233,8 +188,6 @@ function get_poster_list_array($courseid, $moduleinstance)
         $metadata_array = get_metadata_from_api($row[6], $moduleinstance, $list_metadata);
 
         // row[0] = id , row[1] = name ...
-        // TODO: MAKE A CONDITION TO CHANGE WHERE TO GET METADATA FROM ACCORDING TO AN OPTION IN THE SETTINGS OF THE POSTER LIST
-        // TODO: set a ternay operator here to have whichever metadata is present. 
         $metadata_array[0] = ($metadata_array[0] != "" ? $metadata_array[0] : $row[1]); // Start from 1 because row has data from query where 0 is ID. 
         $metadata_array[1] = ($metadata_array[1] != "" ? $metadata_array[1] : $row[2]); 
         $metadata_array[2] = ($metadata_array[2] != "" ? $metadata_array[2] : $row[3]); 
@@ -294,13 +247,6 @@ function get_poster_list_array($courseid, $moduleinstance)
 // Create an HTML table from the data contained in the Poster of Intermusic
 function inter_build_html_table($course, $moduleinstance, $the_big_array)
 { 
-   
-    // The nested arrays to hold all the arrays
-    // $data_array    = [];
-    // $the_big_array = []; 
-
-    // // This line is to replace the csv data with the poster module data
-    // $the_big_array = get_poster_list_array($data_array, $course, $moduleinstance);
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
     $build = "<!DOCTYPE html>";
@@ -369,36 +315,6 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
 
     $build .= "<script src=\"resize.js\"></script>";
 
-    // $build .= '<script>
-    //                 function submitMe(id) {
-    //                     var value = document.getElementById(id).value;
-                        
-
-    //                     var query = "user='.$api_user.'&function=search_public_collections&param1="+value
-
-    //                     var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
-    //                     sha256.update("'.$api_key.'" + query);
-    //                     var hash = sha256.getHash("HEX");
-
-    //                     var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
-    //                     console.log(request_url);
-    //                     alert(request_url);
-    //                 }
-
-    //                 String.prototype.hashCode = function() {
-    //                     var hash = 0;
-    //                     if (this.length == 0) {
-    //                         return hash;
-    //                     }
-    //                     for (var i = 0; i < this.length; i++) {
-    //                         var char = this.charCodeAt(i);
-    //                         hash = ((hash<<5)-hash)+char;
-    //                         hash = hash & hash; // Convert to 32bit integer
-    //                     }
-    //                     return hash;
-    //                 }
-
-    //             </script>';
     ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
 
     return $build;
