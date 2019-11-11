@@ -91,7 +91,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     // $serialized_array = serialize($big_array);
     // //Store in DB
     // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-    save_serialized_metadata($courseid, $moduleinstance);
+    save_serialized_metadata($courseid, $moduleinstance, $id);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
 
     return $id;
@@ -110,10 +110,10 @@ function save_serialized_metadata($courseid, $moduleinstance)
     global $DB;
     $big_array  = []; 
     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
-    $big_array  = get_poster_list_array($courseid, $moduleinstance);
+    $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
     $serialized_array = serialize($big_array);
     //Store in DB
-    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$moduleinstance->$id));
+    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
 }
 
 /**
@@ -158,7 +158,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     // $serialized_array = serialize($big_array);
     // //Store in DB
     // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-    save_serialized_metadata($courseid, $moduleinstance);
+    save_serialized_metadata($courseid, $moduleinstance, $id);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     return true;
 }
