@@ -107,6 +107,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
  */
 function save_serialized_metadata($courseid, $moduleinstance)
 {
+    global $DB;
     $big_array  = []; 
     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
     $big_array  = get_poster_list_array($courseid, $moduleinstance);
