@@ -85,13 +85,14 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
 
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
-    // $data_array = [];
-    // $big_array  = []; 
+    $data_array = [];
+    $big_array  = []; 
     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
-    // $serialized_array = serialize($big_array);
-    // //Store in DB
-    // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-    save_serialized_metadata($courseid, $moduleinstance, $id);
+    $big_array  = get_poster_list_array( $courseid, $moduleinstance);
+    $serialized_array = serialize($big_array);
+    //Store in DB
+    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
+    // save_serialized_metadata($courseid, $moduleinstance, $id);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
 
     return $id;
