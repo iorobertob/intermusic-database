@@ -370,36 +370,36 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
 
     $build .= "<script src=\"resize.js\"></script>";
 
-    $build .= '<script>
-                    function submitMe(id) {
-                        var value = document.getElementById(id).value;
+    // $build .= '<script>
+    //                 function submitMe(id) {
+    //                     var value = document.getElementById(id).value;
                         
 
-                        var query = "user='.$api_user.'&function=search_public_collections&param1="+value
+    //                     var query = "user='.$api_user.'&function=search_public_collections&param1="+value
 
-                        var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
-                        sha256.update("'.$api_key.'" + query);
-                        var hash = sha256.getHash("HEX");
+    //                     var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
+    //                     sha256.update("'.$api_key.'" + query);
+    //                     var hash = sha256.getHash("HEX");
 
-                        var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
-                        console.log(request_url);
-                        alert(request_url);
-                    }
+    //                     var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
+    //                     console.log(request_url);
+    //                     alert(request_url);
+    //                 }
 
-                    String.prototype.hashCode = function() {
-                        var hash = 0;
-                        if (this.length == 0) {
-                            return hash;
-                        }
-                        for (var i = 0; i < this.length; i++) {
-                            var char = this.charCodeAt(i);
-                            hash = ((hash<<5)-hash)+char;
-                            hash = hash & hash; // Convert to 32bit integer
-                        }
-                        return hash;
-                    }
+    //                 String.prototype.hashCode = function() {
+    //                     var hash = 0;
+    //                     if (this.length == 0) {
+    //                         return hash;
+    //                     }
+    //                     for (var i = 0; i < this.length; i++) {
+    //                         var char = this.charCodeAt(i);
+    //                         hash = ((hash<<5)-hash)+char;
+    //                         hash = hash & hash; // Convert to 32bit integer
+    //                     }
+    //                     return hash;
+    //                 }
 
-                </script>';
+    //             </script>';
     ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
 
     return $build;
