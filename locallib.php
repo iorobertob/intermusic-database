@@ -258,7 +258,8 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     $build .= "<script src=\"js_utilities.js\"></script>";
   
     ///////////////  TABLE //////////////////////////////////////////
-    $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
+    // $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
+    $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed;\" ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
