@@ -29,7 +29,7 @@ $tasks = array(
     array(
         'classname' => 'mod_inter\task\update_list_cron',
         'blocking' => 0,
-        'minute' => '*/30',
+        'minute' => '*',
         'hour' => '*',
         'day' => '*',
         'month' => '*',
