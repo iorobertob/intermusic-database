@@ -296,7 +296,9 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
 
                 $('#intermusic').colResizable();
                 $('#intermusic').DataTable( {
-                    fixedHeader: true
+                    fixedHeader: true,
+                    scrollY: '200px',
+                    scrollCollapse: true,
                 } );
 
                 });
