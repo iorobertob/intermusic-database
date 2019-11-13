@@ -198,7 +198,7 @@ function get_poster_list_array($courseid, $moduleinstance)
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
 
         $posters_array[$i] = array($metadata_array[0], $metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4]);
-        $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
+        // $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         
         // TODO: This should be in the same array as the posters_array, now its like this because of the array_search function
         // otherwise that function has to look in an array column. Have to research on that.
@@ -295,21 +295,23 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 {
 
                 $('#intermusic').colResizable();
-                $('#intermusic').DataTable();
+                $('#intermusic').DataTable( {
+                    fixedHeader: true
+                } );
 
                 });
                 </script>";
 
     // With JQuery 
-    $build .= "<script>
-                $(document).ready(function() 
-                {
+    // $build .= "<script>
+    //             $(document).ready(function() 
+    //             {
 
-                    var table_intermusic = document.getElementById('intermusic');
-                    //$('#intermusic').colResizable();
-                    //table_intermusic.colResizable();
+    //                 var table_intermusic = document.getElementById('intermusic');
+    //                 //$('#intermusic').colResizable();
+    //                 //table_intermusic.colResizable();
 
-                });
+    //             });
                 </script>";
 
 
