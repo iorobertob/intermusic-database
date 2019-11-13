@@ -312,7 +312,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     //                 //table_intermusic.colResizable();
 
     //             });
-                </script>";
+    //             </script>";
 
 
     $build .= "<script src=\"resize.js\"></script>";
