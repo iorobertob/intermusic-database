@@ -105,16 +105,16 @@ function inter_add_instance($moduleinstance, $mform = null) {
  * @param $moduleinstance An instance of the current Inter list that contains information to refer in the API and DB calls
  * @return array $big_array The data coming back from either ResourceSpace or local moodle metadata. 
  */
-function save_serialized_metadata($courseid, $moduleinstance, $id)
-{
-    global $DB, $CFG;
-    $big_array  = []; 
-    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
-    $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
-    $serialized_array = serialize($big_array);
-    //Store in DB
-    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-}
+// function save_serialized_metadata($courseid, $moduleinstance, $id)
+// {
+//     global $DB, $CFG;
+//     $big_array  = []; 
+//     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
+//     $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
+//     $serialized_array = serialize($big_array);
+//     //Store in DB
+//     $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
+// }
 
 /**
  * Updates an instance of the mod_inter in the database.

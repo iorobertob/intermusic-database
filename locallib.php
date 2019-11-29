@@ -42,6 +42,25 @@ function local_test_locallib_function($event)
 }
 
 /**
+ * Get metadata either with an API call or from local moodle modules metadata, serialise it and commit it to DB
+ *
+ * @param array $data_array is the data array to fill ---- DELETE
+ * @param $courseid ID of the course where this list is, used to build mysql queries TODO: change that to native DB calls
+ * @param $moduleinstance An instance of the current Inter list that contains information to refer in the API and DB calls
+ * @return array $big_array The data coming back from either ResourceSpace or local moodle metadata. 
+ */
+function save_serialized_metadata($courseid, $moduleinstance, $id)
+{
+    global $DB, $CFG;
+    $big_array  = []; 
+    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
+    $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
+    $serialized_array = serialize($big_array);
+    //Store in DB
+    $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
+}
+
+/**
  * Custom LMTA function - execute an arbitrary mysql query 
  */
 function inter_mysql_query($sql, $process)
@@ -114,7 +133,7 @@ function do_api_search($string, $function)
 
 
 /**
- * Get the data vis API call and compare its metadata with the one indicated in the current Inter list instance
+ * Get the data via API call and compare its metadata with the one indicated in the current Inter list instance
  */
 function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadata)
 {
