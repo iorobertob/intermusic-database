@@ -217,7 +217,7 @@ function get_poster_list_array($courseid, $moduleinstance)
         // $posters_array = $metadata_array;
         // $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
         $posters_array[$i] = array("TEST", "TEST", "TEST", "TEST", "TEST", "TEST");
-
+        file_print($row[1]);
         // $posters_array[$i] = array($metadata_array[0], $metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4]);
         // $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         
