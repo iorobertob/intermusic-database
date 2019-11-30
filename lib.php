@@ -60,8 +60,8 @@ function inter_add_instance($moduleinstance, $mform = null) {
     require_once("$CFG->libdir/resourcelib.php");// For debugging purposes
     require_once("$CFG->dirroot/mod/inter/io_print.php");     
 
-    
-    file_print("A VER SI AQUI", TRIUE);  
+
+    file_print("A VER SI AQUI", true);  
     
     //TODO: print this cmid to see what is it?
     $cmid = $moduleinstance->coursemodule;
