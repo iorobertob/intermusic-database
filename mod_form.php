@@ -60,6 +60,7 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addHelpButton('name', 'intername', 'mod_inter');
 
 
+        ///////////////////////////////////// METADATA FIELDS ////////////////////////////////
         // Add the poster surtitle field.
         $mform->addElement('text', 'meta1', get_string('meta1', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta1', PARAM_TEXT);
@@ -89,6 +90,13 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->setType('meta5', PARAM_TEXT);
         // $mform->addRule('language', null, 'required', null, 'client');
         $mform->addRule('meta5', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+        // Add the poster surtitle field.
+        $mform->addElement('text', 'meta6', get_string('meta6', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta6', PARAM_TEXT);
+        // $mform->addRule('language', null, 'required', null, 'client');
+        $mform->addRule('meta6', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        ///////////////////////////////////// METADATA FIELDS ////////////////////////////////
 
 
         // Adding the standard "intro" and "introformat" fields.

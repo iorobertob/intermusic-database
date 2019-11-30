@@ -119,5 +119,20 @@ function xmldb_inter_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2019030507, 'inter');
     } 
 
+    if ($oldversion < 2019030510)
+    {
+        // Define field author to be added to poster.
+        $table = new xmldb_table('inter');
+        $field = new xmldb_field('meta6', XMLDB_TYPE_TEXT, null, null, null, null, null, 'meta5');
+
+        // Conditionally launch add field author.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+     
+        // Poster savepoint reached.
+        upgrade_mod_savepoint(true, 2019030510, 'inter');
+    } 
+
     return true;
 }

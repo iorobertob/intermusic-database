@@ -173,7 +173,8 @@ function get_poster_list_array($courseid, $moduleinstance)
     $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
     $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Surtitle");
     $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta4 : "List");
-    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta5 : "Language");
+    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta4 : "First Line");
+    $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta5 : "Language");
 
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
@@ -185,14 +186,14 @@ function get_poster_list_array($courseid, $moduleinstance)
     $data_array = [];
     if ($moduleinstance->platformwide === "0")
     {
-        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Content");
-        $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
+        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], "Content");
+        $query         = "SELECT id, meta1, meta2, meta3, meta4, meta5, meta6, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], "Course", "Content");
-        $query         = "SELECT id, author, name, surtitle, numbering, language, rs_id FROM ".$prefix."poster";
+        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], "Course", "Content");
+        $query         = "SELECT id, meta1, meta2, meta3, meta4, meta5, meta6, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
 
@@ -204,19 +205,19 @@ function get_poster_list_array($courseid, $moduleinstance)
     while($row = mysqli_fetch_array($result_poster))
     {
         // API CALL ,  $row[6] is the RS ID
-        $metadata_array = get_metadata_from_api($row[6], $moduleinstance, $list_metadata);
+        // $metadata_array = get_metadata_from_api($row[6], $moduleinstance, $list_metadata);
 
-        // row[0] = id , row[1] = name ...
-        $metadata_array[0] = ($metadata_array[0] != "" ? $metadata_array[0] : $row[1]); // Start from 1 because row has data from query where 0 is ID. 
-        $metadata_array[1] = ($metadata_array[1] != "" ? $metadata_array[1] : $row[2]); 
-        $metadata_array[2] = ($metadata_array[2] != "" ? $metadata_array[2] : $row[3]); 
-        $metadata_array[3] = ($metadata_array[3] != "" ? $metadata_array[3] : $row[4]); 
-        $metadata_array[4] = ($metadata_array[4] != "" ? $metadata_array[4] : $row[5]); 
+        // // row[0] = id , row[1] = name ...
+        // $metadata_array[0] = ($metadata_array[0] != "" ? $metadata_array[0] : $row[1]); // Start from 1 because row has data from query where 0 is ID. 
+        // $metadata_array[1] = ($metadata_array[1] != "" ? $metadata_array[1] : $row[2]); 
+        // $metadata_array[2] = ($metadata_array[2] != "" ? $metadata_array[2] : $row[3]); 
+        // $metadata_array[3] = ($metadata_array[3] != "" ? $metadata_array[3] : $row[4]); 
+        // $metadata_array[4] = ($metadata_array[4] != "" ? $metadata_array[4] : $row[5]); 
 
         // $posters_array = $metadata_array;
-        $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5]);
+        $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
 
-        $posters_array[$i] = array($metadata_array[0], $metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4]);
+        // $posters_array[$i] = array($metadata_array[0], $metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4]);
         // $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
         
         // TODO: This should be in the same array as the posters_array, now its like this because of the array_search function
@@ -246,6 +247,7 @@ function get_poster_list_array($courseid, $moduleinstance)
                                     $posters_array[$key][2] , 
                                     $posters_array[$key][3] , 
                                     $posters_array[$key][4] ,
+                                    $posters_array[$key][5] ,
                                     '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'.$shortname.'</a>',
                                     '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         }
@@ -256,6 +258,7 @@ function get_poster_list_array($courseid, $moduleinstance)
                                     $posters_array[$key][2] , 
                                     $posters_array[$key][3] , 
                                     $posters_array[$key][4] ,
+                                    $posters_array[$key][5] ,
                                     '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
         }
         $i = $i + 1;

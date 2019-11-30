@@ -14,6 +14,7 @@
         <FIELD NAME="meta3" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="meta4" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="meta5" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="meta6" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="serial_data"  TYPE="text" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="platformwide" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
