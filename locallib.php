@@ -173,8 +173,8 @@ function get_poster_list_array($courseid, $moduleinstance)
     $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
     $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Surtitle");
     $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta4 : "List");
-    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta4 : "First Line");
-    $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta5 : "Language");
+    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta5 : "First Line");
+    $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta6 : "Language");
 
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
@@ -215,7 +215,8 @@ function get_poster_list_array($courseid, $moduleinstance)
         // $metadata_array[4] = ($metadata_array[4] != "" ? $metadata_array[4] : $row[5]); 
 
         // $posters_array = $metadata_array;
-        $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+        // $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+        $posters_array[$i] = array("TEST", "TEST", "TEST", "TEST", "TEST", "TEST");
 
         // $posters_array[$i] = array($metadata_array[0], $metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4]);
         // $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
