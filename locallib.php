@@ -53,6 +53,7 @@ function save_serialized_metadata($courseid, $moduleinstance, $id)
 {
     global $DB, $CFG;
     file_print("A VER SI AQUI", TRIUE);
+    die;
     $big_array  = []; 
     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
     $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
