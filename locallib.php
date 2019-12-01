@@ -109,29 +109,29 @@ function inter_mysql_query($sql, $process)
 /**
  * Do an API requeuest with 
  */
-function do_api_search($string, $function)
-{
-    $config      = get_config('resourcespace');
-    $url         = get_config('resourcespace', 'resourcespace_api_url');
-    $private_key = get_config('resourcespace', 'api_key');
-    $user        = get_config('resourcespace', 'api_user');
-    // Set the private API key for the user (from the user account page) and the user we're accessing 
+// function do_api_search($string, $function)
+// {
+//     $config      = get_config('resourcespace');
+//     $url         = get_config('resourcespace', 'resourcespace_api_url');
+//     $private_key = get_config('resourcespace', 'api_key');
+//     $user        = get_config('resourcespace', 'api_user');
+//     // Set the private API key for the user (from the user account page) and the user we're accessing 
 
-    // Formulate the query
-    $query="user=" . $user . "&function=".$function."&param1=".$string."&param2=&param3=&param4=&param5=&param6=";
+//     // Formulate the query
+//     $query="user=" . $user . "&function=".$function."&param1=".$string."&param2=&param3=&param4=&param5=&param6=";
 
-    // Sign the query using the private key
-    $sign=hash("sha256",$private_key . $query);
+//     // Sign the query using the private key
+//     $sign=hash("sha256",$private_key . $query);
 
-    // Make the request and output the JSON results.
-    $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign), TRUE);
+//     // Make the request and output the JSON results.
+//     $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign), TRUE);
     
-    $result = [];
-    $result[0] = "https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign;
-    $result[1] = $results;
+//     $result = [];
+//     $result[0] = "https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign;
+//     $result[1] = $results;
 
-    return $result;
-}
+//     return $result;
+// }
 
 
 /**
