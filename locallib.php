@@ -137,26 +137,26 @@ function do_api_search($string, $function)
 /**
  * Get the data via API call and compare its metadata with the one indicated in the current Inter list instance
  */
-function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadata)
-{
-    global $PAGE, $DB, $CFG;
-    $prefix = $CFG->prefix;
+// function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadata)
+// {
+//     global $PAGE, $DB, $CFG;
+//     $prefix = $CFG->prefix;
 
-    $result = do_api_search($resourcespace_id, 'get_resource_field_data');
+//     $result = do_api_search($resourcespace_id, 'get_resource_field_data');
 
-    $new_list_metadata = [];
-    for($i = 0; $i <= sizeof($list_metadata); $i++)
-    {
-        foreach($result[1] as $row)
-        {
-            if ($row["title"] === $list_metadata[$i])
-            {
-                $new_list_metadata[$i] = $row["value"];
-            }
-        }
-    } 
-    return $new_list_metadata;
-}
+//     $new_list_metadata = [];
+//     for($i = 0; $i <= sizeof($list_metadata); $i++)
+//     {
+//         foreach($result[1] as $row)
+//         {
+//             if ($row["title"] === $list_metadata[$i])
+//             {
+//                 $new_list_metadata[$i] = $row["value"];
+//             }
+//         }
+//     } 
+//     return $new_list_metadata;
+// }
 
 
 /** 
