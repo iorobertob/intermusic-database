@@ -72,7 +72,8 @@ $the_big_array = [];
 $courseid = $PAGE->course->id;
 // $the_big_array = get_poster_list_array($data_array, $courseid, $moduleinstance);
 
-$the_big_array = unserialize($DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id)));
+$data = $data = preg_replace('!s:(\d+):"(.*?)";!e', "'s:'.strlen('$2').':\"$2\";'", $DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id)));
+$the_big_array = unserialize($data);
 
 // This is the HTML table to render, built based on the big array data
 $table         = inter_build_html_table($course, $moduleinstance, $the_big_array);
