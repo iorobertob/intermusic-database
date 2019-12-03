@@ -72,6 +72,9 @@ $the_big_array = [];
 $courseid = $PAGE->course->id;
 
 $data = $DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id));
+
+file_print("VIEW SERIAL ENCODING : " .mb_detect_encoding($data));
+
 $data = preg_replace_callback ( '!s:(\d+):"(.*?)";!', function($match) {      
     return ($match[1] == strlen($match[2])) ? $match[0] : 's:' . strlen($match[2]) . ':"' . $match[2] . '";';
 },$data );

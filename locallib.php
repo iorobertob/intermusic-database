@@ -157,6 +157,13 @@ function get_poster_list_array($courseid, $moduleinstance)
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
+        file_print($row[1] . " : " . mb_detect_encoding($row[1]));
+        file_print($row[2] . " : " . mb_detect_encoding($row[2]));
+        file_print($row[3] . " : " . mb_detect_encoding($row[3]));
+        file_print($row[4] . " : " . mb_detect_encoding($row[4]));
+        file_print($row[5] . " : " . mb_detect_encoding($row[5]));
+        file_print($row[6] . " : " . mb_detect_encoding($row[6]));
+
     } 
 
     // Query for the module instances of poster an see which course they are
