@@ -166,7 +166,7 @@ function get_poster_list_array($courseid, $moduleinstance)
         $row[5] = utf8_encode($row[5]);
         $row[6] = utf8_encode($row[6]);
         file_print($row[1] . " 1: " . mb_detect_encoding($row[1]));
-        file_print($utf . " 2: " . mb_detect_encoding($utf));
+        file_print($utf . " 2-: " . mb_detect_encoding($utf));
         file_print($row[3] . " 3: " . mb_detect_encoding($row[3]));
         file_print($row[4] . " 4: " . mb_detect_encoding($row[4]));
         file_print($row[5] . " 5: " . mb_detect_encoding($row[5]));
