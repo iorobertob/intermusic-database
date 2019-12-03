@@ -159,12 +159,12 @@ function get_poster_list_array($courseid, $moduleinstance)
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
         $row[1] = utf8_encode($row[1]);
-        file_print($row[1] . " : " . mb_detect_encoding($row[1]));
-        file_print($row[2] . " : " . mb_detect_encoding($row[2]));
-        file_print($row[3] . " : " . mb_detect_encoding($row[3]));
-        file_print($row[4] . " : " . mb_detect_encoding($row[4]));
-        file_print($row[5] . " : " . mb_detect_encoding($row[5]));
-        file_print($row[6] . " : " . mb_detect_encoding($row[6]));
+        file_print($row[1] . " 1: " . mb_detect_encoding($row[1]));
+        file_print($row[2] . " 2: " . mb_detect_encoding($row[2]));
+        file_print($row[3] . " 3: " . mb_detect_encoding($row[3]));
+        file_print($row[4] . " 4: " . mb_detect_encoding($row[4]));
+        file_print($row[5] . " 5: " . mb_detect_encoding($row[5]));
+        file_print($row[6] . " 6: " . mb_detect_encoding($row[6]));
 
     } 
 
