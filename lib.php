@@ -57,11 +57,9 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
-    require_once("$CFG->libdir/resourcelib.php");// For debugging purposes
+    require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/io_print.php");     
 
-    
-    //TODO: print this cmid to see what is it?
     $cmid = $moduleinstance->coursemodule;
 
     $moduleinstance->timecreated = time();
@@ -75,10 +73,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
     // we need to use context now, so we need to make sure all needed info is already in db
-    
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
-    
-    // $file_url = inter_set_mainfile($moduleinstance);
     
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
@@ -87,37 +82,12 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
 
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
-    // $data_array = [];
-    // $big_array  = []; 
-    // $big_array  = get_poster_list_array( $courseid, $moduleinstance);
-    // $serialized_array = serialize($big_array);
-    // //Store in DB
-    // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-    // save_serialized_metadata($courseid, $moduleinstance, 35);
     save_serialized_metadata($courseid, $moduleinstance, $id);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
 
     return $id;
 }
 
-/**
- * Get metadata either with an API call or from local moodle modules metadata, serialise it and commit it to DB
- *
- * @param array $data_array is the data array to fill ---- DELETE
- * @param $courseid ID of the course where this list is, used to build mysql queries TODO: change that to native DB calls
- * @param $moduleinstance An instance of the current Inter list that contains information to refer in the API and DB calls
- * @return array $big_array The data coming back from either ResourceSpace or local moodle metadata. 
- */
-// function save_serialized_metadata($courseid, $moduleinstance, $id)
-// {
-//     global $DB, $CFG;
-//     $big_array  = []; 
-//     // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
-//     $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
-//     $serialized_array = serialize($big_array);
-//     //Store in DB
-//     $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
-// }
 
 /**
  * Updates an instance of the mod_inter in the database.
@@ -145,20 +115,10 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     $DB->update_record('inter', $moduleinstance);
 
-    // inter_set_mainfile($moduleinstance);
-
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     \core_completion\api::update_completion_date_event($moduleinstance->coursemodule, 'inter', $moduleinstance->id, $completiontimeexpected);
 
-    // return $DB->update_record('inter', $moduleinstance);
-
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
-    // $data_array = [];
-    // $big_array  = []; 
-    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
-    // $serialized_array = serialize($big_array);
-    // //Store in DB
-    // $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
     save_serialized_metadata($courseid, $moduleinstance, $moduleinstance->id);
     //===================== GENERATE SERIALIZED ARRAY FFROM POSTER DATA OBTAINED VIA API FROM RESOURCESPACE ============
     return true;

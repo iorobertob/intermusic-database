@@ -52,19 +52,19 @@ function local_test_locallib_function($event)
 function save_serialized_metadata($courseid, $moduleinstance, $id)
 {
     global $DB, $CFG;
+
     $big_array  = []; 
-    // $big_array  = get_poster_list_array($data_array, $courseid, $moduleinstance);
     $big_array  = get_poster_list_array($courseid, $moduleinstance, $id);
     $serialized_array = serialize($big_array);
+
     //Store in DB
-    // $DB->set_field('inter', 'serial_data', 'Così fan tutte', array('id'=>$id));
     $serialized_array = utf8_encode($serialized_array);
     $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
     
 }
 
 /**
- * Custom LMTA function - execute an arbitrary mysql query 
+ * Custom INTERMUSIC function - execute an arbitrary mysql query 
  */
 function inter_mysql_query($sql, $process)
 {
@@ -105,59 +105,6 @@ function inter_mysql_query($sql, $process)
         }
     }
 }
-
-
-/**
- * Do an API requeuest with 
- */
-// function do_api_search($string, $function)
-// {
-//     $config      = get_config('resourcespace');
-//     $url         = get_config('resourcespace', 'resourcespace_api_url');
-//     $private_key = get_config('resourcespace', 'api_key');
-//     $user        = get_config('resourcespace', 'api_user');
-//     // Set the private API key for the user (from the user account page) and the user we're accessing 
-
-//     // Formulate the query
-//     $query="user=" . $user . "&function=".$function."&param1=".$string."&param2=&param3=&param4=&param5=&param6=";
-
-//     // Sign the query using the private key
-//     $sign=hash("sha256",$private_key . $query);
-
-//     // Make the request and output the JSON results.
-//     $results=json_decode(file_get_contents($url . $query . "&sign=" . $sign), TRUE);
-    
-//     $result = [];
-//     $result[0] = "https://resourcespace.lmta.lt/api/?" . $query . "&sign=" . $sign;
-//     $result[1] = $results;
-
-//     return $result;
-// }
-
-
-/**
- * Get the data via API call and compare its metadata with the one indicated in the current Inter list instance
- */
-// function get_metadata_from_api($resourcespace_id, $moduleinstance, $list_metadata)
-// {
-//     global $PAGE, $DB, $CFG;
-//     $prefix = $CFG->prefix;
-
-//     $result = do_api_search($resourcespace_id, 'get_resource_field_data');
-
-//     $new_list_metadata = [];
-//     for($i = 0; $i <= sizeof($list_metadata); $i++)
-//     {
-//         foreach($result[1] as $row)
-//         {
-//             if ($row["title"] === $list_metadata[$i])
-//             {
-//                 $new_list_metadata[$i] = $row["value"];
-//             }
-//         }
-//     } 
-//     return $new_list_metadata;
-// }
 
 
 /** 
@@ -207,29 +154,8 @@ function get_poster_list_array($courseid, $moduleinstance)
     $i = 0;
     while($row = mysqli_fetch_array($result_poster))
     {
-        // API CALL ,  $row[6] is the RS ID
-        // $metadata_array = get_metadata_from_api($row[6], $moduleinstance, $list_metadata);
-
-        // // row[0] = id , row[1] = name ...
-        // $metadata_array[0] = ($metadata_array[0] != "" ? $metadata_array[0] : $row[1]); // Start from 1 because row has data from query where 0 is ID. 
-        // $metadata_array[1] = ($metadata_array[1] != "" ? $metadata_array[1] : $row[2]); 
-        // $metadata_array[2] = ($metadata_array[2] != "" ? $metadata_array[2] : $row[3]); 
-        // $metadata_array[3] = ($metadata_array[3] != "" ? $metadata_array[3] : $row[4]); 
-        // $metadata_array[4] = ($metadata_array[4] != "" ? $metadata_array[4] : $row[5]); 
-
-        // $posters_array = $metadata_array;
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
-        file_print("ARRAY");
-        file_print($row[1]);
-        // $posters_array[$i] = array("TEST", "TEST", "TEST", "TEST", "TEST", "TEST");
-
-        // $posters_array[$i] = array($metadata_array[0], $metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4]);
-        // $posters_array_test[$i] = array($metadata_array[1], $metadata_array[2], $metadata_array[3], $metadata_array[4], $metadata_array[5]);
-        
-        // TODO: This should be in the same array as the posters_array, now its like this because of the array_search function
-        // otherwise that function has to look in an array column. Have to research on that.
         $posters_id   [$i] = $row[0];
-
         $i = $i + 1;
     } 
 
@@ -247,7 +173,6 @@ function get_poster_list_array($courseid, $moduleinstance)
             $result_shortname = inter_mysql_query($query_shortname , "select");
             $shortname        = mysqli_fetch_array($result_shortname)[1];
 
-            // TODO: HERE TO ADD METADATA INSTEAD OF THE POSTER ARRAY COMING FORM DB IN MOODLE
             $data_array[$i] = array($posters_array[$key][0] , 
                                     $posters_array[$key][1] , 
                                     $posters_array[$key][2] , 
@@ -334,21 +259,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 });
                 </script>";
 
-    // With JQuery 
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-
-    //                 var table_intermusic = document.getElementById('intermusic');
-    //                 //$('#intermusic').colResizable();
-    //                 //table_intermusic.colResizable();
-
-    //             });
-    //             </script>";
-
-
     $build .= "<script src=\"resize.js\"></script>";
-
     ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
 
     return $build;

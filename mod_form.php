@@ -64,37 +64,31 @@ class mod_inter_mod_form extends moodleform_mod {
         // Add the poster surtitle field.
         $mform->addElement('text', 'meta1', get_string('meta1', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta1', PARAM_TEXT);
-        // $mform->addRule('surtitle', null, 'required', null, 'client');
         $mform->addRule('meta1', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
         // Add the poster author field.
         $mform->addElement('text', 'meta2', get_string('meta2', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta2', PARAM_TEXT);
-        // $mform->addRule('author', null, 'required', null, 'client');
         $mform->addRule('meta2', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
         // Add the poster surtitle field.
         $mform->addElement('text', 'meta3', get_string('meta3', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta3', PARAM_TEXT);
-        // $mform->addRule('numbering', null, 'required', null, 'client');
         $mform->addRule('meta3', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
         // Add the poster surtitle field.
         $mform->addElement('text', 'meta4', get_string('meta4', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta4', PARAM_TEXT);
-        // $mform->addRule('language', null, 'required', null, 'client');
         $mform->addRule('meta4', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
         // Add the poster surtitle field.
         $mform->addElement('text', 'meta5', get_string('meta5', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta5', PARAM_TEXT);
-        // $mform->addRule('language', null, 'required', null, 'client');
         $mform->addRule('meta5', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
         // Add the poster surtitle field.
         $mform->addElement('text', 'meta6', get_string('meta6', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta6', PARAM_TEXT);
-        // $mform->addRule('language', null, 'required', null, 'client');
         $mform->addRule('meta6', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
         ///////////////////////////////////// METADATA FIELDS ////////////////////////////////
 
@@ -125,8 +119,6 @@ class mod_inter_mod_form extends moodleform_mod {
 
         // Adding the rest of mod_inter settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('header', 'label1', 'intersettings', get_string('intersettings', 'inter'));
-        //$mform->addElement('header', 'interfieldset', get_string('interfieldset', 'inter'));
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
@@ -172,8 +164,4 @@ class mod_inter_mod_form extends moodleform_mod {
             }
         }
     }
-
-
-
-
 }
