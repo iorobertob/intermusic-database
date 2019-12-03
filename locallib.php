@@ -58,7 +58,7 @@ function save_serialized_metadata($courseid, $moduleinstance, $id)
     $serialized_array = serialize($big_array);
 
     //Store in DB
-    $serialized_array = utf8_encode($serialized_array);
+    // $serialized_array = utf8_encode($serialized_array);
     $DB->set_field('inter', 'serial_data', $serialized_array, array('id'=>$id));
     
 }
