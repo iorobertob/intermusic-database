@@ -152,6 +152,7 @@ function get_poster_list_array($courseid, $moduleinstance)
     $posters_array = [];
     $posters_id    = [];
     $i = 0;
+    file_print('ENCODING:',TRUE);
     while($row = mysqli_fetch_array($result_poster))
     {
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
