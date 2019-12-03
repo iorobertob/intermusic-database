@@ -190,13 +190,13 @@ function get_poster_list_array($courseid, $moduleinstance)
     if ($moduleinstance->platformwide === "0")
     {
         $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], "Content");
-        $query         = "SELECT id, meta1, meta2, meta3, meta4, meta5, meta6, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
+        $query         = "SELECT id, meta_value1, meta_value2, meta_value3, meta_value4, meta_value5, meta_value6, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
         $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], "Course", "Content");
-        $query         = "SELECT id, meta1, meta2, meta3, meta4, meta5, meta6, rs_id FROM ".$prefix."poster";
+        $query         = "SELECT id, meta_value1, meta_value2, meta_value3, meta_value4, meta_value5, meta_value6, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
 
