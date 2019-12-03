@@ -74,9 +74,9 @@ $courseid = $PAGE->course->id;
 
 // $data = $data = preg_replace('!s:(\d+):"(.*?)";!e', "'s:'.strlen('$2').':\"$2\";'", $DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id)));
 $data = $DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id));
-$data = preg_replace_callback ( '!s:(\d+):"(.*?)";!', function($match) {      
-    return ($match[1] == strlen($match[2])) ? $match[0] : 's:' . strlen($match[2]) . ':"' . $match[2] . '";';
-},$data );
+// $data = preg_replace_callback ( '!s:(\d+):"(.*?)";!', function($match) {      
+    // return ($match[1] == strlen($match[2])) ? $match[0] : 's:' . strlen($match[2]) . ':"' . $match[2] . '";';
+// },$data );
 
 $the_big_array = unserialize($data);
 
