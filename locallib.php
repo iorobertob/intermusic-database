@@ -82,7 +82,7 @@ function inter_mysql_query($sql, $process)
 
 	// checking connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
-    file_print("Initial character set: ". $conn->character_set_name());
+    file_print("Initial character set: ". $conn->character_set_name(), true);
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
@@ -158,7 +158,7 @@ function get_poster_list_array($courseid, $moduleinstance)
     $posters_array = [];
     $posters_id    = [];
     $i = 0;
-    file_print('ENCODING:',TRUE);
+    file_print('ENCODING:');
     while($row = mysqli_fetch_array($result_poster))
     {
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
