@@ -73,7 +73,7 @@ $courseid = $PAGE->course->id;
 
 $data = $DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id));
 
-file_print("VIEW SERIAL ENCODING : " .mb_detect_encoding($data));
+file_print("VIEW SERIAL ENCODING : " .mb_detect_encoding($data), true);
 file_print("VIEW DATA : " .$data);
 
 // $data = preg_replace_callback ( '!s:(\d+):"(.*?)";!', function($match) {      
