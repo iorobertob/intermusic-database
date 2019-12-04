@@ -40,12 +40,7 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
      * @return restore_path_element[].
      */
     protected function define_structure() {
-        $paths = array();
-        $userinfo = $this->get_setting_value('userinfo');
-
-        $paths[] = new restore_path_element('elt', '/path/to/file');
-
-        return $this->prepare_activity_structure($paths);
+        return $this->prepare_activity_structure(array(new restore_path_element('inter', '/activity/inter')));
     }
 
     /**
@@ -53,14 +48,23 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
      *
      * @param array $data Parsed element data.
      */
-    protected function process_elt($data) {
-        return;
+    protected function process_inter($data) {
+        
+        global $DB;
+
+        $data = (object)$data;
+        $data->course = $this->get_courseid();
+        $data->timemodified = time();
+
+        $newid = $DB->insert_record('inter', $data);
+
+        $this->apply_activity_instance($newid);
     }
 
     /**
      * Defines post-execution actions.
      */
     protected function after_execute() {
-        return;
-    }
+        $this->add_related_files('mod_inter', 'intro', null);
+        $this->add_related_files('mod_inter', 'content', null);
 }

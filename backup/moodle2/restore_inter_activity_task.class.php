@@ -58,11 +58,9 @@ class restore_inter_activity_task extends restore_activity_task {
      * @return array.
      */
     static public function define_decode_contents() {
-        $contents = array();
-
-        // Define the contents.
-
-        return $contents;
+        
+        // Define the contents
+        return array(new restore_decode_content('inter', array('intro'), 'poster'));
     }
 
     /**
@@ -71,11 +69,10 @@ class restore_inter_activity_task extends restore_activity_task {
      * @return array.
      */
     static public function define_decode_rules() {
-        $rules = array();
-
-        // Define the rules.
-
-        return $rules;
+        return array(
+            new restore_decode_rule('INTERINDEX', '/mod/inter/index.php?id=$1', 'course'),
+            new restore_decode_rule('INTERVIEWBYID', '/mod/inter/view.php?id=$1', 'course_module'),
+        );
     }
 
     /**

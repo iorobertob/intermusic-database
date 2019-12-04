@@ -43,22 +43,34 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         $userinfo = $this->get_setting_value('userinfo');
 
         // Replace with the attributes and final elements that the element will handle.
-        $attributes = null;
+        $attributes     = null;
         $final_elements = null;
-        $root = new backup_nested_element('mod_inter', $attributes, $final_elements);
+        // $root = new backup_nested_element('mod_inter', $attributes, $final_elements);
+        $inter = new backup_nested_element('inter', array('id'), array(
+                'name', 
+                'meta1',
+                'meta2',
+                'meta3',
+                'meta4',
+                'meta5',
+                'meta6',
+                'intro',
+                'serial_data', 
+                'introformat'));
 
         // Replace with the attributes and final elements that the element will handle.
-        $attributes = null;
-        $final_elements = null;
-        $elt = new backup_nested_element('elt', $attributes, $final_elements);
+        // $attributes = null;
+        // $final_elements = null;
+        // $elt = new backup_nested_element('elt', $attributes, $final_elements);
 
         // Build the tree with these elements with $root as the root of the backup tree.
 
-        // Define the source tables for the elements.
-
-        // Define id annotations.
+        // Define the data source.
+        $poster->set_source_table('inter', array('id' => backup::VAR_ACTIVITYID));
 
         // Define file annotations.
+        $poster->annotate_files('mod_inter', 'intro', null);
+        $poster->annotate_files('mod_inter', 'content', null); // This file areas haven't itemid
 
         return $this->prepare_activity_structure($root);
     }
