@@ -82,7 +82,7 @@ function inter_mysql_query($sql, $process)
 
 	// checking connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
-    file_print("Initial character set: %s\n", $conn->character_set_name());
+    file_print("Initial character set: ". $conn->character_set_name());
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
