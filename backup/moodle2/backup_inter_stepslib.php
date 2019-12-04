@@ -72,6 +72,6 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         $inter->annotate_files('mod_inter', 'intro', null);
         $inter->annotate_files('mod_inter', 'content', null); // This file areas haven't itemid
 
-        return $this->prepare_activity_structure($root);
+        return $this->prepare_activity_structure($inter);
     }
 }
