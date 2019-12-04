@@ -83,6 +83,17 @@ function inter_mysql_query($sql, $process)
 	// checking connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
     file_print("Initial character set: ". $conn->character_set_name(), true);
+
+
+    /* change character set to utf8 */
+    if (!$conn->set_charset("utf8")) {
+        file_print("Error loading character set utf8: ". $mysqli->error);
+        exit();
+    } else {
+        file_print("Current character set: ". $mysqli->character_set_name());
+    }
+
+
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
