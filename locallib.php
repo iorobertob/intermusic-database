@@ -90,7 +90,7 @@ function inter_mysql_query($sql, $process)
         file_print("Error loading character set utf8: ". $mysqli->error);
         exit();
     } else {
-        file_print("Current character set: ". $mysqli->character_set_name());
+        file_print("Current character set: ". $conn->character_set_name());
     }
 
 
