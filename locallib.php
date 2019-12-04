@@ -14,10 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-mb_detect_order('ASCII, UTF-8, ISO-8859-1');
- 
-// tell the browser that we are using UTF-8
-header('content-type: text/plain; charset=UTF-8');
+// mb_detect_order('ASCII, UTF-8, ISO-8859-1');
+// // tell the browser that we are using UTF-8
+// header('content-type: text/plain; charset=UTF-8');
 
 /**
  * Plugin internal classes, functions and constants are defined here.
