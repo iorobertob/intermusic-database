@@ -66,11 +66,11 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         // Build the tree with these elements with $root as the root of the backup tree.
 
         // Define the data source.
-        $poster->set_source_table('inter', array('id' => backup::VAR_ACTIVITYID));
+        $inter->set_source_table('inter', array('id' => backup::VAR_ACTIVITYID));
 
         // Define file annotations.
-        $poster->annotate_files('mod_inter', 'intro', null);
-        $poster->annotate_files('mod_inter', 'content', null); // This file areas haven't itemid
+        $inter->annotate_files('mod_inter', 'intro', null);
+        $inter->annotate_files('mod_inter', 'content', null); // This file areas haven't itemid
 
         return $this->prepare_activity_structure($root);
     }
