@@ -278,7 +278,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                     fixedHeader: true,
                     scrollY: '500px',
                     scrollCollapse: true,
-                    autoWidth: true,
+                    // autoWidth: true,
                     responsive: true
                 } );
 
