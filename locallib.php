@@ -277,7 +277,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 $('#intermusic').DataTable( {
                     fixedHeader: true,
                     scrollY: '500px',
-                    scrollCollapse: true,
+                    // scrollCollapse: true,
                     // autoWidth: true,
                     responsive: true
                 } );
