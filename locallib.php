@@ -166,7 +166,6 @@ function get_poster_list_array($courseid, $moduleinstance)
     $posters_array = [];
     $posters_id    = [];
     $i = 0;
-    file_print('ENCODING:');
     while($row = mysqli_fetch_array($result_poster))
     {
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
@@ -179,12 +178,6 @@ function get_poster_list_array($courseid, $moduleinstance)
         $row[4] = utf8_encode($row[4]);
         $row[5] = utf8_encode($row[5]);
         $row[6] = utf8_encode($row[6]);
-        file_print($row[1] . " 1: " . mb_detect_encoding($row[1]));
-        file_print($utf . " 2-: " . mb_detect_encoding($utf));
-        file_print($row[3] . " 3: " . mb_detect_encoding($row[3]));
-        file_print($row[4] . " 4: " . mb_detect_encoding($row[4]));
-        file_print($row[5] . " 5: " . mb_detect_encoding($row[5]));
-        file_print($row[6] . " 6: " . mb_detect_encoding($row[6]));
 
     } 
 
@@ -231,10 +224,13 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
 { 
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
+    $datatables_responsive = 'https://cdn.datatables.net/responsive/2.2.3/css/dataTables.responsive.css';
     $build = "<!DOCTYPE html>";
     $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
+    $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables_responsive."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
+    $build .= "<script src=\"https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js\"></script>";
     $build .= "<script src=\"sha256.js\"></script>";
     $build .= "<script src=\"colResizable-1.6.js\"></script>";
     $build .= "<script src=\"js_utilities.js\"></script>";
@@ -282,7 +278,8 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                     fixedHeader: true,
                     scrollY: '500px',
                     scrollCollapse: true,
-                    autoWidth: true
+                    autoWidth: true,
+                    responsive: true
                 } );
 
                 });
