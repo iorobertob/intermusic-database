@@ -274,7 +274,9 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 {
 
                 // $('#intermusic').colResizable();
-                $('#intermusic').DataTable( {
+                $('#intermusic')
+                    .addClass( 'nowrap' )
+                    .DataTable( {
                     fixedHeader: true,
                     scrollY: '500px',
                     // scrollCollapse: true,
