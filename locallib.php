@@ -85,10 +85,10 @@ function inter_mysql_query($sql, $process)
     // Charset handling, make sure we are using utf8
     /* change character set to utf8 */
     if (!$conn->set_charset("utf8")) {
-        file_print("Error loading character set utf8: ". $mysqli->error);
+        inter_print("Error loading character set utf8: ". $mysqli->error);
         exit();
     } else {
-        file_print("Current character set: ". $conn->character_set_name());
+        inter_print("Current character set: ". $conn->character_set_name());
     }
 
 	// Check connection
