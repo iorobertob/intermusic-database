@@ -47,5 +47,5 @@ $observers = array(
     // array(
     //     'eventname' => '\core\event\something_else_happened',
     //     'callback' => 'local_test_observer_two::do_something',
-    // ),
+    ),
 );
