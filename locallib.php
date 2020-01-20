@@ -150,13 +150,13 @@ function get_poster_list_array($courseid, $moduleinstance)
     $data_array = [];
     if ($moduleinstance->platformwide === "0")
     {
-        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6], "Content");
+        $data_array[0] = array ("Content", $list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6]);
         $query         = "SELECT id, meta_value1, meta_value2, meta_value3, meta_value4, meta_value5, meta_value6, meta_value7, rs_id FROM ".$prefix."poster WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6], "Course", "Content");
+        $data_array[0] = array ( "Content", $list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6], "Course");
         $query         = "SELECT id, meta_value1, meta_value2, meta_value3, meta_value4, meta_value5, meta_value6, meta_value7, rs_id FROM ".$prefix."poster";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$poster_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
@@ -195,26 +195,26 @@ function get_poster_list_array($courseid, $moduleinstance)
             $result_shortname = inter_mysql_query($query_shortname , "select");
             $shortname        = mysqli_fetch_array($result_shortname)[1];
 
-            $data_array[$i] = array($posters_array[$key][0] , 
+            $data_array[$i] = array('<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '                   \'>Poster</a>',
+                                    $posters_array[$key][0] , 
                                     $posters_array[$key][1] , 
                                     $posters_array[$key][2] , 
                                     $posters_array[$key][3] , 
                                     $posters_array[$key][4] ,
                                     $posters_array[$key][5] ,
                                     $posters_array[$key][6] ,
-                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'.$shortname.'</a>',
-                                    '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'.$shortname.'</a>');
         }
         else
         {
-            $data_array[$i] = array($posters_array[$key][0] , 
+            $data_array[$i] = array('<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '                   \'>Poster</a>',
+                                    $posters_array[$key][0] , 
                                     $posters_array[$key][1] , 
                                     $posters_array[$key][2] , 
                                     $posters_array[$key][3] , 
                                     $posters_array[$key][4] ,
                                     $posters_array[$key][5] ,
-                                    $posters_array[$key][6] ,
-                                    '<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
+                                    $posters_array[$key][6]);
         }
         $i = $i + 1;
     } 
