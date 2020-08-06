@@ -31,21 +31,6 @@ defined('MOODLE_INTERNAL') || die();
 $observers = array(
 
     array(
-    //     'eventname' => '\core\event\something_happened',
-    //     'callback' => '\local_test\another\observer_one::something_happened',
-    //     'includefile' => '/path/to/file/relative/to/moodle/dir/root',
-    //     'priority' => 200,
-    //     'internal' => true,
-    // ),
 
-    // array(
-    //     'eventname' => '\core\event\something_else_happened',
-    //     'callback' => 'local_test_locallib_function',
-    //     'internal' => false,
-    // ),
-
-    // array(
-    //     'eventname' => '\core\event\something_else_happened',
-    //     'callback' => 'local_test_observer_two::do_something',
     ),
 );

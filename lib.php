@@ -229,13 +229,6 @@ function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea
 function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = array()) {
     global $DB, $CFG;
 
-    // if ($context->contextlevel != CONTEXT_MODULE) {
-    //     send_file_not_found();
-    // }
-
-    // require_login($course, true, $cm);
-    // send_file_not_found();
-
     require_once("$CFG->libdir/resourcelib.php");
 
     if ($context->contextlevel != CONTEXT_MODULE) {
@@ -294,8 +287,6 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
 
     // finally send the file
     send_stored_file($file, null, $filter, $forcedownload, $options);
-    // send_stored_file($file, null, $filter, false, $options);
-    
 }
 
 /**

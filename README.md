@@ -1,27 +1,20 @@
 # Intermusic Database #
 
-TODO The tables prefix in the locallib.php file is now hardcoded, fix to take the prefix from the local moodle environment.
-
-TODO Describe the plugin shortly here.
-
-TODO Provide more detailed description here.
+### Important: 
+- This module is tightly integrated with other parts of the Intermusic project's system, specially with the custom "poster" module version forked for Inter music from the original poster moodle module. 
+- When installing the folder of this module has to be named 'inter' 
 
 
+## What it does
+This module will look for the instances of our custom posters (https://github.com/iorobertob/intermusic_poster) in the current course, or across the whole platform, and display a searchable list of them. 
 
-## License ##
+It will take the metadata set in the configuration of a the custom poster (manually in put or retreived from an Asset Management System -AMS-) and populate a table, with links to the corresponding poster. 
 
-UNDER DEVELOPMENT
+The data is automatically updated via cron tasks and everytime the module is saved to synchonize with new posters created/removed. 
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+The name of the columns for the metadata of the poster can be automatically populated with defalt values or overriden with custom values in the configuration section. 
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with
-this program.  If not, see <http://www.gnu.org/licenses/>.
 
-2019 LMTA <roberto.becerra@lmta.lt>
+
+

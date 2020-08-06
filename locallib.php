@@ -171,14 +171,6 @@ function get_poster_list_array($courseid, $moduleinstance)
         $posters_array[$i] = array($row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
         $posters_id   [$i] = $row[0];
         $i = $i + 1;
-        // $utf = utf8_encode($row[2]);
-        // $row[1] = utf8_encode($row[1]);
-        // $row[2] = utf8_encode($row[2]);
-        // $row[3] = utf8_encode($row[3]);
-        // $row[4] = utf8_encode($row[4]);
-        // $row[5] = utf8_encode($row[5]);
-        // $row[6] = utf8_encode($row[6]);
-        // $row[7] = utf8_encode($row[7]);
     } 
 
     // Query for the module instances of poster an see which course they are
@@ -238,9 +230,6 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     $build .= "<script src=\"js_utilities.js\"></script>";
   
     ///////////////  TABLE //////////////////////////////////////////
-    // $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
-
-    // $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed;\" ><thead><th>";
     $build .= "<table class=\"display nowrap dataTable collapsed dtr-inline\" id=\"intermusic\"  ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
@@ -272,7 +261,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     $build .= '</tbody></table>';
     ///////////////  TABLE //////////////////////////////////////////
 
-    ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
+    ///////////////  JAVASCRIPT  /////////////////////////////
     $build .= "<script>
                 $(document).ready(function() 
                 {
@@ -292,7 +281,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 </script>";
 
     $build .= "<script src=\"resize.js\"></script>";
-    ///////////////  JAVASCRIPT SCRIPTS /////////////////////////////
+    ///////////////  JAVASCRIPT  /////////////////////////////
 
     return $build;
 }
