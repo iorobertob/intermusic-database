@@ -12,7 +12,7 @@ It will take the metadata set in the configuration of a the custom poster (manua
 
 The data is automatically updated via cron tasks and everytime the module is saved to synchonize with new posters created/removed. 
 
-The name of the columns for the metadata of the poster can be automatically populated with defalt values or overriden with custom values in the configuration section. 
+The name of the columns for the metadata of the poster can be automatically populated with defalt values or overriden with custom values in the configuration section.
 
 
 
