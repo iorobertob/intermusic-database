@@ -16,5 +16,3 @@ The name of the columns for the metadata of the poster can be automatically popu
 
 
 
-
-
