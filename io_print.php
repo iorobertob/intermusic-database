@@ -19,4 +19,4 @@ function inter_print($txt, $overwrite = false)
 //     }
 //     fwrite($myfile, $txt."\n") or die('fwrite failed');
 //     fclose($myfile);
-}
+// }
