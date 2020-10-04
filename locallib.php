@@ -136,9 +136,9 @@ function get_poster_list_array($courseid, $moduleinstance)
     $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
     $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Title - English");
     $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta3 : "Surtitle");
-    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta4 : "List");
+    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta4 : "Listing");
     $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta5 : "1st Line");
-    $list_metadata[6] = ($moduleinstance->meta7 != "" ? $moduleinstance->meta6 : "Language");
+    $list_metadata[6] = ($moduleinstance->meta7 != "" ? $moduleinstance->meta6 : "Text by");
 
     // If flag is on, create a list about all posters in the platform
     // otherwise, only on the posters on the current course. If global, the course number
