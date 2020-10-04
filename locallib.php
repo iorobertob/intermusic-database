@@ -184,8 +184,8 @@ function get_poster_list_array($courseid, $moduleinstance)
         if ($moduleinstance->platformwide === "1")
         {
             $query_shortname = "SELECT id, shortname language FROM ".$prefix."course WHERE id = '".$row[2]."'";
-            $result_shortname = inter_mysql_query($query_shortname , "select");
-            $shortname        = mysqli_fetch_array($result_shortname)[1];
+            $result_shortname = inter_mysql_query ($query_shortname , "select");
+            $shortname        = mysqli_fetch_array($result_shortname) [1];
 
             $data_array[$i] = array('<a href=\''.$CFG->wwwroot.'/mod/poster/view.php?id=' .$row[0]. '                   \'>Poster</a>',
                                     $posters_array[$key][0] , 
@@ -195,7 +195,7 @@ function get_poster_list_array($courseid, $moduleinstance)
                                     $posters_array[$key][4] ,
                                     $posters_array[$key][5] ,
                                     $posters_array[$key][6] ,
-                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'.$shortname.'</a>');
+                                    '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'. $shortname .'</a>');
         }
         else
         {

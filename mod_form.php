@@ -90,6 +90,11 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addElement('text', 'meta6', get_string('meta6', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta6', PARAM_TEXT);
         $mform->addRule('meta6', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+
+        // Add the poster surtitle field.
+        $mform->addElement('text', 'meta7', get_string('meta7', 'mod_inter'), array('size' => '64'));
+        $mform->setType('meta7', PARAM_TEXT);
+        $mform->addRule('meta7', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
         ///////////////////////////////////// METADATA FIELDS ////////////////////////////////
 
 
