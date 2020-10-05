@@ -33,6 +33,7 @@ $string['meta3'] = 'Metadata Field #3:';
 $string['meta4'] = 'Metadata Field #4:';
 $string['meta5'] = 'Metadata Field #5:';
 $string['meta6'] = 'Metadata Field #6:';
+$string['meta7'] = 'Metadata Field #7:';
 $string['intersettings'] = 'Settings';
 $string['interplatformwide'] = 'Include all posters in the platform';
 $string['inter:name'] = 'Name';
