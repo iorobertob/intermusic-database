@@ -230,7 +230,8 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     $build .= "<script src=\"js_utilities.js\"></script>";
   
     ///////////////  TABLE //////////////////////////////////////////
-    $build .= "<table class=\"display nowrap dataTable collapsed dtr-inline\" id=\"intermusic\"  ><thead><th>";
+    $build .= "<table class=\"display  dataTable collapsed dtr-inline\" id=\"intermusic\"  ><thead><th>";
+    // $build .= "<table class=\"display nowrap dataTable collapsed dtr-inline\" id=\"intermusic\"  ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
@@ -268,7 +269,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
 
                 // $('#intermusic').colResizable();
                 $('#intermusic')
-                    .addClass( 'nowrap' )
+                    // .addClass( 'nowrap' )
                     .DataTable( {
                     fixedHeader: true,
                     scrollY: '500px',
