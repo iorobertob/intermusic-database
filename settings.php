@@ -30,7 +30,7 @@ if ($ADMIN->fulltree) {
 	require_once($CFG->dirroot.'/mod/inter/locallib.php');
 
     // Introductory explanation that all the settings are defaults for the add lesson form.
-    $settings->add(new admin_setting_heading('mod_inter/intro', '', get_string('default_titles', 'inter')));
+    $settings->add(new admin_setting_heading('mod_inter/intro', '', get_string('default_column_titles', 'inter')));
 
     $settings->add(new admin_setting_configtext('mod_inter/meta1', get_string('meta1', 'inter')." ".get_string('meta_title','inter'),
             '', "Composer", PARAM_TEXT));
