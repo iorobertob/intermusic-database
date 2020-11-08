@@ -68,7 +68,7 @@ $PAGE->set_heading(format_string($course->fullname));
 $data_array    = [];
 $the_big_array = []; 
 
-// Get an array with the data about posters
+// Get an array with the data about mposters
 $courseid = $PAGE->course->id;
 
 $data = $DB->get_field('inter', 'serial_data', array ('id' => $moduleinstance->id));

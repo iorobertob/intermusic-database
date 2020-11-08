@@ -61,37 +61,37 @@ class mod_inter_mod_form extends moodleform_mod {
 
 
         ///////////////////////////////////// METADATA FIELDS ////////////////////////////////
-        // Add the poster surtitle field.
+        // Add the mposter surtitle field.
         $mform->addElement('text', 'meta1', get_string('meta1', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta1', PARAM_TEXT);
         $mform->addRule('meta1', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the poster author field.
+        // Add the mposter author field.
         $mform->addElement('text', 'meta2', get_string('meta2', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta2', PARAM_TEXT);
         $mform->addRule('meta2', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the poster surtitle field.
+        // Add the mposter surtitle field.
         $mform->addElement('text', 'meta3', get_string('meta3', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta3', PARAM_TEXT);
         $mform->addRule('meta3', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the poster surtitle field.
+        // Add the mposter surtitle field.
         $mform->addElement('text', 'meta4', get_string('meta4', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta4', PARAM_TEXT);
         $mform->addRule('meta4', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the poster surtitle field.
+        // Add the mposter surtitle field.
         $mform->addElement('text', 'meta5', get_string('meta5', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta5', PARAM_TEXT);
         $mform->addRule('meta5', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the poster surtitle field.
+        // Add the mposter surtitle field.
         $mform->addElement('text', 'meta6', get_string('meta6', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta6', PARAM_TEXT);
         $mform->addRule('meta6', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the poster surtitle field.
+        // Add the mposter surtitle field.
         $mform->addElement('text', 'meta7', get_string('meta7', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta7', PARAM_TEXT);
         $mform->addRule('meta7', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
