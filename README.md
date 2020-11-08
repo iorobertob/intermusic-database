@@ -6,7 +6,7 @@
 
 
 ## What it does
-This module will look for the instances of our custom [Media Poster plugin](https://github.com/iorobertob/moodle-mod_inter) in the current course, or across the whole Moodle platform, and display a searchable list of them. 
+This module will look for the instances of our custom [Media Poster plugin](https://github.com/iorobertob/moodle-mod_mposter) in the current course, or across the whole Moodle platform, and display a searchable list of them. 
 
 It will take the metadata set in the configuration of a the Media Posters (manually input or retreived from ResourceSpace, Asset Management System *AMS*) and populate a table, with links to the corresponding mposter. 
 
