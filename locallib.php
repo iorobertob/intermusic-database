@@ -181,26 +181,24 @@ function get_mposter_list_array($courseid, $moduleinstance)
             $result_shortname = inter_mysql_query ($query_shortname , "select");
             $shortname        = mysqli_fetch_array($result_shortname) [1];
 
-            $data_array[$i] = array('<a href=\''.$CFG->wwwroot.'/mod/mposter/view.php?id=' .$row[0]. '                   \'>Poster</a>',
-                                    $mposters_array[$key][0] , 
+            $data_array[$i] = array($mposters_array[$key][0] , 
                                     $mposters_array[$key][1] , 
                                     $mposters_array[$key][2] , 
                                     $mposters_array[$key][3] , 
                                     $mposters_array[$key][4] ,
                                     $mposters_array[$key][5] ,
-                                    $mposters_array[$key][6] ,
+                                    $mposters_array[$key][6] ,'<a href=\''.$CFG->wwwroot.'/mod/mposter/view.php?id=' .$row[0]. ' \'>Open</a>',
                                     '<a href=\''.$CFG->wwwroot.'/course/view.php?id=' .$row[2]. '\'>'. $shortname .'</a>');
         }
         else
         {
-            $data_array[$i] = array('<a href=\''.$CFG->wwwroot.'/mod/mposter/view.php?id=' .$row[0]. '                   \'>Poster</a>',
-                                    $mposters_array[$key][0] , 
+            $data_array[$i] = array($mposters_array[$key][0] , 
                                     $mposters_array[$key][1] , 
                                     $mposters_array[$key][2] , 
                                     $mposters_array[$key][3] , 
                                     $mposters_array[$key][4] ,
                                     $mposters_array[$key][5] ,
-                                    $mposters_array[$key][6]);
+                                    $mposters_array[$key][6])'<a href=\''.$CFG->wwwroot.'/mod/mposter/view.php?id=' .$row[0]. ' \'>Open</a>';
         }
         $i = $i + 1;
     } 
