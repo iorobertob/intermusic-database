@@ -298,11 +298,11 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
  */
 function inter_set_display_options($data) {
     $displayoptions = array();
-    if ($data->display == RESOURCELIB_DISPLAY_POPUP) {
+    if ((isset($data->display))&&($data->display == RESOURCELIB_DISPLAY_POPUP)) {
         $displayoptions['popupwidth']  = $data->popupwidth;
         $displayoptions['popupheight'] = $data->popupheight;
     }
-    if (in_array($data->display, array(RESOURCELIB_DISPLAY_AUTO, RESOURCELIB_DISPLAY_EMBED, RESOURCELIB_DISPLAY_FRAME))) {
+    if ((isset($data->display))&&(in_array($data->display, array(RESOURCELIB_DISPLAY_AUTO, RESOURCELIB_DISPLAY_EMBED, RESOURCELIB_DISPLAY_FRAME))) ){
         $displayoptions['printintro']   = (int)!empty($data->printintro);
     }
     if (!empty($data->showsize)) {
