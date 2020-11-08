@@ -2,7 +2,7 @@
 
 ### Important: 
 - This module only lists activities of the Media Poster plugin, which is based in the Poster pugin. 
-- When installing the folder of this module has to be named 'inter' 
+- When installing the folder of this module has to be named **inter**
 
 
 ## What it does
@@ -22,7 +22,7 @@ This module was created as part of the [Intermusic Project](https://intermusic.l
 
 Installation
 ----------
-Standard moodle plugin process, though the admin pages or by copying this repository in a folder named **mposter** inside **mod/**
+Standard moodle plugin process, though the admin pages or by copying this repository in a folder named **inter** inside **mod/**
 
 
 
