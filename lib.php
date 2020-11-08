@@ -87,7 +87,6 @@ function inter_add_instance($moduleinstance, $mform = null) {
     return $id;
 }
 
-
 /**
  * Updates an instance of the mod_inter in the database.
  *
@@ -112,7 +111,6 @@ function inter_update_instance($moduleinstance, $mform = null) {
         $moduleinstance->revision++;
     }
     
-
     inter_set_display_options($moduleinstance);
 
     $DB->update_record('inter', $moduleinstance);

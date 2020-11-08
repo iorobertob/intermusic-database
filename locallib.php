@@ -219,7 +219,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js\"></script>";
-    $build .= "<script src=\"sha256.js\"></script>";
+    $build .= "<script src=\"sha2506.js\"></script>";
     $build .= "<script src=\"colResizable-1.6.js\"></script>";
     $build .= "<script src=\"js_utilities.js\"></script>";
   
@@ -274,8 +274,6 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
 
                 });
                 </script>";
-
-    $build .= "<script src=\"resize.js\"></script>";
     ///////////////  JAVASCRIPT  /////////////////////////////
 
     return $build;
