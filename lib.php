@@ -109,7 +109,10 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
-    $moduleinstance->revision++;
+    if(isset($moduleinstance->revision)){
+        $moduleinstance->revision++;
+    }
+    
 
     inter_set_display_options($moduleinstance);
 
