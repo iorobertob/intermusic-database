@@ -6,30 +6,31 @@
   <TABLES>
     <TABLE NAME="inter" COMMENT="Each record is one inter instance and its config data">
       <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="meta1" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="meta2" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="meta3" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="meta4" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="meta5" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="meta6" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="serial_data"  TYPE="text" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="platformwide" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="tobemigrated" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="legacyfiles" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="legacyfileslast" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="display" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="displayoptions" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="filterfiles" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="revision" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="incremented when after each file changes, solves browser caching issues"/>
-        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="id"              TYPE="int"  LENGTH="10"   NOTNULL="true"                  SEQUENCE="true"/>
+        <FIELD NAME='display'         TYPE="char" LENGTH="255"  NOTNULL="true" DEFAULT="false"  SEQUENCE="false"/>
+        <FIELD NAME="course"          TYPE="int"  LENGTH="10"   NOTNULL="true" DEFAULT="0"      SEQUENCE="false"/>
+        <FIELD NAME="name"            TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="meta1"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="meta2"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="meta3"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="meta4"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="meta5"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="meta6"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
+        <FIELD NAME="intro"           TYPE="text"               NOTNULL="false"                 SEQUENCE="false"/>
+        <FIELD NAME="serial_data"     TYPE="text"               NOTNULL="false"                 SEQUENCE="false"/>
+        <FIELD NAME="platformwide"    TYPE="text"               NOTNULL="false"                 SEQUENCE="false"/>
+        <FIELD NAME="introformat"     TYPE="int"  LENGTH="4"    NOTNULL="true"  DEFAULT="0"     SEQUENCE="false"/>
+        <FIELD NAME="tobemigrated"    TYPE="int"  LENGTH="4"    NOTNULL="true"  DEFAULT="0"     SEQUENCE="false"/>
+        <FIELD NAME="legacyfiles"     TYPE="int"  LENGTH="4"    NOTNULL="true"  DEFAULT="0"     SEQUENCE="false"/>
+        <FIELD NAME="legacyfileslast" TYPE="int"  LENGTH="10"   NOTNULL="false"                 SEQUENCE="false"/>
+        <FIELD NAME="display"         TYPE="int"  LENGTH="4"    NOTNULL="true"  DEFAULT="0"     SEQUENCE="false"/>
+        <FIELD NAME="displayoptions"  TYPE="text"               NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="filterfiles"     TYPE="int"  LENGTH="4"    NOTNULL="true"  DEFAULT="0"     SEQUENCE="false"/>
+        <FIELD NAME="revision"        TYPE="int"  LENGTH="10"   NOTNULL="true"  DEFAULT="0"     SEQUENCE="false" COMMENT="incremented when after each file changes, solves browser caching issues"/>
+        <FIELD NAME="timemodified"    TYPE="int"  LENGTH="10"   NOTNULL="true"  DEFAULT="0"     SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY   NAME="primary"         TYPE="primary" FIELDS="id"/>
       </KEYS>
       <INDEXES>
         <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
