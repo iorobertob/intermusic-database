@@ -65,36 +65,43 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addElement('text', 'meta1', get_string('meta1', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta1', PARAM_TEXT);
         $mform->addRule('meta1', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta1', get_config('mod_inter','meta1' ) );
 
         // Add the mposter author field.
         $mform->addElement('text', 'meta2', get_string('meta2', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta2', PARAM_TEXT);
         $mform->addRule('meta2', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta2', get_config('mod_inter','meta2' ) );
 
         // Add the mposter surtitle field.
         $mform->addElement('text', 'meta3', get_string('meta3', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta3', PARAM_TEXT);
         $mform->addRule('meta3', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta3', get_config('mod_inter','meta3' ) );
 
         // Add the mposter surtitle field.
         $mform->addElement('text', 'meta4', get_string('meta4', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta4', PARAM_TEXT);
         $mform->addRule('meta4', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta4', get_config('mod_inter','meta4' ) );
 
         // Add the mposter surtitle field.
         $mform->addElement('text', 'meta5', get_string('meta5', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta5', PARAM_TEXT);
         $mform->addRule('meta5', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta5', get_config('mod_inter','meta5' ) );
 
         // Add the mposter surtitle field.
         $mform->addElement('text', 'meta6', get_string('meta6', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta6', PARAM_TEXT);
         $mform->addRule('meta6', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta6', get_config('mod_inter','meta6' ) );
 
         // Add the mposter surtitle field.
         $mform->addElement('text', 'meta7', get_string('meta7', 'mod_inter'), array('size' => '64'));
         $mform->setType('meta7', PARAM_TEXT);
         $mform->addRule('meta7', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
+        $mform->setDefault('meta7', get_config('mod_inter','meta7' ) );
         ///////////////////////////////////// METADATA FIELDS ////////////////////////////////
 
 

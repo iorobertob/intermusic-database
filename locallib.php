@@ -132,13 +132,20 @@ function get_mposter_list_array($courseid, $moduleinstance)
 
     // This is the metadata we want to pull from Resourcespace, the user inputs the correct metadata fields
     // TODO: catch the case when metadatas are incorrect or there is no metadata whatsoever. 
-    $list_metadata[0] = ($moduleinstance->meta1 != "" ? $moduleinstance->meta1 : "Composer");
-    $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
-    $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Title - English");
-    $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta4 : "Surtitle");
-    $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta5 : "Listing");
-    $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta6 : "1st Line");
-    $list_metadata[6] = ($moduleinstance->meta7 != "" ? $moduleinstance->meta7 : "Text by");
+    // $list_metadata[0] = ($moduleinstance->meta1 != "" ? $moduleinstance->meta1 : "Composer");
+    // $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
+    // $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Title - English");
+    // $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta4 : "Surtitle");
+    // $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta5 : "Listing");
+    // $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta6 : "1st Line");
+    // $list_metadata[6] = ($moduleinstance->meta7 != "" ? $moduleinstance->meta7 : "Text by");
+    $list_metadata[0] = $moduleinstance->meta1;
+    $list_metadata[1] = $moduleinstance->meta2;
+    $list_metadata[2] = $moduleinstance->meta3;
+    $list_metadata[3] = $moduleinstance->meta4;
+    $list_metadata[4] = $moduleinstance->meta5;
+    $list_metadata[5] = $moduleinstance->meta6;
+    $list_metadata[6] = $moduleinstance->meta7;
 
     // If flag is on, create a list about all mposters in the platform
     // otherwise, only on the mposters on the current course. If global, the course number

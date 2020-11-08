@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['choosereadme'] = 'Readme when selecting the theme.';
 $string['intername'] = 'Name:';
 $string['intername_help'] = 'Help:';
+$string['meta_title'] = 'Title.';
 $string['meta1'] = 'Metadata Field #1:';
 $string['meta2'] = 'Metadata Field #2:';
 $string['meta3'] = 'Metadata Field #3:';
