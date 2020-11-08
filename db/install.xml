@@ -7,7 +7,6 @@
     <TABLE NAME="inter" COMMENT="Each record is one inter instance and its config data">
       <FIELDS>
         <FIELD NAME="id"              TYPE="int"  LENGTH="10"   NOTNULL="true"                  SEQUENCE="true"/>
-        <FIELD NAME='display'         TYPE="char" LENGTH="255"  NOTNULL="true" DEFAULT="false"  SEQUENCE="false"/>
         <FIELD NAME="course"          TYPE="int"  LENGTH="10"   NOTNULL="true" DEFAULT="0"      SEQUENCE="false"/>
         <FIELD NAME="name"            TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
         <FIELD NAME="meta1"           TYPE="char" LENGTH="255"  NOTNULL="true"                  SEQUENCE="false"/>
