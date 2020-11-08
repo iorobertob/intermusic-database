@@ -199,8 +199,8 @@ function get_mposter_list_array($courseid, $moduleinstance)
                                     $mposters_array[$key][3] , 
                                     $mposters_array[$key][4] ,
                                     $mposters_array[$key][5] ,
-                                    $mposters_array[$key][6]),
-                                    '<a href=\''.$CFG->wwwroot.'/mod/mposter/view.php?id=' .$row[0]. ' \'>Open</a>';
+                                    $mposters_array[$key][6],
+                                    '<a href=\''.$CFG->wwwroot.'/mod/mposter/view.php?id=' .$row[0]. ' \'>Open</a>');
         }
         $i = $i + 1;
     } 
