@@ -275,7 +275,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 });
                 </script>";
 
-    $build .= "<script src=\"resizze.js\"></script>";
+    $build .= "<script src=\"resize.js\"></script>";
     ///////////////  JAVASCRIPT  /////////////////////////////
 
     return $build;
