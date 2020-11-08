@@ -144,13 +144,13 @@ function get_mposter_list_array($courseid, $moduleinstance)
     $data_array = [];
     if ($moduleinstance->platformwide === "0")
     {
-        $data_array[0] = array ("Content", $list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6]);
+        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6], "Content");
         $query         = "SELECT id, meta_value1, meta_value2, meta_value3, meta_value4, meta_value5, meta_value6, meta_value7, rs_id FROM ".$prefix."mposter WHERE course = '".$courseid."'";
         $query_modules = "SELECT id, instance FROM ".$prefix."course_modules WHERE (course = '".$courseid."' AND module ='".$mposter_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
     if ($moduleinstance->platformwide === "1")
     {
-        $data_array[0] = array ( "Content", $list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6], "Course");
+        $data_array[0] = array ($list_metadata[0], $list_metadata[1], $list_metadata[2], $list_metadata[3], $list_metadata[4], $list_metadata[5], $list_metadata[6], "Content", "Course");
         $query         = "SELECT id, meta_value1, meta_value2, meta_value3, meta_value4, meta_value5, meta_value6, meta_value7, rs_id FROM ".$prefix."mposter";
         $query_modules = "SELECT id, instance, course FROM ".$prefix."course_modules WHERE (module ='".$mposter_id."' AND deletioninprogress ='0' AND visible = '1' )";
     }
