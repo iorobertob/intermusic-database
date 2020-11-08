@@ -32,9 +32,6 @@ require_once("$CFG->libdir/filelib.php");
 require_once("$CFG->libdir/resourcelib.php");
 require_once("$CFG->dirroot/mod/inter/lib.php");
 
-// For debugging purposes
-require_once("$CFG->dirroot/mod/inter/io_print.php");
-
 /**
  * Handle the \core\event\something_else_happened event.
  *
@@ -84,11 +81,9 @@ function inter_mysql_query($sql, $process)
     // Charset handling, make sure we are using utf8
     /* change character set to utf8 */
     if (!$conn->set_charset("utf8")) {
-        inter_print("Error loading character set utf8: ". $mysqli->error);
+        //Error loading character set utf8
         exit();
-    } else {
-        inter_print("Current character set: ". $conn->character_set_name());
-    }
+    } 
 
 	// Check connection
 	if ($conn->connect_error) {
@@ -131,14 +126,6 @@ function get_mposter_list_array($courseid, $moduleinstance)
     $prefix = $CFG->prefix;
 
     // This is the metadata we want to pull from Resourcespace, the user inputs the correct metadata fields
-    // TODO: catch the case when metadatas are incorrect or there is no metadata whatsoever. 
-    // $list_metadata[0] = ($moduleinstance->meta1 != "" ? $moduleinstance->meta1 : "Composer");
-    // $list_metadata[1] = ($moduleinstance->meta2 != "" ? $moduleinstance->meta2 : "Title");
-    // $list_metadata[2] = ($moduleinstance->meta3 != "" ? $moduleinstance->meta3 : "Title - English");
-    // $list_metadata[3] = ($moduleinstance->meta4 != "" ? $moduleinstance->meta4 : "Surtitle");
-    // $list_metadata[4] = ($moduleinstance->meta5 != "" ? $moduleinstance->meta5 : "Listing");
-    // $list_metadata[5] = ($moduleinstance->meta6 != "" ? $moduleinstance->meta6 : "1st Line");
-    // $list_metadata[6] = ($moduleinstance->meta7 != "" ? $moduleinstance->meta7 : "Text by");
     $list_metadata[0] = $moduleinstance->meta1;
     $list_metadata[1] = $moduleinstance->meta2;
     $list_metadata[2] = $moduleinstance->meta3;
@@ -237,8 +224,8 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
     $build .= "<script src=\"js_utilities.js\"></script>";
   
     ///////////////  TABLE //////////////////////////////////////////
-    $build .= "<table class=\"display  dataTable collapsed dtr-inline\" id=\"intermusic\"  ><thead><th>";
-    // $build .= "<table class=\"display nowrap dataTable collapsed dtr-inline\" id=\"intermusic\"  ><thead><th>";
+    $build .= "<table class=\"display  dataTable collapsed dtr-inline\" id=\"the_table\"  ><thead><th>";
+    // $build .= "<table class=\"display nowrap dataTable collapsed dtr-inline\" id=\"the_table\"  ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
@@ -274,8 +261,8 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 $(document).ready(function() 
                 {
 
-                // $('#intermusic').colResizable();
-                $('#intermusic')
+                // $('#the_table').colResizable();
+                $('#the_table')
                     // .addClass( 'nowrap' )
                     .DataTable( {
                     fixedHeader: true,
@@ -288,7 +275,7 @@ function inter_build_html_table($course, $moduleinstance, $the_big_array)
                 });
                 </script>";
 
-    $build .= "<script src=\"resize.js\"></script>";
+    $build .= "<script src=\"resizze.js\"></script>";
     ///////////////  JAVASCRIPT  /////////////////////////////
 
     return $build;

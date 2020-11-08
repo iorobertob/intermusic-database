@@ -57,8 +57,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
 
     require_once("$CFG->libdir/resourcelib.php");
     require_once("$CFG->dirroot/mod/inter/locallib.php");
-    require_once("$CFG->libdir/resourcelib.php");
-    require_once("$CFG->dirroot/mod/inter/io_print.php");     
+    require_once("$CFG->libdir/resourcelib.php");  
 
     $cmid = $moduleinstance->coursemodule;
 
