@@ -150,7 +150,7 @@ function xmldb_inter_upgrade($oldversion) {
     } 
 
     // 8 Nov 2020 
-    if ($oldversion < 2019030515)
+    if ($oldversion < 2019030516)
     {
         // Define field author to be added to poster.
         $table = new xmldb_table('inter');
@@ -162,7 +162,7 @@ function xmldb_inter_upgrade($oldversion) {
         }
      
         // Poster savepoint reached.
-        upgrade_mod_savepoint(true, 2019030515, 'inter');
+        upgrade_mod_savepoint(true, 2019030516, 'inter');
     } 
 
 
