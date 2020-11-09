@@ -47,7 +47,7 @@ function xmldb_inter_upgrade($oldversion) {
 
     if ($oldversion < 2019030501)
     {
-    	// Define field author to be added to mposter.
+    	// Define field author to be added to poster.
         $table = new xmldb_table('inter');
         $field = new xmldb_field('platformwide', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'intro');
 
@@ -63,7 +63,7 @@ function xmldb_inter_upgrade($oldversion) {
 
     if ($oldversion < 2019030505)
     {
-        // Define field author to be added to mposter.
+        // Define field author to be added to poster.
         $table = new xmldb_table('inter');
         $field = new xmldb_field('meta1', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'name');
 
@@ -106,7 +106,7 @@ function xmldb_inter_upgrade($oldversion) {
 
     if ($oldversion < 2019030507)
     {
-    	// Define field author to be added to mposter.
+    	// Define field author to be added to poster.
         $table = new xmldb_table('inter');
         $field = new xmldb_field('serial_data', XMLDB_TYPE_TEXT, null, null, null, null, null, 'intro');
 
@@ -121,7 +121,7 @@ function xmldb_inter_upgrade($oldversion) {
 
     if ($oldversion < 2019030510)
     {
-        // Define field author to be added to mposter.
+        // Define field author to be added to poster.
         $table = new xmldb_table('inter');
         $field = new xmldb_field('meta6', XMLDB_TYPE_TEXT, null, null, null, null, null, 'meta5');
 
@@ -136,7 +136,7 @@ function xmldb_inter_upgrade($oldversion) {
 
     if ($oldversion < 2019030512)
     {
-        // Define field author to be added to mposter.
+        // Define field author to be added to poster.
         $table = new xmldb_table('inter');
         $field = new xmldb_field('meta7', XMLDB_TYPE_TEXT, null, null, null, null, null, 'meta6');
 
