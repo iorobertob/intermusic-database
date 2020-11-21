@@ -399,6 +399,7 @@ function inter_build_html_table($file_url, $course)
       fclose($h);
     }
     echo '<pre>'; print_r($data); echo '</pre>';
+    echo "<script> console.log(".$data.");</script>";
 
     // This line is to replace the csv data with the poster module data
     $the_big_array = $data_array;
