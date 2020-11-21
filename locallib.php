@@ -400,6 +400,7 @@ function inter_build_html_table($file_url, $course)
     }
     echo '<pre>'; print_r($data); echo '</pre>';
     echo "<script> console.log(".$data.");</script>";
+    echo "<script> console.log('there should be some data here');</script>";
 
     // This line is to replace the csv data with the poster module data
     $the_big_array = $data_array;
