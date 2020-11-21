@@ -401,9 +401,9 @@ function inter_build_html_table($file_url, $course)
     echo '<pre>'; print_r($data); echo '</pre>';
     echo "<script> console.log(".$data.");</script>";
     echo "<script> console.log('".$file_url."');</script>";
-
+    // /home/iopaveqd/moodledata/filedir/81/e4/81e4d8059f5e15d65e2ff70faa4c11e513296233
     // This line is to replace the csv data with the poster module data
-    $the_big_array = $data_array;
+    // $the_big_array = $data_array;
 
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
