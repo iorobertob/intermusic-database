@@ -385,7 +385,7 @@ function inter_build_html_table($file_url, $course)
 
     // Open the file for reading
     // if (($h = fopen("{$file_url}", "r")) !== FALSE) 
-    if (($h = fopen($file_url}, "r")) !== FALSE) 
+    if (($h = fopen($file_url, "r")) !== FALSE) 
     {
         // Each line in the file is converted into an individual array that we call $data
         // The items of the array are comma separated
