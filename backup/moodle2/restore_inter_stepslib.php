@@ -49,18 +49,29 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
     }
 
     /**
-     * Processes the elt restore data.
+     * Processes the inter restore data.
      *
      * @param array $data Parsed element data.
      */
-    protected function process_elt($data) {
-        return;
+    protected function process_inter($data) {
+
+        global $DB;
+
+        $data = (object)$data;
+        $data->course = $this->get_courseid();
+        $data->timemodified = time();
+
+        $new_id = $DB->insert_record('inter', $data);
+
+        $this->apply_activity_instance($newid);
+
     }
 
     /**
      * Defines post-execution actions.
      */
-    protected function after_execute() {
-        return;
+    protected function after_execute() 
+        $this->add_related_files('mod_inter', 'intro', null);
+        $this->add_related_files('mod_inter', 'content', null);
     }
 }
