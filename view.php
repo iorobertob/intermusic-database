@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// XX This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ $PAGE->set_url('/mod/inter/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 
-//=============================  GET FILE    ===================================
+//=============================  GET FILE===================================
 $fs = get_file_storage();
 
 $files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
