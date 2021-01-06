@@ -411,10 +411,9 @@ function inter_build_html_table($file_url, $course)
     $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
-    $build .= "<script src=\"sha256.js\"></script>";
+    $build .= "<script src=\"https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js\"></script>";
     
     $build .= "<script src=\"colResizable-1.6.js\"></script>";
-
     $build .= "<script src=\"js_utilities.js\"></script>";
     // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
     // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
