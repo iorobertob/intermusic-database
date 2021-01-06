@@ -40,12 +40,13 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
      * @return restore_path_element[].
      */
     protected function define_structure() {
-        $paths = array();
-        $userinfo = $this->get_setting_value('userinfo');
+        // $paths = array();
+        // $userinfo = $this->get_setting_value('userinfo');
 
-        $paths[] = new restore_path_element('inter', '/activity/inter');
+        // $paths[] = new restore_path_element('inter', '/activity/inter');
 
-        return $this->prepare_activity_structure($paths);
+        // return $this->prepare_activity_structure($paths);
+        return $this->prepare_activity_structure(array(new restore_path_element('inter', '/activity/inter')));
     }
 
     /**
@@ -61,7 +62,7 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
         $data->course = $this->get_courseid();
         $data->timemodified = time();
 
-        $new_id = $DB->insert_record('inter', $data);
+        $newid = $DB->insert_record('inter', $data);
 
         $this->apply_activity_instance($newid);
 
