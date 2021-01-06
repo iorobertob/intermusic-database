@@ -490,7 +490,7 @@ function inter_build_html_table($file_url, $course)
     
     $build .= '</tbody></table>';
 
-
+    $build .= require 'template.php'
     $build .= "<script>
                 $(document).ready(function() 
                 {
