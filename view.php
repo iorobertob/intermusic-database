@@ -104,7 +104,7 @@ if (count($files) < 1) {
 }
 
 
-$table = inter_build_html_table($fileurl, $course);
+// $table = inter_build_html_table($fileurl, $course);
 
 //$records = inter_mysql_query();
 
@@ -119,7 +119,9 @@ $PAGE->set_context($modulecontext);
 echo $OUTPUT->header();
 
 
-echo $table;
+// echo $table;
+// $table = inter_build_html_table($fileurl, $course);
+echo (inter_build_html_table($fileurl, $course));
 
 echo $OUTPUT->footer();
 
