@@ -647,8 +647,8 @@ function inter_build_html_table($file_url, $course)
     //             </script>';
 
     // return $build;
-    return readfile("template.php");
-    // return require 'template.php';
+    // return readfile("template.php");
+    return include 'template.php';
 }
 
 
