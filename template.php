@@ -12,12 +12,12 @@
 
 
 
-////////////////// SEARCH BUTTON /////////////////////////////////
+<!-- ////////////////// SEARCH BUTTON ///////////////////////////////// -->
 	<div class="topnav">
         <input id="search" type="text" placeholder="Search.." name="search">
         <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
     </div><br><br><br>';
-///////////////// SEARCH BUTTON /////////////////////////////////
+<!-- ///////////////// SEARCH BUTTON ///////////////////////////////// -->
 
 
 <table class="display  dataTable collapsed dtr-inline\" id="the_table\"><thead><th>";
