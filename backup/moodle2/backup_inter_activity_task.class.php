@@ -50,6 +50,15 @@ class backup_inter_activity_task extends backup_activity_task {
     protected function define_my_steps() {
         $this->add_step(new backup_inter_activity_structure_step('inter_structure', 'inter.xml'));
     }
+    
+
+    public function get_fileareas() {
+        return array('content');
+    }
+
+    public function get_configdata_encoded_attributes() {
+        return array('text'); // We need to encode some attrs in configdata
+    }
 
     /**
      * Codes the transformations to perform in the activity in order to get transportable (encoded) links.
