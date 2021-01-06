@@ -407,8 +407,10 @@ function inter_build_html_table($file_url, $course)
 
     
     $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
+    $datatables_responsive = 'https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css';
     $build = "<!DOCTYPE html>";
     $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
+    $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables_responsive."\" >";
     $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
     $build .= "<script src=\"https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js\"></script>";
