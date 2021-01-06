@@ -73,54 +73,49 @@ function inter_set_mainfile($data) {
  * @return does not return
  */
 function inter_display_embed($moduleinstance, $cm, $course, $file) {
-    global $CFG, $PAGE, $OUTPUT;
+    // global $CFG, $PAGE, $OUTPUT;
 
-    $clicktoopen = inter_get_clicktoopen($file, $moduleinstance->revision);
+    // $clicktoopen = inter_get_clicktoopen($file, $moduleinstance->revision);
 
-    $context = context_module::instance($cm->id);
-    $path = '/'.$context->id.'/mod_inter/content/'.$moduleinstance->revision.$file->get_filepath().$file->get_filename();
-    $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
-    $moodleurl = new moodle_url('/pluginfile.php' . $path);
+    // $context = context_module::instance($cm->id);
+    // $path = '/'.$context->id.'/mod_inter/content/'.$moduleinstance->revision.$file->get_filepath().$file->get_filename();
+    // $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
+    // $moodleurl = new moodle_url('/pluginfile.php' . $path);
 
-    $mimetype = $file->get_mimetype();
-    $title    = $moduleinstance->name;
+    // $mimetype = $file->get_mimetype();
+    // $title    = $moduleinstance->name;
 
-    $extension = resourcelib_get_extension($file->get_filename());
+    // $extension = resourcelib_get_extension($file->get_filename());
 
-    $mediamanager = core_media_manager::instance($PAGE);
-    $embedoptions = array(
-        core_media_manager::OPTION_TRUSTED => true,
-        core_media_manager::OPTION_BLOCK => true,
-    );
+    // $mediamanager = core_media_manager::instance($PAGE);
+    // $embedoptions = array(
+    //     core_media_manager::OPTION_TRUSTED => true,
+    //     core_media_manager::OPTION_BLOCK => true,
+    // );
 
-    if (file_mimetype_in_typegroup($mimetype, 'web_image')) {  // It's an image
-        $code = resourcelib_embed_image($fullurl, $title);
+    // if (file_mimetype_in_typegroup($mimetype, 'web_image')) {  // It's an image
+    //     $code = resourcelib_embed_image($fullurl, $title);
 
-    } else if ($mimetype === 'application/pdf') {
-        // PDF document
-        $code = resourcelib_embed_pdf($fullurl, $title, $clicktoopen);
+    // } else if ($mimetype === 'application/pdf') {
+    //     // PDF document
+    //     $code = resourcelib_embed_pdf($fullurl, $title, $clicktoopen);
 
-    } else if ($mediamanager->can_embed_url($moodleurl, $embedoptions)) {
-        // Media (audio/video) file.
-        $code = $mediamanager->embed_url($moodleurl, $title, 0, 0, $embedoptions);
+    // } else if ($mediamanager->can_embed_url($moodleurl, $embedoptions)) {
+    //     // Media (audio/video) file.
+    //     $code = $mediamanager->embed_url($moodleurl, $title, 0, 0, $embedoptions);
 
-    } else {
-        // We need a way to discover if we are loading remote docs inside an iframe.
-        $moodleurl->param('embed', 1);
+    // } else {
+    //     // We need a way to discover if we are loading remote docs inside an iframe.
+    //     $moodleurl->param('embed', 1);
 
-        // anything else - just try object tag enlarged as much as possible
-        $code = resourcelib_embed_general($moodleurl, $title, $clicktoopen, $mimetype);
-    }
+    //     // anything else - just try object tag enlarged as much as possible
+    //     $code = resourcelib_embed_general($moodleurl, $title, $clicktoopen, $mimetype);
+    // }
 
-    // resource_print_header($moduleinstance, $cm, $course);
-    // resource_print_heading($moduleinstance, $cm, $course);
+    // echo $code;
 
-    echo $code;
-
-    // resource_print_intro($moduleinstance, $cm, $course);
-
-    echo $OUTPUT->footer();
-    die;
+    // echo $OUTPUT->footer();
+    // die;
 }
 
 
@@ -128,17 +123,17 @@ function inter_display_embed($moduleinstance, $cm, $course, $file) {
  * Internal function - create click to open text with link.
  */
 function inter_get_clicktoopen($file, $revision, $extra='') {
-    global $CFG;
+    // global $CFG;
 
-    $filename = $file->get_filename();
+    // $filename = $file->get_filename();
 
-    $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
+    // $path = '/'.$file->get_contextid().'/mod_inter/content/'.$revision.$file->get_filepath().$file->get_filename();
 
-    $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
+    // $fullurl = file_encode_url($CFG->wwwroot.'/pluginfile.php', $path, false);
 
-    $string = get_string('clicktoopen2', 'inter', "<a href=\"$fullurl\" $extra>$filename</a>");
+    // $string = get_string('clicktoopen2', 'inter', "<a href=\"$fullurl\" $extra>$filename</a>");
 
-    return $string;
+    // return $string;
 }
 
 /**
@@ -166,56 +161,56 @@ class inter_content_file_info extends file_info_stored {
  */
 function inter_mysql_query($sql, $process)
 {
-	global $CFG;
+	// global $CFG;
 	
-	$servername = $CFG->dbhost;
-	$username   = $CFG->dbuser;
-	$password   = $CFG->dbpass;
-	$dbname     = $CFG->dbname;
+	// $servername = $CFG->dbhost;
+	// $username   = $CFG->dbuser;
+	// $password   = $CFG->dbpass;
+	// $dbname     = $CFG->dbname;
 
-	// checking connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
-	}
+	// // checking connection
+	// $conn = new mysqli($servername, $username, $password, $dbname);
+	// // Check connection
+	// if ($conn->connect_error) {
+	//     die("Connection failed: " . $conn->connect_error);
+	// }
 
-    $result = null;
+ //    $result = null;
 
-    if ($process != 'select')
-    {
-        if ($conn->query($sql) === TRUE) {
-            echo "Successfull query: ".$process;
-            $conn->close();
-            // return "Table  created successfully";
-            echo("<script>console.log('Successfull query ');</script>");
-            return true;
-        } else {
-            echo "Error in Query: : ".$process." " . $conn->error;
-            $conn->close();
-            // return "Error creating table: " . $conn->error;
-            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
-            return false;
-            // die;
-        }
-    }
-    else
-    {
-        if ($result = $conn->query($sql) ) {
-            echo "Successfull query: ".$process;
-            $conn->close();
-            // return "Table  created successfully";
-            echo("<script>console.log('Successfull query ');</script>");
-            return $result;
-        } else {
-            echo "Error in Query: : ".$process." " . $conn->error;
-            $conn->close();
-            // return "Error creating table: " . $conn->error;
-            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
-            return false;
-            // die;
-        }
-    }
+ //    if ($process != 'select')
+ //    {
+ //        if ($conn->query($sql) === TRUE) {
+ //            echo "Successfull query: ".$process;
+ //            $conn->close();
+ //            // return "Table  created successfully";
+ //            echo("<script>console.log('Successfull query ');</script>");
+ //            return true;
+ //        } else {
+ //            echo "Error in Query: : ".$process." " . $conn->error;
+ //            $conn->close();
+ //            // return "Error creating table: " . $conn->error;
+ //            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
+ //            return false;
+ //            // die;
+ //        }
+ //    }
+ //    else
+ //    {
+ //        if ($result = $conn->query($sql) ) {
+ //            echo "Successfull query: ".$process;
+ //            $conn->close();
+ //            // return "Table  created successfully";
+ //            echo("<script>console.log('Successfull query ');</script>");
+ //            return $result;
+ //        } else {
+ //            echo "Error in Query: : ".$process." " . $conn->error;
+ //            $conn->close();
+ //            // return "Error creating table: " . $conn->error;
+ //            echo("<script>console.log('Error in Query: " . $conn->error."');</script>");
+ //            return false;
+ //            // die;
+ //        }
+ //    }
 
 	
 
@@ -288,19 +283,11 @@ function build_table($data, $id, $file_url)
  */
 function fill_data_from_csv($file_url, $tablename, $data)
 {
-    // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, first_name, last_name, email, transactions, @account_creation)SET account_creation  = STR_TO_DATE(@account_creation, '%m/%d/%y');";
 
-    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, ";
-    $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r' IGNORE 1 ROWS;";
+    // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS (id, ";
+    // $query = "LOAD DATA LOCAL INFILE '".$file_url."' INTO TABLE ".$tablename." FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r' IGNORE 1 ROWS;";
 
-    // for( $i = 1; $i<sizeof($data); $i++ ) {
-    //     $query .= "`".$data[$i]."`, ";
-    // }
-
-
-    // $query.= ");";
-    //echo("<script>console.log('FILL TABLE:  ".$query."');</script>");
-    return inter_mysql_query($query, "Fill table ");
+    // return inter_mysql_query($query, "Fill table ");
 
 }
 
@@ -308,24 +295,7 @@ function fill_data_from_csv($file_url, $tablename, $data)
 function inter_build_html_table($file_url, $course)
 {
     global $PAGE, $DB;
-
-
-    //////////////////////////. NEW QUERY //////////////////////
-    $courseid = $PAGE->course->id;
-    echo "<script> console.log('course id:".$courseid."');</script>";
-    $modinfo = get_fast_modinfo($courseid);
-
-    // $data = $DB->get_record('poster', ['course' => '23']);
-    $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-
-    // $this->config = get_config('resourcespace');
-    $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
-    $api_key  = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';
-    $api_user = 'admin';
-    // $this->enable_help = get_config('resourcespace', 'enable_help');
-    // $this->enable_help_url = get_config('resourcespace', 'enable_help_url');
-    //////////////////////////. NEW QUERY //////////////////////    
-
+ 
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
     // header('Content-Type: text/html; charset=utf-8');
@@ -334,7 +304,6 @@ function inter_build_html_table($file_url, $course)
     $the_big_array = []; 
 
     // Open the file for reading
-    // if (($h = fopen("{$file_url}", "r")) !== FALSE) 
     if (($h = fopen($file_url, "r")) !== FALSE) 
     {
         // Each line in the file is converted into an individual array that we call $data
@@ -348,306 +317,7 @@ function inter_build_html_table($file_url, $course)
       // Close the file
       fclose($h);
     }
-    // echo '<pre>'; print_r($data); echo '</pre>';
-    // echo "<script> console.log(".$data.");</script>";
-    echo "<script> console.log('".$file_url."');</script>";
-    // /home/iopaveqd/moodledata/filedir/81/e4/81e4d8059f5e15d65e2ff70faa4c11e513296233
-    // This line is to replace the csv data with the poster module data
-    // $the_big_array = $data_array;
 
-    
-    $datatables = 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css';
-    $datatables_responsive = 'https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css';
-    $build = "<!DOCTYPE html>";
-    $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
-    $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables_responsive."\" >";
-    $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
-    $build .= "<script src=\"https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>";
-    $build .= "<script src=\"https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js\"></script>";
-    
-    $build .= "<script src=\"colResizable-1.6.js\"></script>";
-    $build .= "<script src=\"js_utilities.js\"></script>";
-    // $build = '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'
-    // $build = '<table><thead><th>item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
-
-
-
-    ////////////////// SEARCH BUTTON /////////////////////////////////
-    // $build .= '<div class="topnav">
-    //                 <input id="search" type="text" placeholder="Search.." name="search">
-    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-    //             </div><br><br><br>';
-    ///////////////// SEARCH BUTTON /////////////////////////////////
-
-
-    // $build .= "<table class=\"display  dataTable collapsed dtr-inline\" id=\"the_table\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
-     $build .= "<table class=\"display  dataTable collapsed dtr-inline\" id=\"the_table\"><thead><th>";
-
-    for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
-    {
-        $build .= $the_big_array[0][$i].'</th><th>';  
-    }
-    $build .= $the_big_array[0][sizeof($the_big_array[0])-1].'</th></thead><tbody>';
-    // item 1</th><th>item 2</th><th>item 3</th></thead><tbody>';
-    
-    for ( $i = 1; $i < sizeof($the_big_array); $i++)
-    // foreach($the_big_array as $row)
-    {
-        $row = $the_big_array[$i];
-
-        $build .= '<tr>';
-
-
-        ///////////////////
-        // foreach($row as $item)
-        // {
-        //     $build .= "<td>{$item}</td>";
-        // }
-        // $col0 = $row[0];
-        // $col1 = $row[1];
-        // $col2 = $row[2];
-        // $build .= "<td>{$col0}</td><td>$col1</td><td><a href=\"{$col2}\">Go...</a></td>";
-
-        // for ( $j = 3; $j < sizeof($row); $j++)
-        // {
-        //     $item = $row[$j];
-        //     $build .= "<td>{$item}</td>";
-        // }
-
-
-
-        for ( $j = 0; $j < sizeof($row); $j++)
-        {
-            $item = $row[$j];
-            // If there is an URL in the data
-            if (filter_var($item, FILTER_VALIDATE_URL)) { 
-                // make a button
-                //$item = $row[$j];
-                $build .= "<td><a href=\"{$item}\"><button>Go...</button></a></td>";
-            }
-            // Any data, not an URL
-            else{
-                //$item = $row[$j];
-                $build .= "<td>{$item}</td>";
-            }
-            
-        }
-
-
-        ///////////////////
-        $build .= '</tr>';
-    }
-    
-    $build .= '</tbody></table>';
-
-    // $build .= require 'template.php';
-    $build .= "<script>
-                $(document).ready(function() 
-                {
-
-                //$('#the_table').colResizable();
-                $('#the_table').DataTable({
-                    fixedHeader: true,
-                    scrollY: '500px',
-                    responsive:true
-                    });
-
-                });
-                </script>";
-
-
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-
-    //             $('#intermusic').DataTable({
-    //                 'autoWidth': true
-    //                 });
-
-    //             });
-    //             </script>";
-
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-
-    //             $('#intermusic').DataTable({
-    //                 'autoWidth': false
-    //                 });
-
-    //             $('#intermusic').colResizable();
-
-    //             });
-    //             </script>";
-
-    // With JQuery 
-    // $build .= "<script>
-    //             $(document).ready(function() 
-    //             {
-
-    //                 var table_intermusic = document.getElementById('intermusic');
-    //                 //$('#intermusic').colResizable();
-    //                 //table_intermusic.colResizable();
-
-    //             });
-    //             </script>";
-
-
-    // $build .= "<script src=\"resize.js\"></script>";
-
-    // $build .=  "<script>  
-    //                 var tables = document.getElementsByTagName('table');
-    //                 for (var i=0; i<tables.length;i++){
-    //                  resizableGrid(tables[i]);
-    //                 }
-
-    //                 function resizableGrid(table) {
-    //                      var row = table.getElementsByTagName('tr')[0],
-    //                      cols = row ? row.children : undefined;
-    //                      if (!cols) return;
-                         
-    //                      table.style.overflow = 'hidden';
-                         
-    //                      var tableHeight = table.offsetHeight;
-                         
-    //                      for (var i=0;i<cols.length;i++){
-    //                       var div = createDiv(tableHeight);
-    //                       cols[i].appendChild(div);
-    //                       cols[i].style.position = 'relative';
-    //                       setListeners(div);
-    //                      }
-
-    //                      function setListeners(div){
-    //                       var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
-
-    //                       div.addEventListener('mousedown', function (e) {
-    //                        curCol = e.target.parentElement;
-    //                        nxtCol = curCol.nextElementSibling;
-
-    //                        pageX = e.pageX; 
-                         
-    //                        var padding = paddingDiff(curCol);
-                         
-    //                        curColWidth = curCol.offsetWidth - padding;
-    //                        if (nxtCol)
-    //                         nxtColWidth = nxtCol.offsetWidth - padding;
-    //                       });
-
-    //                       div.addEventListener('mouseover', function (e) {
-    //                        e.target.style.borderRight = '2px solid #101010';
-    //                       })
-
-    //                       div.addEventListener('mouseout', function (e) {
-    //                        e.target.style.borderRight = '';
-    //                       })
-
-    //                       document.addEventListener('mousemove', function (e) {
-    //                            if (curCol) {
-    //                             var diffX = e.pageX - pageX;
-    //                             console.log(curCol);
-    //                             console.log(nxtCol);
-    //                             console.log('moving');
-                             
-    //                             if (nxtCol){
-    //                             nxtCol.style.width = (nxtColWidth - (diffX))+'px';
-    //                             //nxtCol.setAttribute('style','width:'+(nxtColWidth - (diffX))+'px');
-    //                              console.log('moved' + diffX);
-    //                             }
-
-    //                             curCol.style.width = (curColWidth + diffX)+'px';
-    //                             //curCol.setAttribute('style','width:'+ (nxtColWidth + (diffX)) + 'px');
-    //                             //curCol.style.width = '200px';
-    //                            }
-    //                           });
-
-    //                       document.addEventListener('mouseup', function (e) { 
-    //                        curCol = undefined;
-    //                        nxtCol = undefined;
-    //                        pageX = undefined;
-    //                        nxtColWidth = undefined;
-    //                        curColWidth = undefined
-    //                       });
-    //                      }
-                         
-    //                      function createDiv(height){
-    //                       var div = document.createElement('div');
-    //                       div.style.top = 0;
-    //                       div.style.right = 0;
-    //                       div.style.width = '5px';
-    //                       div.style.position = 'absolute';
-    //                       div.style.cursor = 'col-resize';
-    //                       div.style.userSelect = 'none';
-    //                       div.style.height = height + 'px';
-    //                       return div;
-    //                      }
-                         
-    //                      function paddingDiff(col){
-                         
-    //                       if (getStyleVal(col,'box-sizing') == 'border-box'){
-    //                        return 0;
-    //                       }
-                         
-    //                       var padLeft = getStyleVal(col,'padding-left');
-    //                       var padRight = getStyleVal(col,'padding-right');
-    //                       return (parseInt(padLeft) + parseInt(padRight));
-
-    //                      }
-
-    //                      function getStyleVal(elm,css){
-    //                       return (window.getComputedStyle(elm, null).getPropertyValue(css))
-    //                      }
-    //                     };
-    //             </script>";
-
-
-    /////////////////////// NEW PLUGIN //////////////////////
-    // $build = "<!DOCTYPE html>";
-    // $build .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$datatables."\" >";
-    // $build .= "<script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>";
-    // $build .= "<script src=\"js_utilities.js\"></script>";
-    // $build .= "<script src=\"sha256.js\"></script>";
-
-    // $build .= "<br><br><br>";
-    // $build .= '<div class="topnav">
-    //                 <input id="search" type="text" placeholder="Search.." name="search">
-    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-    //             </div>';
-
-    // $build .= '</tbody></table>';
-
-    // $build .= '<script>
-    //                 function submitMe(id) {
-    //                     var value = document.getElementById(id).value;
-                        
-
-    //                     var query = "user='.$api_user.'&function=search_public_collections&param1="+value
-
-    //                     var sha256 = new jsSHA(\'SHA-256\', \'TEXT\');
-    //                     sha256.update("'.$api_key.'" + query);
-    //                     var hash = sha256.getHash("HEX");
-
-    //                     var request_url = "'.$resourcespace_api_url.'" + query + "&sign=" + hash;
-    //                     console.log(request_url);
-    //                     alert(request_url);
-    //                 }
-
-    //                 String.prototype.hashCode = function() {
-    //                     var hash = 0;
-    //                     if (this.length == 0) {
-    //                         return hash;
-    //                     }
-    //                     for (var i = 0; i < this.length; i++) {
-    //                         var char = this.charCodeAt(i);
-    //                         hash = ((hash<<5)-hash)+char;
-    //                         hash = hash & hash; // Convert to 32bit integer
-    //                     }
-    //                     return hash;
-    //                 }
-
-    //             </script>';
-
-    // return $build;
-    // return readfile("template.php");
     return include 'template.php';
 }
 

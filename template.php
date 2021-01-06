@@ -1,6 +1,3 @@
-
-
-<!-- <!DOCTYPE html> -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" >
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" >
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -9,16 +6,6 @@
 
 <script src="colResizable-1.6.js"></script>
 <script src="js_utilities.js"></script>	
-
-
-
-<!-- ////////////////// SEARCH BUTTON ///////////////////////////////// -->
-	<!-- <div class="topnav">
-        <input id="search" type="text" placeholder="Search.." name="search">
-        <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-    </div><br><br><br> -->
-<!-- ///////////////// SEARCH BUTTON ///////////////////////////////// -->
-
 
 <table class="display  dataTable collapsed dtr-inline" id="the_table">
 	<thead>
@@ -45,18 +32,14 @@
 				        // If there is an URL in the data
 				        if (filter_var($item, FILTER_VALIDATE_URL)) { 
 				            // make a button
-				            //$item = $row[$j];
-				            echo("<td><a href=\"".$item."\"><button>Go...</button></a></td>");
+				            echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
 				        }
 				        // Any data, not an URL
 				        else{
-				            //$item = $row[$j];
 				            echo("<td>".$item."</td>");
 				        }
 				        
 				    }
-
-				    ///////////////////
 				    echo('</tr>');
 				}
 
@@ -69,7 +52,6 @@
 <script>
     $(document).ready(function() 
     {
-	    //$('#the_table').colResizable();
 	    $('#the_table').DataTable({
 	        fixedHeader: true,
 	        scrollY: '500px',
