@@ -19,48 +19,50 @@
 <!-- ///////////////// SEARCH BUTTON ///////////////////////////////// -->
 
 
-<table class="display  dataTable collapsed dtr-inline" id="the_table"><thead><th>";
+<table class="display  dataTable collapsed dtr-inline" id="the_table">
+	<thead>
+		<th>
 
-<?php for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ ): ?>
+			<?php for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ ): ?>
 
-    <?php echo($the_big_array[0][$i].'</th><th>');  ?>
+			    <?php echo($the_big_array[0][$i].'</th><th>');  ?>
 
-<?php endfor; ?>
+			<?php endfor; ?>
 
-<?php 
-echo($the_big_array[0][sizeof($the_big_array[0])-1].'</th></thead><tbody>'); 
+			<?php 
+				echo($the_big_array[0][sizeof($the_big_array[0])-1].'</th></thead><tbody>'); 
 
-for ( $i = 1; $i < sizeof($the_big_array); $i++)
-{
-    $row = $the_big_array[$i];
+				for ( $i = 1; $i < sizeof($the_big_array); $i++)
+				{
+				    $row = $the_big_array[$i];
 
-    echo('<tr>');
+				    echo('<tr>');
 
-    for ( $j = 0; $j < sizeof($row); $j++)
-    {
-        $item = $row[$j];
-        // If there is an URL in the data
-        if (filter_var($item, FILTER_VALIDATE_URL)) { 
-            // make a button
-            //$item = $row[$j];
-            echo("<td><a href=\"".$item."\"><button>Go...</button></a></td>");
-        }
-        // Any data, not an URL
-        else{
-            //$item = $row[$j];
-            echo("<td>".$item."</td>");
-        }
-        
-    }
+				    for ( $j = 0; $j < sizeof($row); $j++)
+				    {
+				        $item = $row[$j];
+				        // If there is an URL in the data
+				        if (filter_var($item, FILTER_VALIDATE_URL)) { 
+				            // make a button
+				            //$item = $row[$j];
+				            echo("<td><a href=\"".$item."\"><button>Go...</button></a></td>");
+				        }
+				        // Any data, not an URL
+				        else{
+				            //$item = $row[$j];
+				            echo("<td>".$item."</td>");
+				        }
+				        
+				    }
 
+				    ///////////////////
+				    echo('</tr>');
+				}
 
-    ///////////////////
-    echo('</tr>');
-}
+			?>
 
-?>
-
-</tbody></table>';
+	</tbody>
+</table>
 
 
 <script>
