@@ -226,25 +226,25 @@ function inter_mysql_query($sql, $process)
  */
 function inter_create_database_from_csv($file_url, $id)
 {
-    // Detect line breaks, otherwise fgetcsv will return all rows
-    ini_set('auto_detect_line_endings', true);
+    // // Detect line breaks, otherwise fgetcsv will return all rows
+    // ini_set('auto_detect_line_endings', true);
 
 
-    // The nested array to hold all the arrays
-    $the_big_array = []; 
+    // // The nested array to hold all the arrays
+    // $the_big_array = []; 
 
-    // Open the file for reading
-    if (($h = fopen("{$file_url}", "r")) !== FALSE) 
-    {
-        // The first line in the file is converted into an individual array that we call $data
-        // The items of the array are comma separated
-        $data = fgetcsv($h, 10000, ",");
+    // // Open the file for reading
+    // if (($h = fopen("{$file_url}", "r")) !== FALSE) 
+    // {
+    //     // The first line in the file is converted into an individual array that we call $data
+    //     // The items of the array are comma separated
+    //     $data = fgetcsv($h, 10000, ",");
 
-      // Close the file
-      fclose($h);
-    }
+    //   // Close the file
+    //   fclose($h);
+    // }
 
-    return build_table($data, $id, $file_url);
+    // return build_table($data, $id, $file_url);
 
 }
 
@@ -253,30 +253,30 @@ function inter_create_database_from_csv($file_url, $id)
  */
 function build_table($data, $id, $file_url)
 {
-    $tablename = "inter_database_".$id;
-    $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, ";
-    $query = "CREATE TABLE ".$tablename." (id INT NOT NULL AUTO_INCREMENT, ";
+    // $tablename = "inter_database_".$id;
+    // $query = "CREATE TABLE inter_database_.$id. (id INT NOT NULL AUTO_INCREMENT, ";
+    // $query = "CREATE TABLE ".$tablename." (id INT NOT NULL AUTO_INCREMENT, ";
 
-    for( $i = 1; $i<sizeof($data); $i++ ) {
-        $query .= "`".$data[$i]."` VARCHAR(255) NOT NULL, ";
-    }
-    $query .= "PRIMARY KEY (id));";
-    echo("<script>console.log('CREATE TABLE:  ".$query."');</script>");
+    // for( $i = 1; $i<sizeof($data); $i++ ) {
+    //     $query .= "`".$data[$i]."` VARCHAR(255) NOT NULL, ";
+    // }
+    // $query .= "PRIMARY KEY (id));";
+    // echo("<script>console.log('CREATE TABLE:  ".$query."');</script>");
 
-    if (inter_mysql_query($query, "Create table"))
-    {
-        // Fill table
-        $result = fill_data_from_csv($file_url, $tablename, $data);
-    }
+    // if (inter_mysql_query($query, "Create table"))
+    // {
+    //     // Fill table
+    //     $result = fill_data_from_csv($file_url, $tablename, $data);
+    // }
 
-    if ($result)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    // if ($result)
+    // {
+    //     return true;
+    // }
+    // else
+    // {
+    //     return false;
+    // }
 }
 
 
@@ -647,7 +647,8 @@ function inter_build_html_table($file_url, $course)
     //             </script>';
 
     // return $build;
-    return require 'template.php';
+    return readfile("template.php");
+    // return require 'template.php';
 }
 
 
