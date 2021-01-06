@@ -60,7 +60,7 @@ class restore_inter_activity_task extends restore_activity_task {
     static public function define_decode_contents() {
         
         // Define the contents
-        return array(new restore_decode_content('inter', array('intro', 'serial_data'), 'inter'));
+        return array(new restore_decode_content('inter', array('intro'), 'inter'));
     }
 
     /**
