@@ -70,7 +70,7 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
     /**
      * Defines post-execution actions.
      */
-    protected function after_execute() 
+    protected function after_execute() {
         $this->add_related_files('mod_inter', 'intro', null);
         $this->add_related_files('mod_inter', 'content', null);
     }
