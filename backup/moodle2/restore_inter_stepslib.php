@@ -43,7 +43,7 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
         $paths = array();
         $userinfo = $this->get_setting_value('userinfo');
 
-        $paths[] = new restore_path_element('elt', '/path/to/file');
+        $paths[] = new restore_path_element('inter', '/activity/inter');
 
         return $this->prepare_activity_structure($paths);
     }
