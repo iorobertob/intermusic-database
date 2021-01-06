@@ -68,6 +68,9 @@ $PAGE->set_heading(format_string($course->fullname));
 
 //=============================  GET FILE    ===================================
 $fs = get_file_storage();
+var_dump($fs);
+die;
+
 $files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
 if (count($files) < 1) {
     resource_print_filenotfound($moduleinstance, $cm, $course);
