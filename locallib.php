@@ -429,7 +429,7 @@ function inter_build_html_table($file_url, $course)
     ///////////////// SEARCH BUTTON /////////////////////////////////
 
 
-    $build .= "<table class=\"display\" id=\"intermusic\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
+    $build .= "<table class=\"display\" id=\"the_table\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
@@ -493,8 +493,12 @@ function inter_build_html_table($file_url, $course)
                 $(document).ready(function() 
                 {
 
-                $('#intermusic').colResizable();
-                $('#intermusic').DataTable();
+                //$('#the_table').colResizable();
+                $('#the_table').DataTable({
+                    fixedHeader: true,
+                    scrollY: '500px',
+                    responsive:true
+                    });
 
                 });
                 </script>";
