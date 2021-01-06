@@ -319,53 +319,6 @@ function inter_build_html_table($file_url, $course)
     $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
     
-    $query  = "SELECT id, name FROM mdl_poster WHERE course = '49'";
-    $result_poster = inter_mysql_query($query , "select");
-    $posters_array = [];
-    $posters_id = [];
-    $i = 0;
-    while($row = mysqli_fetch_array($result_poster))
-    {
-        // row[0] = id , row[1] = name 
-        $posters_array[$i] = $row[1];
-        $posters_id   [$i] = $row[0];
-        $i = $i + 1;
-    } 
-
-    // course 49 is Mastering Vocal Literature  and module 32 is posters
-    $query = "SELECT id, instance FROM mdl_course_modules WHERE (course = '49' AND module ='32' AND deletioninprogress ='0' )";
-    $result_courses = inter_mysql_query($query , "select");
-    
-   
-    $i = 1;
-    $data_array = [];
-    $data_array[0] = array ("PIECE", "CONTENT");
-    while($row = mysqli_fetch_array($result_courses))
-    {
-        // echo "<script> console.log('RESULT: ' + '".$row[0]."');</script>";
-        // print_r($row);
-        $key = array_search($row[1], $posters_id); 
-        $data_array[$i] = array($posters_array[$key] , '<a href=\'https://intermusic.lmta.lt/mod/poster/view.php?id=' .$row[0]. '\'>Poster</a>');
-        $i = $i + 1;
-    } 
-
-    // $length = count($result_courses);
-    // for($i = 0; $i < $length; $i++)
-    // {   
-    //     $row = mysqli_fetch_array($result_courses);
-    //     //[0]->[name] [instance]
-    //     //[1]->[name] [instance]...
-    //     // $data_array[i] = array( $result_poster[$result_courses[i][1]][1], $result_courses[i][0]);
-
-    //     $key = array_search($row[1], $posters_id); 
-
-    //     $data_array[i] = array($posters_array[$key] , $row[0]);
-    //     echo "<script> console.log('DATA ARRAY[i] : ' + '".$data_array[i][0]."');</script>";
-
-    // }
-
-    // echo "<script> console.log('DATA ARRAY : ' + '".$data_array."');</script>";
-    
     $length = sizeof($posters_array);
 
     // $this->config = get_config('resourcespace');
@@ -378,7 +331,7 @@ function inter_build_html_table($file_url, $course)
 
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
-    header('Content-Type: text/html; charset=utf-8');
+    // header('Content-Type: text/html; charset=utf-8');
 
     // The nested array to hold all the arrays
     $the_big_array = []; 
