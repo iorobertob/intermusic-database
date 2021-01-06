@@ -318,9 +318,6 @@ function inter_build_html_table($file_url, $course)
     // $data = $DB->get_record('poster', ['course' => '23']);
     $data = $DB->get_records('poster', ['course'=>'49'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
-    
-    $length = sizeof($posters_array);
-
     // $this->config = get_config('resourcespace');
     $resourcespace_api_url = 'https://resourcespace.lmta.lt/api/?';
     $api_key  = '9885aec8ea7eb2fb8ee45ff110773a5041030a7bdf7abb761c9e682de7f03045';
