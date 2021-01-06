@@ -88,16 +88,16 @@ if (count($files) < 1) {
     // {
         // $records = inter_create_database_from_csv("/var/www/intermusicdata2019/filedir/64/99/64999ffcfc60de7b6a59217e92f6f2bfd9dabf71", $id);
 
-    $success = inter_create_database_from_csv($fileurl, $id);
+    // $success = inter_create_database_from_csv($fileurl, $id);
 
-    if($success)
-    {
-        echo("<script>console.log('SUCCESS');</script>");
-    }
-    else
-    {
-        echo("<script>console.log('MISSERABLE FAILURE');</script>");
-    }
+    // if($success)
+    // {
+    //     echo("<script>console.log('SUCCESS');</script>");
+    // }
+    // else
+    // {
+    //     echo("<script>console.log('MISSERABLE FAILURE');</script>");
+    // }
     // die
     unset($files);
 
