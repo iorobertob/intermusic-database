@@ -429,7 +429,7 @@ function inter_build_html_table($file_url, $course)
     ///////////////// SEARCH BUTTON /////////////////////////////////
 
 
-    $build .= "<table class=\"display\" id=\"the_table\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
+    $build .= "<table class=\"display  dataTable collapsed dtr-inline\" id=\"the_table\" style=\"table-layout:fixed; width:80%\" ><thead><th>";
 
     for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ )
     {
