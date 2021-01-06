@@ -312,7 +312,7 @@ function inter_build_html_table($file_url, $course)
 
     //////////////////////////. NEW QUERY //////////////////////
     $courseid = $PAGE->course->id;
-    echo "<script> console.log('course id:".$courseid."'');</script>";
+    echo "<script> console.log('course id:".$courseid."');</script>";
     $modinfo = get_fast_modinfo($courseid);
 
     // $data = $DB->get_record('poster', ['course' => '23']);
