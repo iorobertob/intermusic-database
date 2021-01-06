@@ -1,15 +1,15 @@
-<?php 
-echo('
-<!DOCTYPE html>
+
+
+<!-- <!DOCTYPE html> -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" >
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" >
 <script src="https://code.jquery.com/jquery-3.3.1.js\"></script>";
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>
 
 <script src="colResizable-1.6.js\"></script>";
-<script src="js_utilities.js\"></script>";');
+<script src="js_utilities.js\"></script>";'
 
-?>
+
 
 <!-- ////////////////// SEARCH BUTTON ///////////////////////////////// -->
 	<div class="topnav">
