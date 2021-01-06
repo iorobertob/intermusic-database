@@ -373,10 +373,10 @@ function inter_build_html_table($file_url, $course)
 
 
     ////////////////// SEARCH BUTTON /////////////////////////////////
-    $build .= '<div class="topnav">
-                    <input id="search" type="text" placeholder="Search.." name="search">
-                    <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-                </div><br><br><br>';
+    // $build .= '<div class="topnav">
+    //                 <input id="search" type="text" placeholder="Search.." name="search">
+    //                 <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
+    //             </div><br><br><br>';
     ///////////////// SEARCH BUTTON /////////////////////////////////
 
 

@@ -7,19 +7,19 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <script src="colResizable-1.6.js"></script>
-<script src="js_utilities.js"></script>
+<script src="js_utilities.js"></script>	
 
 
 
 <!-- ////////////////// SEARCH BUTTON ///////////////////////////////// -->
-	<div class="topnav">
+	<!-- <div class="topnav">
         <input id="search" type="text" placeholder="Search.." name="search">
         <button type="submit" onclick="submitMe(\'search\')" ><i class="fa fa-search"></i></button>
-    </div><br><br><br>';
+    </div><br><br><br> -->
 <!-- ///////////////// SEARCH BUTTON ///////////////////////////////// -->
 
 
-<table class="display  dataTable collapsed dtr-inline\" id="the_table\"><thead><th>";
+<table class="display  dataTable collapsed dtr-inline" id="the_table"><thead><th>";
 
 <?php for( $i = 0; $i<sizeof($the_big_array[0])-1; $i++ ): ?>
 
