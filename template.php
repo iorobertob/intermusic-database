@@ -49,7 +49,7 @@ for ( $i = 1; $i < sizeof($the_big_array); $i++)
         // Any data, not an URL
         else{
             //$item = $row[$j];
-            echo("<td>".$item."}</td>");
+            echo("<td>".$item."</td>");
         }
         
     }
