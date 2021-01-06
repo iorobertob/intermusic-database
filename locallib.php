@@ -312,7 +312,7 @@ function inter_build_html_table($file_url, $course)
 
     //////////////////////////. NEW QUERY //////////////////////
     $courseid = $PAGE->course->id;
-    echo "<script> console.log(".$courseid.");</script>";
+    echo "<script> console.log('course id:".$courseid."'');</script>";
     $modinfo = get_fast_modinfo($courseid);
 
     // $data = $DB->get_record('poster', ['course' => '23']);
@@ -398,8 +398,8 @@ function inter_build_html_table($file_url, $course)
       // Close the file
       fclose($h);
     }
-    echo '<pre>'; print_r($data); echo '</pre>';
-    echo "<script> console.log(".$data.");</script>";
+    // echo '<pre>'; print_r($data); echo '</pre>';
+    // echo "<script> console.log(".$data.");</script>";
     echo "<script> console.log('".$file_url."');</script>";
     // /home/iopaveqd/moodledata/filedir/81/e4/81e4d8059f5e15d65e2ff70faa4c11e513296233
     // This line is to replace the csv data with the poster module data
