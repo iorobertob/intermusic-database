@@ -81,13 +81,8 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addElement('filemanager', 'files', get_string('selectfiles'), null, $filemanager_options);
         //========================   FILE PIKCER ==========================================
 
-        $mform->addElement('select', 'separator', 'Separation character', array(';', ',', '/'));
+        // $mform->addElement('select', 'separator', 'Separation character', array(';', ',', '/'));
 
-        $mform->addElement('checkbox', 'platformwide', get_string('interplatformwide', 'inter'));
-
-
-        $select = $mform->addElement('select', 'colors', get_string('colors'), array('red', 'blue', 'green'), $attributes);
-        $select->setMultiple(true);
 
 
         // Adding the rest of mod_inter settings, spreading all them into this fieldset
