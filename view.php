@@ -92,7 +92,7 @@ $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
 
-echo (inter_build_html_table($fileurl, $course, $moduleinstance->separator));
+echo (inter_build_html_table($fileurl, $course, $moduleinstance->separationchar));
 
 echo $OUTPUT->footer();
 
