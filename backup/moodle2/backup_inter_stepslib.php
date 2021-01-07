@@ -49,7 +49,6 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
                                             array('id'), 
                                             array(
                                                 'name',
-                                                'configdata',
                                                 'timecreated',
                                                 'timemodified'));
         // Build the tree with these elements with $root as the root of the backup tree.
