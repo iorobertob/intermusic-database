@@ -50,7 +50,7 @@ class backup_inter_activity_task extends backup_activity_task {
     protected function define_my_steps() {
         $this->add_step(new backup_inter_activity_structure_step('inter_structure', 'inter.xml'));
     }
-    
+
 
     public function get_fileareas() {
         return array('content');
@@ -72,11 +72,11 @@ class backup_inter_activity_task extends backup_activity_task {
         $base = preg_quote($CFG->wwwroot,"/");
 
         // Link to the list of choices
-        $search="/(".$base."\//mod\/inter\/index.php\?id\=)([0-9]+)/";
+        $search="/(".$base."\/mod\/inter\/index.php\?id\=)([0-9]+)/";
         $content= preg_replace($search, '$@INTERINDEX*$2@$', $content);
 
         // Link to choice view by moduleid
-        $search="/(".$base."\//mod\/inter\/view.php\?id\=)([0-9]+)/";
+        $search="/(".$base."\/mod\/inter\/view.php\?id\=)([0-9]+)/";
         $content= preg_replace($search, '$@INTERVIEWBYID*$2@$', $content);
 
         return $content;
