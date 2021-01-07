@@ -45,8 +45,13 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         // Replace with the attributes and final elements that the element will handle.
         $attributes = null;
         $final_elements = null;
-        $inter = new backup_nested_element('inter', array('id'), array(
-                'name'));
+        $inter = new backup_nested_element('inter', 
+                                            array('id'), 
+                                            array(
+                                                'name',
+                                                'configdata',
+                                                'timecreated',
+                                                'timemodified'));
         // Build the tree with these elements with $root as the root of the backup tree.
 
         // Define the data source.
@@ -57,6 +62,7 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         // Define file annotations.
         $inter->annotate_files('mod_inter', 'intro', null);
         $inter->annotate_files('mod_inter', 'content', null); // This file areas haven't itemid
+        $inter->annotate_files('mod_inter', 'file', null); // This file areas haven't itemid
 
         return $this->prepare_activity_structure($inter);
     }

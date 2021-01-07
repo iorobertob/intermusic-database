@@ -52,6 +52,14 @@ class restore_inter_activity_task extends restore_activity_task {
         $this->add_step(new restore_inter_activity_structure_step('inter_structure', 'inter.xml'));
     }
 
+    public function get_fileareas() {
+        return array('content');
+    }
+
+    public function get_configdata_encoded_attributes() {
+        return array('text'); // We need to encode some attrs in configdata
+    }
+
     /**
      * Defines the contents in the activity that must be processed by the link decoder.
      *
@@ -60,7 +68,7 @@ class restore_inter_activity_task extends restore_activity_task {
     static public function define_decode_contents() {
         
         // Define the contents
-        return array(new restore_decode_content('inter', array('intro'), 'inter'));
+        return array(new restore_decode_content('inter', array('intro','configdata'), 'inter'));
     }
 
     /**
