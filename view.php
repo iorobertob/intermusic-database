@@ -72,7 +72,7 @@ $fs = get_file_storage();
 $files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
 var_dump($modulecontext);
 var_dump($modulecontext->id);
-die;
+// die;
 if (count($files) < 1) {
     resource_print_filenotfound($moduleinstance, $cm, $course);
     die;
