@@ -82,7 +82,7 @@ class inter_content_file_info extends file_info_stored {
 }
 
 
-function inter_build_html_table($file_url, $course)
+function inter_build_html_table($file_url, $course, $separator)
 {
     global $PAGE, $DB;
  
@@ -98,7 +98,7 @@ function inter_build_html_table($file_url, $course)
     {
         // Each line in the file is converted into an individual array that we call $data
         // The items of the array are comma separated
-        while (($data = fgetcsv($h, 1000, ";")) !== FALSE) 
+        while (($data = fgetcsv($h, 1000, $separator)) !== FALSE) 
         {
             // Each individual array is being pushed into the nested array
             $the_big_array[] = $data;       
