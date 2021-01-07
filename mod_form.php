@@ -81,6 +81,8 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addElement('filemanager', 'files', get_string('selectfiles'), null, $filemanager_options);
         //========================   FILE PIKCER ==========================================
 
+        $mform->addElement('select', 'type', get_string('forumtype', 'forum'), $FORUM_TYPES, $attributes);
+
         $mform->addElement('checkbox', 'platformwide', get_string('interplatformwide', 'inter'));
 
 
