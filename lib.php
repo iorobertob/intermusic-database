@@ -105,7 +105,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     // $revision = $DB->get_record('inter', array('id'=>$moduleinstance->id), $fields='*')
     $revision = $DB->get_record('inter', array('id'=>$moduleinstance->id), '*', MUST_EXIST)->revision;
-    $revision = (int)$moduleinstance->revision;
+    // $revision = (int)$moduleinstance->revision;
     $revision ++;
     $moduleinstance->revision = strval($revision);
 
