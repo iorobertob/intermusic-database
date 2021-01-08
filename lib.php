@@ -103,7 +103,9 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $moduleinstance->id = $moduleinstance->instance;
     $moduleinstance->revision++;
 
-    $moduleinstance->name = 'test change lalala';
+    var_dump("revision");
+    var_dump($moduleinstance->revision);
+    die;
 
     inter_set_display_options($moduleinstance);
 
