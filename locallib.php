@@ -91,7 +91,7 @@ function inter_build_html_table($file_url, $course, $separator, $name)
     // header('Content-Type: text/html; charset=utf-8');
     $name = $name;
     var_dump($name);
-    die;
+    // die;
     // The nested array to hold all the arrays
     $the_big_array = []; 
 
