@@ -102,11 +102,9 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
-    $moduleinstance->revision = 2;
-    // $moduleinstance->revision = $moduleinstance->revision + 1;
-
-    var_dump("revision");
-    var_dump($moduleinstance->revision);
+    $revision = $moduleinstance->revision;
+    $revision ++;
+    $moduleinstance->revision = $revision;
 
     inter_set_display_options($moduleinstance);
 
@@ -293,11 +291,12 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
  */
 function inter_set_display_options($data) {
     $displayoptions = array();
-    if ($data->display == RESOURCELIB_DISPLAY_POPUP) {
+    $display = $data->display;
+    if ($display == RESOURCELIB_DISPLAY_POPUP) {
         $displayoptions['popupwidth']  = $data->popupwidth;
         $displayoptions['popupheight'] = $data->popupheight;
     }
-    if (in_array($data->display, array(RESOURCELIB_DISPLAY_AUTO, RESOURCELIB_DISPLAY_EMBED, RESOURCELIB_DISPLAY_FRAME))) {
+    if (in_array($display, array(RESOURCELIB_DISPLAY_AUTO, RESOURCELIB_DISPLAY_EMBED, RESOURCELIB_DISPLAY_FRAME))) {
         $displayoptions['printintro']   = (int)!empty($data->printintro);
     }
     if (!empty($data->showsize)) {
