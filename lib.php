@@ -63,11 +63,12 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
     $moduleinstance->revision = 1;
+    
+    $id = $DB->insert_record('inter', $moduleinstance);
+    $moduleinstance->id = $id;
 
     // This line in the end helped saving the file
     inter_set_display_options($moduleinstance);
-
-    $id = $DB->insert_record('inter', $moduleinstance);
 
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
     // we need to use context now, so we need to make sure all needed info is already in db
