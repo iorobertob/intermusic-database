@@ -82,14 +82,16 @@ class inter_content_file_info extends file_info_stored {
 }
 
 
-function inter_build_html_table($file_url, $course, $separator)
+function inter_build_html_table($file_url, $course, $separator, $name)
 {
     global $PAGE, $DB;
  
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
     // header('Content-Type: text/html; charset=utf-8');
-
+    $name = $name;
+    var_dump($name);
+    die;
     // The nested array to hold all the arrays
     $the_big_array = []; 
 
