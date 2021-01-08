@@ -1,4 +1,4 @@
-# Intermusic Database #
+# TABLES Plugin #
 
 TODO Describe the plugin shortly here.
 

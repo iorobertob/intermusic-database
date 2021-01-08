@@ -18,14 +18,14 @@
  * Plugin version and other meta-data are defined here.
  *
  * @package     mod_inter
- * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_inter';
-$plugin->release = '0.0.1';
-$plugin->version = 2019030500;
-$plugin->requires = 2017111300;
+$plugin->release = '0.0.2';
+$plugin->version = 2021010800;
+$plugin->requires = 2021010800;
 $plugin->maturity = MATURITY_ALPHA;

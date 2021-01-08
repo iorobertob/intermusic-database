@@ -18,7 +18,7 @@
  * Plugin internal classes, functions and constants are defined here.
  *
  * @package     mod_inter
- * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -88,8 +88,7 @@ function inter_build_html_table($file_url, $course, $separator, $name)
  
     // Detect line breaks, otherwise fgetcsv will return all rows
     ini_set('auto_detect_line_endings', true);
-    // header('Content-Type: text/html; charset=utf-8');
-    // $name = $name;
+
     // The nested array to hold all the arrays
     $the_big_array = []; 
 
@@ -107,7 +106,6 @@ function inter_build_html_table($file_url, $course, $separator, $name)
       // Close the file
       fclose($h);
     }
-
     return include 'template.php';
 }
 

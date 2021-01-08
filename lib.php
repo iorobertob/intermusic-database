@@ -18,7 +18,7 @@
  * Library of interface functions and constants.
  *
  * @package     mod_inter
- * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -80,22 +80,6 @@ function inter_add_instance($moduleinstance, $mform = null) {
     \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
-
-    //======================= CREATE TABLE FROM CSV FILE ==========================
-    //echo("<script>console.log('RECORDS:  ".$file_url."');</script>");
-    // die;
-    // $split_url = explode(".", $file_url);
-    // //echo("<script>console.log('RECORDS:  ".$split_url."');</script>");
-    // $file_extension = $split_url[sizeof($a)-1]; 
-    // //echo("<script>console.log('RECORDS:  ".$file_extension."');</script>");
-
-    // // if ($file_extension == "csv")
-    // // {
-    //     $records = inter_create_database_from_csv($file_url, $id);
-        //echo("<script>console.log('RECORDS:  ".$records."');</script>");
-    // }
-
-
     return $id;
 }
 
@@ -119,12 +103,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $moduleinstance->id = $moduleinstance->instance;
     $moduleinstance->revision++;
 
-    echo "<script>console.log('instance name');</script>";
-    echo "<script>console.log('".$moduleinstance->name."');</script>";
     $moduleinstance->name = 'test change lalala';
-
-    // die;
-    echo "<script>console.log('".$moduleinstance->name."');</script>";
 
     inter_set_display_options($moduleinstance);
 
@@ -135,7 +114,6 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     \core_completion\api::update_completion_date_event($moduleinstance->coursemodule, 'inter', $moduleinstance->id, $completiontimeexpected);
 
-    // return $DB->update_record('inter', $moduleinstance);
     return true;
 }
 
@@ -173,7 +151,6 @@ function inter_delete_instance($id) {
  * @return string[].
  */
 function inter_get_file_areas($course, $cm, $context) {
-    // return array();
     $areas = array();
     $areas['content'] = get_string('resourcecontent', 'inter');
     return $areas;
@@ -224,7 +201,6 @@ function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea
     }
 
     // note: resource_intro handled in file_browser automatically
-
     return null;
 }
 
@@ -244,18 +220,6 @@ function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea
  */
 function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = array()) {
     global $DB, $CFG;
-
-    // if ($context->contextlevel != CONTEXT_MODULE) {
-    //     send_file_not_found();
-    // }
-
-    // require_login($course, true, $cm);
-    // send_file_not_found();
-
-
-
-
-
 
     require_once("$CFG->libdir/resourcelib.php");
 
@@ -315,8 +279,6 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
 
     // finally send the file
     send_stored_file($file, null, $filter, $forcedownload, $options);
-    // send_stored_file($file, null, $filter, false, $options);
-    
 }
 
 /**

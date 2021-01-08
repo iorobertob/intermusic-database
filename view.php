@@ -18,7 +18,7 @@
  * Prints an instance of mod_inter.
  *
  * @package     mod_inter
- * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -27,16 +27,13 @@ require_once(__DIR__.'/lib.php');
 
 require_once("$CFG->dirroot/mod/inter/locallib.php");
 
-
 global $DB, $CFG;
-
 
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
 
 // ... module instance id.
 $i  = optional_param('i', 0, PARAM_INT);
-
 
 if ($id) {
     $cm             = get_coursemodule_from_id('inter', $id, 0, false, MUST_EXIST);
@@ -70,12 +67,9 @@ $PAGE->set_heading(format_string($course->fullname));
 $fs = get_file_storage();
 
 $files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
-var_dump($modulecontext);
-var_dump($modulecontext->id);
-// die;
+
 if (count($files) < 1) {
     resource_print_filenotfound($moduleinstance, $cm, $course);
-    die;
 } else {
     $file = reset($files);
     $fileurl = moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(), $file->get_filearea(), $file->get_itemid(), $file->get_filepath(), $file->get_filename(), false);
