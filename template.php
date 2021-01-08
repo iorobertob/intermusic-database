@@ -4,7 +4,7 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-<h1> DKDM </h1>
+<h1> <?php $name ?> </h1>
 <table class="display  dataTable collapsed dtr-inline" id="the_table">
 	<thead>
 		<th>
