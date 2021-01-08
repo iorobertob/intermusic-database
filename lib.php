@@ -101,7 +101,7 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
-    $moduleinstance->revision = $moduleinstance->revision + 1;
+    // $moduleinstance->revision = $moduleinstance->revision + 1;
 
     var_dump("revision");
     var_dump($moduleinstance->revision);
