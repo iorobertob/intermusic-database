@@ -105,7 +105,6 @@ function inter_update_instance($moduleinstance, $mform = null) {
 
     var_dump("revision");
     var_dump($moduleinstance->revision);
-    die;
 
     inter_set_display_options($moduleinstance);
 
