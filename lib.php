@@ -62,6 +62,7 @@ function inter_add_instance($moduleinstance, $mform = null) {
     
     $cmid = $moduleinstance->coursemodule;
     $moduleinstance->timecreated = time();
+    $moduleinstance->revision = 1;
 
     // This line in the end helped saving the file
     inter_set_display_options($moduleinstance);
