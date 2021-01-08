@@ -43,12 +43,14 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         $userinfo = $this->get_setting_value('userinfo');
 
         // Replace with the attributes and final elements that the element will handle.
-        $attributes = null;
-        $final_elements = null;
+        // $attributes = null;
+        // $final_elements = null;
+        // TODO !!!!!!!!!!! ADD NAME OF FIELD TO BACKUP ALSO THE SEPARATION CHAR ( AND TEST !!!!! )
         $inter = new backup_nested_element('inter', 
                                             array('id'), 
                                             array(
                                                 'name',
+                                                'separationchar'
                                                 'timecreated',
                                                 'timemodified'));
         // Build the tree with these elements with $root as the root of the backup tree.
