@@ -46,8 +46,8 @@ function inter_set_mainfile($data) {
     $context = context_module::instance($cmid);
     if ($draftitemid) {
         $options = array('subdirs' => true, 'embed' => false);
-        $display = $data->$display;
-        if ($data->display == RESOURCELIB_DISPLAY_EMBED) {
+        $display = $DB->get_record('inter', array('id'=>$data->id), '*', MUST_EXIST)->display;
+        if (display == RESOURCELIB_DISPLAY_EMBED) {
             $options['embed'] = true;
         }
         file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);

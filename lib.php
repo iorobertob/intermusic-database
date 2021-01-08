@@ -103,11 +103,9 @@ function inter_update_instance($moduleinstance, $mform = null) {
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
 
-    // $revision = $DB->get_record('inter', array('id'=>$moduleinstance->id), $fields='*')
     $revision = $DB->get_record('inter', array('id'=>$moduleinstance->id), '*', MUST_EXIST)->revision;
-    // $revision = (int)$moduleinstance->revision;
     $revision ++;
-    $moduleinstance->revision = strval($revision);
+    $moduleinstance->revision = $revision;
 
     inter_set_display_options($moduleinstance);
 
@@ -293,8 +291,9 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
  * @param object $data Data object
  */
 function inter_set_display_options($data) {
+    global $DB;
     $displayoptions = array();
-    $display = $data->display;
+    $display = $DB->get_record('inter', array('id'=>$data->id), '*', MUST_EXIST)->display;
     if ($display == RESOURCELIB_DISPLAY_POPUP) {
         $displayoptions['popupwidth']  = $data->popupwidth;
         $displayoptions['popupheight'] = $data->popupheight;
