@@ -17,7 +17,7 @@
 /**
  * File containing tests for auth_test_thirdclass.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    test
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -38,11 +38,11 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * The auth_test_thirdclass test class.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_inter_auth_test_thirdclass_testcase extends advanced_testcase {
+class mod_csvtable_auth_test_thirdclass_testcase extends advanced_testcase {
 
     // Write the tests here as public funcions.
 

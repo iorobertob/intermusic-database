@@ -17,7 +17,7 @@
 /**
  * The task that provides all the steps to perform a complete backup is defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    backup
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,13 +29,13 @@ defined('MOODLE_INTERNAL') || die();
 // https://docs.moodle.org/dev/Backup_2.0_for_developers
 // https://docs.moodle.org/dev/Restore_2.0_for_developers
 
-require_once($CFG->dirroot.'//mod/inter/backup/moodle2/backup_inter_stepslib.php');
-require_once($CFG->dirroot.'//mod/inter/backup/moodle2/backup_inter_settingslib.php');
+require_once($CFG->dirroot.'//mod/csvtable/backup/moodle2/backup_csvtable_stepslib.php');
+require_once($CFG->dirroot.'//mod/csvtable/backup/moodle2/backup_csvtable_settingslib.php');
 
 /**
- * The class provides all the settings and steps to perform one complete backup of mod_inter.
+ * The class provides all the settings and steps to perform one complete backup of mod_csvtable.
  */
-class backup_inter_activity_task extends backup_activity_task {
+class backup_csvtable_activity_task extends backup_activity_task {
 
     /**
      * Defines particular settings for the plugin.
@@ -48,7 +48,7 @@ class backup_inter_activity_task extends backup_activity_task {
      * Defines particular steps for the backup process.
      */
     protected function define_my_steps() {
-        $this->add_step(new backup_inter_activity_structure_step('inter_structure', 'inter.xml'));
+        $this->add_step(new backup_csvtable_activity_structure_step('csvtable_structure', 'inter.xml'));
     }
 
 
@@ -72,11 +72,11 @@ class backup_inter_activity_task extends backup_activity_task {
         $base = preg_quote($CFG->wwwroot,"/");
 
         // Link to the list of choices
-        $search="/(".$base."\/mod\/inter\/index.php\?id\=)([0-9]+)/";
+        $search="/(".$base."\/mod\/csvtable\/index.php\?id\=)([0-9]+)/";
         $content= preg_replace($search, '$@INTERINDEX*$2@$', $content);
 
         // Link to choice view by moduleid
-        $search="/(".$base."\/mod\/inter\/view.php\?id\=)([0-9]+)/";
+        $search="/(".$base."\/mod\/csvtable\/view.php\?id\=)([0-9]+)/";
         $content= preg_replace($search, '$@INTERVIEWBYID*$2@$', $content);
 
         return $content;

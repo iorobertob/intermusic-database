@@ -17,14 +17,14 @@
 /**
  * Plugin version and other meta-data are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_inter';
+$plugin->component = 'mod_csvtable';
 $plugin->release = '0.0.2';
 $plugin->version = 2021010800;
 $plugin->requires = 2016120500;

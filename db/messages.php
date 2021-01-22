@@ -17,7 +17,7 @@
 /**
  * Plugin message providers are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    message
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

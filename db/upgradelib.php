@@ -17,7 +17,7 @@
 /**
  * Plugin upgrade helper functions are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    upgrade
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Helper function used by the upgrade.php file.
  */
-function mod_inter_helper_function() {
+function mod_csvtable_helper_function() {
     global $DB;
 
     // Please note that you should always be performing any task using raw (low

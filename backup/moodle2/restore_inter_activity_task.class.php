@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The task that provides a complete restore of mod_inter is defined here.
+ * The task that provides a complete restore of mod_csvtable is defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    restore
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,12 +29,12 @@ defined('MOODLE_INTERNAL') || die();
 // https://docs.moodle.org/dev/Backup_2.0_for_developers
 // https://docs.moodle.org/dev/Restore_2.0_for_developers
 
-require_once($CFG->dirroot.'//mod/inter/backup/moodle2/restore_inter_stepslib.php');
+require_once($CFG->dirroot.'//mod/csvtable/backup/moodle2/restore_csvtable_stepslib.php');
 
 /**
- * Restore task for mod_inter.
+ * Restore task for mod_csvtable.
  */
-class restore_inter_activity_task extends restore_activity_task {
+class restore_csvtable_activity_task extends restore_activity_task {
 
     /**
      * Defines particular settings that this activity can have.
@@ -49,7 +49,7 @@ class restore_inter_activity_task extends restore_activity_task {
      * @return base_step.
      */
     protected function define_my_steps() {
-        $this->add_step(new restore_inter_activity_structure_step('inter_structure', 'inter.xml'));
+        $this->add_step(new restore_csvtable_activity_structure_step('csvtable_structure', 'inter.xml'));
     }
 
     public function get_fileareas() {
@@ -68,7 +68,7 @@ class restore_inter_activity_task extends restore_activity_task {
     static public function define_decode_contents() {
         
         // Define the contents
-        return array(new restore_decode_content('inter', array('intro'), 'inter'));
+        return array(new restore_decode_content('csvtable', array('intro'), 'csvtable'));
     }
 
     /**
@@ -79,14 +79,14 @@ class restore_inter_activity_task extends restore_activity_task {
     static public function define_decode_rules() {
         
          return array(
-            new restore_decode_rule('INTERINDEX', '/mod/inter/index.php?id=$1', 'course'),
-            new restore_decode_rule('INTERVIEWBYID', '/mod/inter/view.php?id=$1', 'course_module'),
+            new restore_decode_rule('INTERINDEX', '/mod/csvtable/index.php?id=$1', 'course'),
+            new restore_decode_rule('INTERVIEWBYID', '/mod/csvtable/view.php?id=$1', 'course_module'),
         );
     }
 
     /**
      * Defines the restore log rules that will be applied by the
-     * {@link restore_logs_processor} when restoring mod_inter logs. It
+     * {@link restore_logs_processor} when restoring mod_csvtable logs. It
      * must return one array of {@link restore_log_rule} objects.
      *
      * @return array.

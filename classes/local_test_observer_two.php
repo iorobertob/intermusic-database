@@ -17,7 +17,7 @@
 /**
  * Plugin observer classes are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    event
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Event observer class.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

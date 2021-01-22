@@ -27,6 +27,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd education.ideas-block.com/mod/inter/ # we move into our app's folder
+            cd education.ideas-block.com/mod/csvtable/ # we move into our app's folder
             git pull # we pull any changes from git
             php ../../admin/cli/purge_caches.php 

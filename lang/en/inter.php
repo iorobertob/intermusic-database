@@ -17,7 +17,7 @@
 /**
  * Plugin strings are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    string
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,10 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['choosereadme'] = 'Readme when selecting the theme.';
-$string['intername'] = 'Name:';
-$string['intername_help'] = 'Give a name to be displayed';
-$string['intersettings'] = 'Settings';
-$string['interplatformwide'] = 'Include all posters in the platform';
+$string['csvtablename'] = 'Name:';
+$string['csvtablename_help'] = 'Give a name to be displayed';
+$string['csvtablesettings'] = 'Settings';
+$string['csvtableplatformwide'] = 'Include all posters in the platform';
 $string['inter:name'] = 'Name';
 $string['inter:edit'] = 'Edit test';
 $string['inter:enrol'] = 'Enrol users';
@@ -41,7 +41,7 @@ $string['messageprovider:submission'] = 'Submission message';
 $string['missingidandcmid'] = 'Missing id and cmid';
 $string['modulename'] = 'CSV Table';
 $string['modulename_help'] = 'Use the CSV Table module to crate a searchable table from a .csv file. User can select separation character.';
-$string['modulenameplural'] = 'inter_databases';
+$string['modulenameplural'] = 'csvtable_databases';
 $string['newmodulefieldset'] = 'Custom example fieldset.';
 $string['newmodulename'] = 'New CSV Table';
 $string['newmodulename_help'] = 'This is the content of the help tooltip associated with the newmodulename field';

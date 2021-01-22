@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Display information about all the mod_inter modules in the requested course.
+ * Display information about all the mod_csvtable modules in the requested course.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,26 +33,26 @@ require_course_login($course);
 
 $coursecontext = context_course::instance($course->id);
 
-$event = \mod_inter\event\course_module_instance_list_viewed::create(array(
+$event = \mod_csvtable\event\course_module_instance_list_viewed::create(array(
     'context' => $modulecontext
 ));
 $event->add_record_snapshot('course', $course);
 $event->trigger();
 
-$PAGE->set_url('/mod/inter/index.php', array('id' => $id));
+$PAGE->set_url('/mod/csvtable/index.php', array('id' => $id));
 $PAGE->set_title(format_string($course->fullname));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($coursecontext);
 
 echo $OUTPUT->header();
 
-$modulenameplural = get_string('modulenameplural', 'mod_inter');
+$modulenameplural = get_string('modulenameplural', 'mod_csvtable');
 echo $OUTPUT->heading($modulenameplural);
 
-$inters = get_all_instances_in_course('inter', $course);
+$csvtables = get_all_instances_in_course('csvtable', $course);
 
-if (empty($inters)) {
-    notice(get_string('nonewmodules', 'mod_inter'), new moodle_url('/course/view.php', array('id' => $course->id)));
+if (empty($csvtables)) {
+    notice(get_string('nonewmodules', 'mod_csvtable'), new moodle_url('/course/view.php', array('id' => $course->id)));
 }
 
 $table = new html_table();
@@ -69,20 +69,20 @@ if ($course->format == 'weeks') {
     $table->align = array('left', 'left', 'left');
 }
 
-foreach ($inters as $inter) {
-    if (!$inter->visible) {
+foreach ($csvtables as $csvtable) {
+    if (!$csvtable->visible) {
         $link = html_writer::link(
-            new moodle_url('/mod/inter/view.php', array('id' => $inter->coursemodule)),
-            format_string($inter->name, true),
+            new moodle_url('/mod/csvtable/view.php', array('id' => $csvtable->coursemodule)),
+            format_string($csvtable->name, true),
             array('class' => 'dimmed'));
     } else {
         $link = html_writer::link(
-            new moodle_url('/mod/inter/view.php', array('id' => $inter->coursemodule)),
-            format_string($inter->name, true));
+            new moodle_url('/mod/csvtable/view.php', array('id' => $csvtable->coursemodule)),
+            format_string($csvtable->name, true));
     }
 
     if ($course->format == 'weeks' or $course->format == 'topics') {
-        $table->data[] = array($inter->section, $link);
+        $table->data[] = array($csvtable->section, $link);
     } else {
         $table->data[] = array($link);
     }

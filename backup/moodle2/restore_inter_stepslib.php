@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * All the steps to restore mod_inter are defined here.
+ * All the steps to restore mod_csvtable are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    restore
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -30,9 +30,9 @@ defined('MOODLE_INTERNAL') || die();
 // https://docs.moodle.org/dev/Restore_2.0_for_developers
 
 /**
- * Defines the structure step to restore one mod_inter activity.
+ * Defines the structure step to restore one mod_csvtable activity.
  */
-class restore_inter_activity_structure_step extends restore_activity_structure_step {
+class restore_csvtable_activity_structure_step extends restore_activity_structure_step {
 
     /**
      * Defines the structure to be restored.
@@ -43,10 +43,10 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
         // $paths = array();
         // $userinfo = $this->get_setting_value('userinfo');
 
-        // $paths[] = new restore_path_element('inter', '/activity/inter');
+        // $paths[] = new restore_path_element('csvtable', '/activity/csvtable');
 
         // return $this->prepare_activity_structure($paths);
-        return $this->prepare_activity_structure(array(new restore_path_element('inter', '/activity/inter')));
+        return $this->prepare_activity_structure(array(new restore_path_element('csvtable', '/activity/csvtable')));
     }
 
     /**
@@ -62,7 +62,7 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
         $data->course = $this->get_courseid();
         $data->timemodified = time();
 
-        $newid = $DB->insert_record('inter', $data);
+        $newid = $DB->insert_record('csvtable', $data);
 
         $this->apply_activity_instance($newid);
 
@@ -72,7 +72,7 @@ class restore_inter_activity_structure_step extends restore_activity_structure_s
      * Defines post-execution actions.
      */
     protected function after_execute() {
-        $this->add_related_files('mod_inter', 'intro', null);
-        $this->add_related_files('mod_inter', 'content', null);
+        $this->add_related_files('mod_csvtable', 'intro', null);
+        $this->add_related_files('mod_csvtable', 'content', null);
     }
 }

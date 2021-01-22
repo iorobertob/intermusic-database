@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * CLI script for mod_inter.
+ * CLI script for mod_csvtable.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @subpackage  cli
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -38,7 +38,7 @@ array(
 
 $help =
 "
-Help message for mod_inter cli script.
+Help message for mod_csvtable cli script.
 
 Please include a list of options and associated actions.
 

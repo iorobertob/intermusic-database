@@ -17,19 +17,19 @@
 /**
  * The mod_resource course module viewed event.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_inter\event;
+namespace mod_csvtable\event;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * The mod_resource course module viewed event class.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -41,12 +41,12 @@ class course_module_viewed extends \core\event\course_module_viewed {
      * @return void
      */
     protected function init() {
-        $this->data['objecttable'] = 'inter';
+        $this->data['objecttable'] = 'csvtable';
         $this->data['crud'] = 'r';
         $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
     }
 
     public static function get_objectid_mapping() {
-        return array('db' => 'inter', 'restore' => 'inter');
+        return array('db' => 'csvtable', 'restore' => 'csvtable');
     }
 }

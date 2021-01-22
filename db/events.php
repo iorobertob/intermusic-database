@@ -17,7 +17,7 @@
 /**
  * Plugin event observers are registered here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    event
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

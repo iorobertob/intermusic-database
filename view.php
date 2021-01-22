@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Prints an instance of mod_inter.
+ * Prints an instance of mod_csvtable.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,7 +25,7 @@
 require(__DIR__.'/../../config.php');
 require_once(__DIR__.'/lib.php');
 
-require_once("$CFG->dirroot/mod/inter/locallib.php");
+require_once("$CFG->dirroot/mod/csvtable/locallib.php");
 
 global $DB, $CFG;
 
@@ -36,37 +36,37 @@ $id = optional_param('id', 0, PARAM_INT);
 $i  = optional_param('i', 0, PARAM_INT);
 
 if ($id) {
-    $cm             = get_coursemodule_from_id('inter', $id, 0, false, MUST_EXIST);
+    $cm             = get_coursemodule_from_id('csvtable', $id, 0, false, MUST_EXIST);
     $course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-    $moduleinstance = $DB->get_record('inter', array('id' => $cm->instance), '*', MUST_EXIST);
+    $moduleinstance = $DB->get_record('csvtable', array('id' => $cm->instance), '*', MUST_EXIST);
 } else if ($i) {
-    $moduleinstance = $DB->get_record('inter', array('id' => $n), '*', MUST_EXIST);
+    $moduleinstance = $DB->get_record('csvtable', array('id' => $n), '*', MUST_EXIST);
     $course         = $DB->get_record('course', array('id' => $moduleinstance->course), '*', MUST_EXIST);
-    $cm             = get_coursemodule_from_instance('inter', $moduleinstance->id, $course->id, false, MUST_EXIST);
+    $cm             = get_coursemodule_from_instance('csvtable', $moduleinstance->id, $course->id, false, MUST_EXIST);
 } else {
-    print_error(get_string('missingidandcmid', mod_inter));
+    print_error(get_string('missingidandcmid', mod_csvtable));
 }
 
 require_login($course, true, $cm);
 
 $modulecontext = context_module::instance($cm->id);
 
-$event = \mod_inter\event\course_module_viewed::create(array(
+$event = \mod_csvtable\event\course_module_viewed::create(array(
     'objectid' => $moduleinstance->id,
     'context' => $modulecontext
 ));
 $event->add_record_snapshot('course', $course);
-$event->add_record_snapshot('inter', $moduleinstance);
+$event->add_record_snapshot('csvtable', $moduleinstance);
 $event->trigger();
 
-$PAGE->set_url('/mod/inter/view.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/csvtable/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 
 //=============================  GET FILE===================================
 $fs = get_file_storage();
 
-$files = $fs->get_area_files($modulecontext->id, 'mod_inter', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
+$files = $fs->get_area_files($modulecontext->id, 'mod_csvtable', 'content', 0, 'sortorder DESC, id ASC', false); // TODO: this is not very efficient!!
 
 if (count($files) < 1) {
     resource_print_filenotfound($moduleinstance, $cm, $course);
@@ -86,7 +86,7 @@ $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
 
-echo (inter_build_html_table($fileurl, $course, $moduleinstance->separationchar, $moduleinstance->name));
+echo (csvtable_build_html_table($fileurl, $course, $moduleinstance->separationchar, $moduleinstance->name));
 
 echo $OUTPUT->footer();
 

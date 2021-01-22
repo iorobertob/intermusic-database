@@ -17,7 +17,7 @@
 /**
  * Plugin internal classes, functions and constants are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once("$CFG->libdir/filelib.php");
 require_once("$CFG->libdir/resourcelib.php");
-require_once("$CFG->dirroot/mod/inter/lib.php");
+require_once("$CFG->dirroot/mod/csvtable/lib.php");
 
 /**
  * Handle the \core\event\something_else_happened event.
@@ -37,7 +37,7 @@ function local_test_locallib_function($event) {
     return;
 }
 
-function inter_set_mainfile($data) {
+function csvtable_set_mainfile($data) {
     global $DB;
     $fs = get_file_storage();
     $cmid = $data->coursemodule;
@@ -46,17 +46,17 @@ function inter_set_mainfile($data) {
     $context = context_module::instance($cmid);
     if ($draftitemid) {
         $options = array('subdirs' => true, 'embed' => false);
-        $display = $DB->get_record('inter', array('id'=>$data->id), '*', MUST_EXIST)->display;
+        $display = $DB->get_record('csvtable', array('id'=>$data->id), '*', MUST_EXIST)->display;
         if ($display == RESOURCELIB_DISPLAY_EMBED) {
             $options['embed'] = true;
         }
-        file_save_draft_area_files($draftitemid, $context->id, 'mod_inter', 'content', 0, $options);
+        file_save_draft_area_files($draftitemid, $context->id, 'mod_csvtable', 'content', 0, $options);
     }
-    $files = $fs->get_area_files($context->id, 'mod_inter', 'content', 0, 'sortorder', false);
+    $files = $fs->get_area_files($context->id, 'mod_csvtable', 'content', 0, 'sortorder', false);
     if (count($files) == 1) {
         // only one file attached, set it as main file automatically
         $file = reset($files);
-        file_set_sortorder($context->id, 'mod_inter', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
+        file_set_sortorder($context->id, 'mod_csvtable', 'content', 0, $file->get_filepath(), $file->get_filename(), 1);
 
 	}
 
@@ -67,7 +67,7 @@ function inter_set_mainfile($data) {
 /**
  * File browsing support class
  */
-class inter_content_file_info extends file_info_stored {
+class csvtable_content_file_info extends file_info_stored {
     public function get_parent() {
         if ($this->lf->get_filepath() === '/' and $this->lf->get_filename() === '.') {
             return $this->browser->get_file_info($this->context);
@@ -83,7 +83,7 @@ class inter_content_file_info extends file_info_stored {
 }
 
 
-function inter_build_html_table($file_url, $course, $separator, $name)
+function csvtable_build_html_table($file_url, $course, $separator, $name)
 {
     global $PAGE, $DB;
  

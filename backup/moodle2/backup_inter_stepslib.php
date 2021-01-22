@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Backup steps for mod_inter are defined here.
+ * Backup steps for mod_csvtable are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    backup
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Define the complete structure for backup, with file and id annotations.
  */
-class backup_inter_activity_structure_step extends backup_activity_structure_step {
+class backup_csvtable_activity_structure_step extends backup_activity_structure_step {
 
     /**
      * Defines the structure of the resulting xml file.
@@ -46,7 +46,7 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         // $attributes = null;
         // $final_elements = null;
         // TODO !!!!!!!!!!! ADD NAME OF FIELD TO BACKUP ALSO THE SEPARATION CHAR ( AND TEST !!!!! )
-        $inter = new backup_nested_element('inter', 
+        $csvtable = new backup_nested_element('csvtable', 
                                             array('id'), 
                                             array(
                                                 'name',
@@ -56,15 +56,15 @@ class backup_inter_activity_structure_step extends backup_activity_structure_ste
         // Build the tree with these elements with $root as the root of the backup tree.
 
         // Define the data source.
-        $inter->set_source_table('inter', array('id' => backup::VAR_ACTIVITYID));
+        $csvtable->set_source_table('csvtable', array('id' => backup::VAR_ACTIVITYID));
 
         // Define id annotations.
 
         // Define file annotations.
-        $inter->annotate_files('mod_inter', 'intro', null);
-        $inter->annotate_files('mod_inter', 'content', null); // This file areas haven't itemid
-        $inter->annotate_files('mod_inter', 'file', null); // This file areas haven't itemid
+        $csvtable->annotate_files('mod_csvtable', 'intro', null);
+        $csvtable->annotate_files('mod_csvtable', 'content', null); // This file areas haven't itemid
+        $csvtable->annotate_files('mod_csvtable', 'file', null); // This file areas haven't itemid
 
-        return $this->prepare_activity_structure($inter);
+        return $this->prepare_activity_structure($csvtable);
     }
 }

@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The main mod_inter configuration form.
+ * The main mod_csvtable configuration form.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,11 +29,11 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 /**
  * Module instance settings form.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_inter_mod_form extends moodleform_mod {
+class mod_csvtable_mod_form extends moodleform_mod {
 
     /**
      * Defines forms elements
@@ -47,7 +47,7 @@ class mod_inter_mod_form extends moodleform_mod {
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
         // Adding the standard "name" field.
-        $mform->addElement('text', 'name', get_string('intername', 'inter'), array('size' => '64'));
+        $mform->addElement('text', 'name', get_string('csvtablename', 'csvtable'), array('size' => '64'));
 
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
@@ -57,7 +57,7 @@ class mod_inter_mod_form extends moodleform_mod {
 
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'intername', 'inter');
+        $mform->addHelpButton('name', 'csvtablename', 'csvtable');
 
         // Adding the standard "intro" and "introformat" fields.
         if ($CFG->branch >= 29) {
@@ -82,7 +82,7 @@ class mod_inter_mod_form extends moodleform_mod {
 
         $mform->addElement('select', 'separationchar', 'Separation character', array(';'=>';', ','=>',', '/'=>'/'));
 
-        // Adding the rest of mod_inter settings, spreading all them into this fieldset
+        // Adding the rest of mod_csvtable settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
 
         // Add standard elements.
@@ -95,7 +95,7 @@ class mod_inter_mod_form extends moodleform_mod {
     function data_preprocessing(&$default_values) {
         if ($this->current->instance and !$this->current->tobemigrated) {
             $draftitemid = file_get_submitted_draft_itemid('files');
-            file_prepare_draft_area($draftitemid, $this->context->id, 'mod_inter', 'content', 0, array('subdirs'=>true));
+            file_prepare_draft_area($draftitemid, $this->context->id, 'mod_csvtable', 'content', 0, array('subdirs'=>true));
             $default_values['files'] = $draftitemid;
         }
         if (!empty($default_values['displayoptions'])) {

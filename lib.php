@@ -17,7 +17,7 @@
 /**
  * Library of interface functions and constants.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param string $feature Constant representing the feature.
  * @return true | null True if the feature is supported, null otherwise.
  */
-function inter_supports($feature) {
+function csvtable_supports($feature) {
     switch ($feature) {
         case FEATURE_MOD_INTRO:
             return true;
@@ -42,21 +42,21 @@ function inter_supports($feature) {
 }
 
 /**
- * Saves a new instance of the mod_inter into the database.
+ * Saves a new instance of the mod_csvtable into the database.
  *
  * Given an object containing all the necessary data, (defined by the form
  * in mod_form.php) this function will create a new instance and return the id
  * number of the instance.
  *
  * @param object $moduleinstance An object from the form.
- * @param mod_inter_mod_form $mform The form.
+ * @param mod_csvtable_mod_form $mform The form.
  * @return int The id of the newly inserted record.
  */
-function inter_add_instance($moduleinstance, $mform = null) {
+function csvtable_add_instance($moduleinstance, $mform = null) {
     global $CFG, $DB;
 
     require_once("$CFG->libdir/resourcelib.php");
-    require_once("$CFG->dirroot/mod/inter/locallib.php");
+    require_once("$CFG->dirroot/mod/csvtable/locallib.php");
 
     require_once("$CFG->libdir/resourcelib.php");
     
@@ -64,77 +64,77 @@ function inter_add_instance($moduleinstance, $mform = null) {
     $moduleinstance->timecreated = time();
     $moduleinstance->revision = 1;
     
-    $id = $DB->insert_record('inter', $moduleinstance);
+    $id = $DB->insert_record('csvtable', $moduleinstance);
     $moduleinstance->id = $id;
 
     // This line in the end helped saving the file
-    inter_set_display_options($moduleinstance);
+    csvtable_set_display_options($moduleinstance);
 
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
     // we need to use context now, so we need to make sure all needed info is already in db
     
     $DB->set_field('course_modules', 'instance', $id, array('id'=>$cmid));
     
-    $file_url = inter_set_mainfile($moduleinstance);
+    $file_url = csvtable_set_mainfile($moduleinstance);
     
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
     
-    \core_completion\api::update_completion_date_event($cmid, 'inter', $id, $completiontimeexpected);
+    \core_completion\api::update_completion_date_event($cmid, 'csvtable', $id, $completiontimeexpected);
     //=====================  STORE FILE, TAKEN FROM 'RESOURCE' MODULE =============
 
     return $id;
 }
 
 /**
- * Updates an instance of the mod_inter in the database.
+ * Updates an instance of the mod_csvtable in the database.
  *
  * Given an object containing all the necessary data (defined in mod_form.php),
  * this function will update an existing instance with new data.
  *
  * @param object $moduleinstance An object from the form in mod_form.php.
- * @param mod_inter_mod_form $mform The form.
+ * @param mod_csvtable_mod_form $mform The form.
  * @return bool True if successful, false otherwise.
  */
-function inter_update_instance($moduleinstance, $mform = null) {
+function csvtable_update_instance($moduleinstance, $mform = null) {
     global $CFG, $DB;
 
     require_once("$CFG->libdir/resourcelib.php");
-    require_once("$CFG->dirroot/mod/inter/locallib.php");
+    require_once("$CFG->dirroot/mod/csvtable/locallib.php");
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
 
-    $revision = $DB->get_record('inter', array('id'=>$moduleinstance->id), '*', MUST_EXIST)->revision;
+    $revision = $DB->get_record('csvtable', array('id'=>$moduleinstance->id), '*', MUST_EXIST)->revision;
     $revision ++;
     $moduleinstance->revision = $revision;
 
-    inter_set_display_options($moduleinstance);
+    csvtable_set_display_options($moduleinstance);
 
-    $DB->update_record('inter', $moduleinstance);
+    $DB->update_record('csvtable', $moduleinstance);
 
-    inter_set_mainfile($moduleinstance);
+    csvtable_set_mainfile($moduleinstance);
 
     $completiontimeexpected = !empty($moduleinstance->completionexpected) ? $moduleinstance->completionexpected : null;
-    \core_completion\api::update_completion_date_event($moduleinstance->coursemodule, 'inter', $moduleinstance->id, $completiontimeexpected);
+    \core_completion\api::update_completion_date_event($moduleinstance->coursemodule, 'csvtable', $moduleinstance->id, $completiontimeexpected);
 
     return true;
 }
 
 /**
- * Removes an instance of the mod_inter from the database.
+ * Removes an instance of the mod_csvtable from the database.
  *
  * @param int $id Id of the module instance.
  * @return bool True if successful, false on failure.
  */
-function inter_delete_instance($id) {
+function csvtable_delete_instance($id) {
     global $DB;
 
-    $exists = $DB->get_record('inter', array('id' => $id));
+    $exists = $DB->get_record('csvtable', array('id' => $id));
     if (!$exists) {
         return false;
     }
 
-    $DB->delete_records('inter', array('id' => $id));
+    $DB->delete_records('csvtable', array('id' => $id));
 
     return true;
 }
@@ -145,7 +145,7 @@ function inter_delete_instance($id) {
  * The file area 'intro' for the activity introduction field is added automatically
  * by {@link file_browser::get_file_info_context_module()}.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    files
  *
  * @param stdClass $course.
@@ -153,16 +153,16 @@ function inter_delete_instance($id) {
  * @param stdClass $context.
  * @return string[].
  */
-function inter_get_file_areas($course, $cm, $context) {
+function csvtable_get_file_areas($course, $cm, $context) {
     $areas = array();
-    $areas['content'] = get_string('resourcecontent', 'inter');
+    $areas['content'] = get_string('resourcecontent', 'csvtable');
     return $areas;
 }
 
 /**
- * File browsing support for mod_inter file areas.
+ * File browsing support for mod_csvtable file areas.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    files
  *
  * @param file_browser $browser.
@@ -176,7 +176,7 @@ function inter_get_file_areas($course, $cm, $context) {
  * @param string $filename.
  * @return file_info Instance or null if not found.
  */
-function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
+function csvtable_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
      global $CFG;
 
     if (!has_capability('moodle/course:managefiles', $context)) {
@@ -191,16 +191,16 @@ function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea
         $filename = is_null($filename) ? '.' : $filename;
 
         $urlbase = $CFG->wwwroot.'/pluginfile.php';
-        if (!$storedfile = $fs->get_file($context->id, 'mod_inter', 'content', 0, $filepath, $filename)) {
+        if (!$storedfile = $fs->get_file($context->id, 'mod_csvtable', 'content', 0, $filepath, $filename)) {
             if ($filepath === '/' and $filename === '.') {
-                $storedfile = new virtual_root_file($context->id, 'mod_inter', 'content', 0);
+                $storedfile = new virtual_root_file($context->id, 'mod_csvtable', 'content', 0);
             } else {
                 // not found
                 return null;
             }
         }
-        require_once("$CFG->dirroot/mod/inter/locallib.php");
-        return new inter_content_file_info($browser, $context, $storedfile, $urlbase, $areas[$filearea], true, true, true, false);
+        require_once("$CFG->dirroot/mod/csvtable/locallib.php");
+        return new csvtable_content_file_info($browser, $context, $storedfile, $urlbase, $areas[$filearea], true, true, true, false);
     }
 
     // note: resource_intro handled in file_browser automatically
@@ -208,20 +208,20 @@ function inter_get_file_info($browser, $areas, $course, $cm, $context, $filearea
 }
 
 /**
- * Serves the files from the mod_inter file areas.
+ * Serves the files from the mod_csvtable file areas.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    files
  *
  * @param stdClass $course The course object.
  * @param stdClass $cm The course module object.
- * @param stdClass $context The mod_inter's context.
+ * @param stdClass $context The mod_csvtable's context.
  * @param string $filearea The name of the file area.
  * @param array $args Extra arguments (itemid, path).
  * @param bool $forcedownload Whether or not force download.
  * @param array $options Additional options affecting the file serving.
  */
-function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = array()) {
+function csvtable_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = array()) {
     global $DB, $CFG;
 
     require_once("$CFG->libdir/resourcelib.php");
@@ -231,7 +231,7 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
     }
 
     require_course_login($course, true, $cm);
-    if (!has_capability('mod/inter:view', $context)) {
+    if (!has_capability('mod/csvtable:view', $context)) {
         return false;
     }
 
@@ -244,7 +244,7 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
 
     $fs = get_file_storage();
     $relativepath = implode('/', $args);
-    $fullpath = rtrim("/$context->id/mod_inter/$filearea/0/$relativepath", '/');
+    $fullpath = rtrim("/$context->id/mod_csvtable/$filearea/0/$relativepath", '/');
     do {
         if (!$file = $fs->get_file_by_hash(sha1($fullpath))) {
             if ($fs->get_file_by_hash(sha1("$fullpath/."))) {
@@ -258,23 +258,23 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
                     break;
                 }
             }
-            $instance = $DB->get_record('inter', array('id'=>$cm->instance), 'id, legacyfiles', MUST_EXIST);
+            $instance = $DB->get_record('csvtable', array('id'=>$cm->instance), 'id, legacyfiles', MUST_EXIST);
             if ($instance->legacyfiles != RESOURCELIB_LEGACYFILES_ACTIVE) {
                 return false;
             }
-            if (!$file = resourcelib_try_file_migration('/'.$relativepath, $cm->id, $cm->course, 'mod_inter', 'content', 0)) {
+            if (!$file = resourcelib_try_file_migration('/'.$relativepath, $cm->id, $cm->course, 'mod_csvtable', 'content', 0)) {
                 return false;
             }
             // file migrate - update flag
             $instance->legacyfileslast = time();
-            $DB->update_record('inter', $instance);
+            $DB->update_record('csvtable', $instance);
         }
     } while (false);
 
     // should we apply filters?
     $mimetype = $file->get_mimetype();
     if ($mimetype === 'text/html' or $mimetype === 'text/plain' or $mimetype === 'application/xhtml+xml') {
-        $filter = $DB->get_field('inter', 'filterfiles', array('id'=>$cm->instance));
+        $filter = $DB->get_field('csvtable', 'filterfiles', array('id'=>$cm->instance));
         $CFG->embeddedsoforcelinktarget = true;
     } else {
         $filter = 0;
@@ -291,10 +291,10 @@ function inter_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
  *
  * @param object $data Data object
  */
-function inter_set_display_options($data) {
+function csvtable_set_display_options($data) {
     global $DB;
     $displayoptions = array();
-    $display = $DB->get_record('inter', array('id'=>$data->id), '*', MUST_EXIST)->display;
+    $display = $DB->get_record('csvtable', array('id'=>$data->id), '*', MUST_EXIST)->display;
     if ($display == RESOURCELIB_DISPLAY_POPUP) {
         $displayoptions['popupwidth']  = $data->popupwidth;
         $displayoptions['popupheight'] = $data->popupheight;

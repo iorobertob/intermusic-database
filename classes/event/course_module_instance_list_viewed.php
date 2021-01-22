@@ -17,7 +17,7 @@
 /**
  * The mod_resource instance list viewed event.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * The mod_resource instance list viewed event class.
  *
- * @package    mod_inter
+ * @package    mod_csvtable
  * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

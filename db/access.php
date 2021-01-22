@@ -17,7 +17,7 @@
 /**
  * Plugin capabilities are defined here.
  *
- * @package     mod_inter
+ * @package     mod_csvtable
  * @category    access
  * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
 
-    'mod/inter:view' => [
+    'mod/csvtable:view' => [
         'captype' => 'view',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => [
@@ -37,14 +37,14 @@ $capabilities = [
         'clonepermissionsfrom' => 'moodle/course:view',
     ],
 
-    'mod/inter:edit' => [
+    'mod/csvtable:edit' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => [
         ],
     ],
 
-    'mod/inter:enrol' => [
+    'mod/csvtable:enrol' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => [
@@ -52,7 +52,7 @@ $capabilities = [
         ],
     ],
 
-    'mod/inter:unenrol' => [
+    'mod/csvtable:unenrol' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => [
@@ -60,7 +60,7 @@ $capabilities = [
         ],
     ],
 
-    'mod/inter:manage' => [
+    'mod/csvtable:manage' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => [
@@ -68,7 +68,7 @@ $capabilities = [
         ],
     ],
 
-    'mod/inter:addinstance' => [
+    'mod/csvtable:addinstance' => [
         'riskbitmask' => RISK_XSS,
 
         'captype' => 'write',
