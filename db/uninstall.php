@@ -20,7 +20,7 @@
  * lib.php/modulename_install() post installation hook and partially defaults.php
  *
  * @package   mod_workshop
- * @copyright 2009 David Mudrak <david.mudrak@gmail.com>
+ * @copyright 2021 Ideas-Block <roberto@ideas-block.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

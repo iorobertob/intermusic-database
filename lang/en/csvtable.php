@@ -19,7 +19,7 @@
  *
  * @package     mod_csvtable
  * @category    string
- * @copyright   2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright   2021 Ideas-Block <roberto@ideas-block.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -41,7 +41,7 @@ $string['messageprovider:submission'] = 'Submission message';
 $string['missingidandcmid'] = 'Missing id and cmid';
 $string['modulename'] = 'CSV Table';
 $string['modulename_help'] = 'Use the CSV Table module to crate a searchable table from a .csv file. User can select separation character.';
-$string['modulenameplural'] = 'csvtable_databases';
+$string['modulenameplural'] = 'csvtables';
 $string['newmodulefieldset'] = 'Custom example fieldset.';
 $string['newmodulename'] = 'New CSV Table';
 $string['newmodulename_help'] = 'This is the content of the help tooltip associated with the newmodulename field';

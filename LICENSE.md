@@ -1,7 +1,7 @@
 GNU GENERAL PUBLIC LICENSE
 ==========================
 
-Version 3, 29 June 2007
+Version 1, 22 Jan 2021
 
 Copyright &copy; 2007 Free Software Foundation, Inc. &lt;<http://fsf.org/>&gt;
 
