@@ -49,7 +49,7 @@ class restore_csvtable_activity_task extends restore_activity_task {
      * @return base_step.
      */
     protected function define_my_steps() {
-        $this->add_step(new restore_csvtable_activity_structure_step('csvtable_structure', 'inter.xml'));
+        $this->add_step(new restore_csvtable_activity_structure_step('csvtable_structure', 'csvtable.xml'));
     }
 
     public function get_fileareas() {
@@ -79,8 +79,8 @@ class restore_csvtable_activity_task extends restore_activity_task {
     static public function define_decode_rules() {
         
          return array(
-            new restore_decode_rule('INTERINDEX', '/mod/csvtable/index.php?id=$1', 'course'),
-            new restore_decode_rule('INTERVIEWBYID', '/mod/csvtable/view.php?id=$1', 'course_module'),
+            new restore_decode_rule('CSVTABLEINDEX', '/mod/csvtable/index.php?id=$1', 'course'),
+            new restore_decode_rule('CSVTABLEVIEWBYID', '/mod/csvtable/view.php?id=$1', 'course_module'),
         );
     }
 

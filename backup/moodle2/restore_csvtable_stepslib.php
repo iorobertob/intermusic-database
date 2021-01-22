@@ -50,11 +50,11 @@ class restore_csvtable_activity_structure_step extends restore_activity_structur
     }
 
     /**
-     * Processes the inter restore data.
+     * Processes the csvtable restore data.
      *
      * @param array $data Parsed element data.
      */
-    protected function process_inter($data) {
+    protected function process_csvtable($data) {
 
         global $DB;
 

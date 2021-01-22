@@ -48,7 +48,7 @@ class backup_csvtable_activity_task extends backup_activity_task {
      * Defines particular steps for the backup process.
      */
     protected function define_my_steps() {
-        $this->add_step(new backup_csvtable_activity_structure_step('csvtable_structure', 'inter.xml'));
+        $this->add_step(new backup_csvtable_activity_structure_step('csvtable_structure', 'csvtable.xml'));
     }
 
 
@@ -73,11 +73,11 @@ class backup_csvtable_activity_task extends backup_activity_task {
 
         // Link to the list of choices
         $search="/(".$base."\/mod\/csvtable\/index.php\?id\=)([0-9]+)/";
-        $content= preg_replace($search, '$@INTERINDEX*$2@$', $content);
+        $content= preg_replace($search, '$@CSVTABLEINDEX*$2@$', $content);
 
         // Link to choice view by moduleid
         $search="/(".$base."\/mod\/csvtable\/view.php\?id\=)([0-9]+)/";
-        $content= preg_replace($search, '$@INTERVIEWBYID*$2@$', $content);
+        $content= preg_replace($search, '$@CSVTABLEVIEWBYID*$2@$', $content);
 
         return $content;
     }
