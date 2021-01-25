@@ -49,12 +49,12 @@
 				    $is_row_empty = true;
 				    for ( $j = 0; $j < sizeof($row); $j++)
 				    {
-				    	if $row[$j] != null
+				    	if ($row[$j] != null)
 				    	{
 				    		$is_row_empty = false;
 				    	}
 				    }
-				    if !$is_row_empty
+				    if (!$is_row_empty)
 				    {
 				    	echo('<tr>');
 				    }
@@ -74,7 +74,7 @@
 				        }
 				        
 				    }
-				    if !$is_row_empty
+				    if (!$is_row_empty)
 				    {
 				    	echo('</tr>');
 				    }
