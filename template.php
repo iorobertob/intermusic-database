@@ -57,25 +57,21 @@
 				    if (!$is_row_empty)
 				    {
 				    	echo('<tr>');
-				    }
-				    
-
-				    for ( $j = 0; $j < sizeof($row); $j++)
-				    {
-				        $item = $row[$j];
-				        // If there is an URL in the data
-				        if (filter_var($item, FILTER_VALIDATE_URL)) { 
-				            // make a button
-				            echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
-				        }
-				        // Any data, not an URL
-				        else if ($item != null){
-				            echo("<td>".$item."</td>");
-				        }
-				        
-				    }
-				    if (!$is_row_empty)
-				    {
+				   
+					    for ( $j = 0; $j < sizeof($row); $j++)
+					    {
+					        $item = $row[$j];
+					        // If there is an URL in the data
+					        if (filter_var($item, FILTER_VALIDATE_URL)) { 
+					            // make a button
+					            echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
+					        }
+					        // Any data, not an URL
+					        else {
+					            echo("<td>".$item."</td>");
+					        }
+					        
+					    }
 				    	echo('</tr>');
 				    }
 				}
