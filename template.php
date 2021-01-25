@@ -46,7 +46,19 @@
 				{
 				    $row = $the_big_array[$i];
 
-				    echo('<tr>');
+				    $is_row_empty = true;
+				    for ( $j = 0; $j < sizeof($row); $j++)
+				    {
+				    	if $row[$j] != null
+				    	{
+				    		$is_row_empty = false;
+				    	}
+				    }
+				    if !$is_row_empty
+				    {
+				    	echo('<tr>');
+				    }
+				    
 
 				    for ( $j = 0; $j < sizeof($row); $j++)
 				    {
@@ -57,12 +69,15 @@
 				            echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
 				        }
 				        // Any data, not an URL
-				        else{
+				        else if ($item != null){
 				            echo("<td>".$item."</td>");
 				        }
 				        
 				    }
-				    echo('</tr>');
+				    if !$is_row_empty
+				    {
+				    	echo('</tr>');
+				    }
 				}
 
 			?>
