@@ -65,7 +65,7 @@
 					        // if (filter_var($item, FILTER_VALIDATE_URL)) {
 					        if ((strpos($a, 'http://') !== false) ||  (strpos($a, 'https://') !== false)){
 					            // make a button
-					            $split_string = explode ( " " , $item)
+					            $split_string = explode ( " " , $item);
 					            // echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
 					            echo("<td><a href=\"".$split_string[0]."\"><button>".$$split_string[1]."</button></a></td>");
 					        }
