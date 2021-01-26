@@ -63,7 +63,7 @@
 					        $item = $row[$j];
 					        // If there is an URL in the data
 					        // if (filter_var($item, FILTER_VALIDATE_URL)) {
-					        if ((strpos($a, 'http://') !== false) ||  (strpos($a, 'https://') !== false)){
+					        if ((strpos($item, 'http://') !== false) ||  (strpos($item, 'https://') !== false)){
 					            // make a button
 					            $split_string = explode ( " " , $item);
 					            // echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
