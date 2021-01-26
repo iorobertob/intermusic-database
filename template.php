@@ -67,7 +67,8 @@
 					            // make a button
 					            $split_string = explode ( " " , $item);
 					            // echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
-					            echo("<td><a href=\"".$split_string[0]."\"><button>".$split_string[1]."</button></a></td>");
+					            // echo("<td><a href=\"".$split_string[0]."\"><button>".$split_string[1]."</button></a></td>");
+					            echo("<td><a style:'color:blue' href=\"".$split_string[0]."\">".$split_string[1]."</a></td>");
 					        }
 					        // Any data, not an URL
 					        else {
