@@ -64,22 +64,18 @@
 					        // If there is an URL in the data
 					        // if (filter_var($item, FILTER_VALIDATE_URL)) {
 					        if ((strpos($item, 'http://') !== false) ||  (strpos($item, 'https://') !== false)){
-					            // make a button
+					            // make a link with the string before the "|" symbol 
 					            $split_string = explode ( "|" , $item);
-					            // echo("<td><a href=\"".$item."\"><button>Link</button></a></td>");
-					            // echo("<td><a href=\"".$split_string[0]."\"><button>".$split_string[1]."</button></a></td>");
 					            echo("<td><a href=\"".$split_string[1]."\" target=\"_blank\">".$split_string[0]." </a></td>");
 					        }
 					        // Any data, not an URL
 					        else {
 					            echo("<td>".$item."</td>");
 					        }
-					        
 					    }
 				    	echo('</tr>');
 				    }
 				}
-
 			?>
 
 	</tbody>
@@ -93,6 +89,5 @@
 	        scrollY: '1000px',
 	        responsive:true
 	        });
-
     });
 </script>

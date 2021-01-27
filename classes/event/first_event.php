@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * The first_event event class.
  *
  * @package    mod_csvtable
- * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright  2021 Ideas-Block <roberto@ideas-block.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class first_event extends \core\event\first_event {

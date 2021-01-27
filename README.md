@@ -1,23 +1,18 @@
-# TABLES Plugin #
+# CSV Table Plugin #
 
-TODO Describe the plugin shortly here.
 
-TODO Provide more detailed description here.
+This plugin takes a CSV file and renders a searchable table in an activity in moodle. 
 
-## License ##
+CSV files have different sperator characeters, "," not always being the default. This plugin offers the optio to select betweeh "," "/" and ";" characters as separators. 
 
-UNDER DEVELOPMENT
+The first row of the CSV table will be used as Columns' headers. 
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+In order to have active links in anh of the cells, the content of the cell should be formatted as follows:
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+Some arbitraty text | https://some.link
 
-You should have received a copy of the GNU General Public License along with
-this program.  If not, see <http://www.gnu.org/licenses/>.
+A "|" character marks the division between the link to be recognised and the string to be used as the link text. In the example above "Some arbitrary text" will show in the table cell and will contain an active link to https://some.link. It is necessary for the url to have either "http://" or "https://" for it to be recognised as a link. Spaces around the "|" character are not necessary. 
 
-2019 LMTA <roberto.becerra@lmta.lt>
+This plugin uses [DataTables](https://datatables.net/) for its formatting. 
+
+

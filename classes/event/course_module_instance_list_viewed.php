@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * The mod_resource instance list viewed event class.
  *
  * @package    mod_csvtable
- * @copyright  2019 LMTA <roberto.becerra@lmta.lt>
+ * @copyright  2021 Ideas-Block <roberto@ideas-block.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_module_instance_list_viewed extends \core\event\course_module_instance_list_viewed {
